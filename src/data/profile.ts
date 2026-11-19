@@ -45,7 +45,7 @@ export const profileData: ProfileData = {
     'Business Strategy & Consulting',
     'Marketing Analytics & Innovation',
   ],
-  avatarUrl: '/assets/aistudio/image-gen-1_1__9d8b9e9b.png',
+  avatarUrl: '/assets/profile/avatar-md.jpg',
   resumeUrl: null, // Reserved until official verified CV PDF is supplied
   resumeAvailable: false,
   socialLinks: {

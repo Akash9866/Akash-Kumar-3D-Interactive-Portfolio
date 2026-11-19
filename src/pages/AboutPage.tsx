@@ -4,6 +4,7 @@ import { profileData } from '../data/profile';
 import { projectsData } from '../data/projects';
 import { researchData } from '../data/research';
 import { ResumeModal } from '../components/ResumeModal';
+import { ResponsiveAvatar } from '../components/ResponsiveAvatar';
 
 interface AboutPageProps {
   onNavigate: (path: RoutePath) => void;
@@ -33,25 +34,11 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
           </div>
 
           {/* Profile Monogram / Portrait */}
-          {profileData.avatarUrl ? (
-            <div className="w-24 h-28 sm:w-32 sm:h-40 rounded-xl bg-white border border-zinc-300 overflow-hidden shrink-0 shadow-xs">
-              <img
-                src={profileData.avatarUrl}
-                alt={profileData.name}
-                referrerPolicy="no-referrer"
-                className="w-full h-full object-cover object-top"
-              />
-            </div>
-          ) : (
-            <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-2xl bg-zinc-900 text-white flex flex-col items-center justify-center shrink-0 shadow-xs">
-              <span className="text-2xl sm:text-3xl font-semibold tracking-tight font-display">
-                {profileData.initials}
-              </span>
-              <span className="text-[10px] text-zinc-400 tracking-wider uppercase mt-0.5">
-                Portfolio
-              </span>
-            </div>
-          )}
+          <ResponsiveAvatar
+            size="md"
+            priority={true}
+            className="rounded-xl shadow-xs"
+          />
         </div>
 
         {/* Academic and Professional Journey (Section 02) */}

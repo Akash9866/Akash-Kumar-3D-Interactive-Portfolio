@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { RoutePath } from '../router';
 import { profileData } from '../data/profile';
 import { contactData } from '../data/contact';
+import { ResponsiveAvatar } from './ResponsiveAvatar';
 import {
   ChevronLeft,
   ChevronRight,
@@ -158,20 +159,11 @@ export const Navigation: React.FC<NavigationProps> = ({
           onClick={() => handleNavClick('/')}
           className="flex items-center space-x-2.5 text-left cursor-pointer py-1"
         >
-          <span className="relative flex h-8 w-8 shrink-0 overflow-hidden rounded-full border border-zinc-300 bg-white">
-            {profileData.avatarUrl ? (
-              <img
-                src={profileData.avatarUrl}
-                alt={profileData.name}
-                referrerPolicy="no-referrer"
-                className="h-full w-full object-cover object-top"
-              />
-            ) : (
-              <span className="flex h-full w-full items-center justify-center rounded-full bg-zinc-200 text-xs font-semibold text-zinc-900">
-                {profileData.initials}
-              </span>
-            )}
-          </span>
+          <ResponsiveAvatar
+            size="xs"
+            priority={true}
+            className="rounded-full ring-1 ring-zinc-300"
+          />
           <div className="flex flex-col leading-tight">
             <span className="text-sm font-semibold text-zinc-900 font-display">
               {profileData.name}
@@ -233,20 +225,11 @@ export const Navigation: React.FC<NavigationProps> = ({
             collapsed && !mobileOpen ? 'justify-center' : 'space-x-3 justify-start'
           }`}
         >
-          <span className="relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full border border-zinc-300 bg-white">
-            {profileData.avatarUrl ? (
-              <img
-                src={profileData.avatarUrl}
-                alt={profileData.name}
-                referrerPolicy="no-referrer"
-                className="h-full w-full object-cover object-top"
-              />
-            ) : (
-              <span className="flex h-full w-full items-center justify-center rounded-full bg-[#e4e4e7] text-xs font-semibold text-zinc-800">
-                {profileData.initials}
-              </span>
-            )}
-          </span>
+          <ResponsiveAvatar
+            size="sm"
+            priority={true}
+            className="rounded-full ring-1 ring-zinc-300"
+          />
 
           {(!collapsed || mobileOpen) && (
             <div className="text-sm flex flex-col min-w-0">

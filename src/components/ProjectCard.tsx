@@ -22,6 +22,8 @@ export const ProjectCoverBanner: React.FC<ProjectCoverBannerProps> = ({
         <img
           src={project.coverImage}
           alt={project.title}
+          loading="lazy"
+          decoding="async"
           referrerPolicy="no-referrer"
           style={
             parallaxOffset
