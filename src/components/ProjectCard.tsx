@@ -112,27 +112,72 @@ export const ProjectCoverBanner: React.FC<ProjectCoverBannerProps> = ({
         }}
       />
 
-      {/* Abstract strategy chart / funnel vector graphic (Mid Plane) */}
-      <svg
-        className="absolute right-2 bottom-2 w-36 h-24 opacity-25 pointer-events-none will-change-transform"
-        viewBox="0 0 160 100"
-        fill="none"
+      {/* Specialized Responsive Vector SVG Illustration (Resolution-independent across all screens) */}
+      <div
+        className="absolute right-2 bottom-2 w-36 h-24 sm:w-44 sm:h-28 opacity-30 pointer-events-none will-change-transform"
         style={{
           transform: `translate3d(${(px * -13).toFixed(2)}px, ${(py * -10).toFixed(2)}px, 12px)`,
           transition: layerTransition,
         }}
       >
-        <path
-          d="M10 85 L45 62 L85 68 L120 35 L152 15"
-          stroke={palette.line}
-          strokeWidth="3"
-          strokeLinecap="round"
-        />
-        <rect x="20" y="70" width="14" height="20" fill={palette.line} opacity="0.4" />
-        <rect x="52" y="54" width="14" height="36" fill={palette.line} opacity="0.55" />
-        <rect x="84" y="42" width="14" height="48" fill={palette.line} opacity="0.7" />
-        <rect x="116" y="24" width="14" height="66" fill={palette.line} opacity="0.9" />
-      </svg>
+        {project.visualTheme === 'blue' && (
+          // Financial Candlesticks & Bloomberg Terminal Trend Line
+          <svg viewBox="0 0 160 100" fill="none" className="w-full h-full">
+            <line x1="25" y1="20" x2="25" y2="85" stroke={palette.line} strokeWidth="1" opacity="0.3" />
+            <line x1="55" y1="15" x2="55" y2="85" stroke={palette.line} strokeWidth="1" opacity="0.3" />
+            <line x1="85" y1="10" x2="85" y2="85" stroke={palette.line} strokeWidth="1" opacity="0.3" />
+            <line x1="115" y1="5" x2="115" y2="85" stroke={palette.line} strokeWidth="1" opacity="0.3" />
+            <line x1="145" y1="0" x2="145" y2="85" stroke={palette.line} strokeWidth="1" opacity="0.3" />
+            <rect x="18" y="55" width="14" height="22" rx="1" fill={palette.line} opacity="0.6" />
+            <rect x="48" y="42" width="14" height="28" rx="1" fill={palette.line} opacity="0.75" />
+            <rect x="78" y="30" width="14" height="32" rx="1" fill={palette.line} opacity="0.85" />
+            <rect x="108" y="18" width="14" height="38" rx="1" fill={palette.line} />
+            <path d="M12 75 Q 50 65, 80 45 T 150 12" stroke="#8BD4FF" strokeWidth="2.5" strokeLinecap="round" />
+            <circle cx="150" cy="12" r="3.5" fill="#8BD4FF" />
+          </svg>
+        )}
+        {project.visualTheme === 'emerald' && (
+          // Smart City Circular Economy & Ecological Grid Loops
+          <svg viewBox="0 0 160 100" fill="none" className="w-full h-full">
+            <circle cx="85" cy="50" r="38" stroke={palette.line} strokeWidth="1.5" strokeDasharray="3 3" opacity="0.4" />
+            <circle cx="85" cy="50" r="24" stroke={palette.line} strokeWidth="2" opacity="0.7" />
+            <path d="M40 78 C 65 92, 110 92, 135 78" stroke={palette.line} strokeWidth="2.5" strokeLinecap="round" />
+            <path d="M135 22 C 110 8, 65 8, 40 22" stroke={palette.line} strokeWidth="2.5" strokeLinecap="round" />
+            <circle cx="40" cy="78" r="4" fill={palette.line} />
+            <circle cx="135" cy="78" r="4" fill={palette.line} />
+            <circle cx="85" cy="50" r="6" fill="#34D399" />
+          </svg>
+        )}
+        {project.visualTheme === 'indigo' && (
+          // Fintech Growth Arch & Compounding Curve Vector
+          <svg viewBox="0 0 160 100" fill="none" className="w-full h-full">
+            <path d="M15 88 C 45 88, 70 70, 95 48 C 120 26, 138 18, 152 14" stroke={palette.line} strokeWidth="3" strokeLinecap="round" />
+            <path d="M15 88 C 45 88, 70 70, 95 48 C 120 26, 138 18, 152 14 L152 95 L15 95 Z" fill={palette.line} fillOpacity="0.12" />
+            <circle cx="95" cy="48" r="4.5" fill="#A5B4FC" />
+            <circle cx="152" cy="14" r="5" fill="#8BD4FF" />
+            <circle cx="35" cy="35" r="14" stroke={palette.line} strokeWidth="1.5" strokeDasharray="2 2" opacity="0.5" />
+          </svg>
+        )}
+        {project.visualTheme === 'rose' && (
+          // Healthcare Logistics & Health Waveform Vector
+          <svg viewBox="0 0 160 100" fill="none" className="w-full h-full">
+            <path d="M10 50 L40 50 L52 24 L64 78 L76 34 L88 62 L98 50 L150 50" stroke={palette.line} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+            <circle cx="52" cy="24" r="3.5" fill="#FDA4AF" />
+            <circle cx="64" cy="78" r="3.5" fill={palette.line} />
+            <circle cx="76" cy="34" r="3.5" fill="#FDA4AF" />
+          </svg>
+        )}
+        {(project.visualTheme === 'amber' || project.visualTheme === 'slate') && (
+          // Strategy Roadmap & Process Funnel Vector
+          <svg viewBox="0 0 160 100" fill="none" className="w-full h-full">
+            <rect x="15" y="65" width="22" height="25" rx="2" fill={palette.line} opacity="0.4" />
+            <rect x="45" y="48" width="22" height="42" rx="2" fill={palette.line} opacity="0.6" />
+            <rect x="75" y="32" width="22" height="58" rx="2" fill={palette.line} opacity="0.8" />
+            <rect x="105" y="16" width="22" height="74" rx="2" fill={palette.line} />
+            <path d="M10 85 L45 62 L85 68 L120 35 L152 15" stroke={palette.line} strokeWidth="2" strokeLinecap="round" />
+          </svg>
+        )}
+      </div>
 
       {/* Top Row (Foreground Plane) */}
       <div
