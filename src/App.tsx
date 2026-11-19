@@ -10,7 +10,6 @@ import { Navigation } from './components/Navigation';
 import { Footer } from './components/Footer';
 import { AmbientParticles } from './components/AmbientParticles';
 import { EditorialHomePage } from './pages/EditorialHomePage';
-import { DocumentsProvider } from './context/DocumentsContext';
 
 // Code-splitting routes: dynamically import subpages to minimize initial page payload
 const AboutPage = lazy(() =>
@@ -82,8 +81,7 @@ export default function App() {
     : null;
 
   return (
-    <DocumentsProvider>
-      <div className="flex flex-col min-h-screen font-sans bg-gradient-to-r from-white to-gray-200 text-zinc-900 selection:bg-zinc-900 selection:text-white">
+    <div className="flex flex-col min-h-screen font-sans bg-gradient-to-r from-white to-gray-200 text-zinc-900 selection:bg-zinc-900 selection:text-white">
         {/* Collapsible Left Sidebar */}
         <Navigation
           currentPath={currentPath}
@@ -161,6 +159,5 @@ export default function App() {
           </Suspense>
         )}
       </div>
-    </DocumentsProvider>
   );
 }

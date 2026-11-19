@@ -318,7 +318,22 @@ export const DocumentsProvider: React.FC<{ children: React.ReactNode }> = ({
 export function useDocuments(): DocumentsContextValue {
   const ctx = useContext(DocumentsContext);
   if (!ctx) {
-    throw new Error('useDocuments must be used inside DocumentsProvider');
+    return {
+      user: null,
+      accessToken: null,
+      needsAuth: true,
+      isSigningIn: false,
+      signInWithGoogle: async () => {},
+      signOutUser: async () => {},
+      documentsByKey: {},
+      getDocumentRecord: () => null,
+      getDocumentUrl: (category, targetId, itemFallbackUrl) =>
+        resolveDocumentUrl(category, targetId, itemFallbackUrl),
+      getDownloadUrl: (category, targetId, itemFallbackUrl) =>
+        resolveDocumentUrl(category, targetId, itemFallbackUrl),
+      saveDocumentBinding: async () => {},
+      removeDocumentBinding: async () => {},
+    };
   }
   return ctx;
 }

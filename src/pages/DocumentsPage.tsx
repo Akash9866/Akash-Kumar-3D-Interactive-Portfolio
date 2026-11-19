@@ -3,6 +3,7 @@ import { RoutePath } from '../router';
 import {
   DocumentCategory,
   PortfolioDocumentRecord,
+  DocumentsProvider,
   useDocuments,
 } from '../context/DocumentsContext';
 import {
@@ -45,7 +46,7 @@ interface ConfirmationDialogState {
   record: PortfolioDocumentRecord;
 }
 
-export const DocumentsPage: React.FC<DocumentsPageProps> = ({ onNavigate }) => {
+const DocumentsView: React.FC<DocumentsPageProps> = ({ onNavigate }) => {
   const {
     user,
     accessToken,
@@ -540,3 +541,9 @@ export const DocumentsPage: React.FC<DocumentsPageProps> = ({ onNavigate }) => {
     </div>
   );
 };
+
+export const DocumentsPage: React.FC<DocumentsPageProps> = (props) => (
+  <DocumentsProvider>
+    <DocumentsView {...props} />
+  </DocumentsProvider>
+);
