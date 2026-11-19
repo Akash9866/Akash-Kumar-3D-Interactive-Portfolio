@@ -1,0 +1,8 @@
+{
+  "firestore": {
+    "databaseId": "ai-studio-akashkumar3dinte-2d6babf3-a465-4303-b596-9615e8411381",
+    "rules": "firestore.rules",
+    "edition": "ENTERPRISE",
+    "dataAccessMode": "FIRESTORE_NATIVE"
+  }
+}

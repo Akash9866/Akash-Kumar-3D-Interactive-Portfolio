@@ -1,0 +1,128 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Global Safety Net: Default-deny catch-all
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    function isValidId(id) {
+      return id is string && id.size() >= 1 && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    function incoming() {
+      return request.resource.data;
+    }
+
+    function existing() {
+      return resource.data;
+    }
+
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isAdmin() {
+      return isSignedIn() &&
+        request.auth.token.email_verified == true &&
+        (
+          request.auth.token.email in ['2002.akash.05@gmail.com', 'lorish82@gmail.com'] ||
+          exists(/databases/$(database)/documents/admins/$(request.auth.uid))
+        );
+    }
+
+    function isValidPortfolioDocument(data) {
+      return data.keys().hasAll([
+          'docKey',
+          'category',
+          'targetId',
+          'driveFileId',
+          'fileName',
+          'driveUrl',
+          'ownerUid',
+          'createdAt',
+          'updatedAt'
+        ]) &&
+        data.keys().hasOnly([
+          'docKey',
+          'category',
+          'targetId',
+          'driveFileId',
+          'fileName',
+          'driveUrl',
+          'mimeType',
+          'ownerUid',
+          'createdAt',
+          'updatedAt'
+        ]) &&
+        isValidId(data.docKey) &&
+        data.category is string &&
+        data.category in ['resume', 'internship', 'project', 'certification', 'research', 'education'] &&
+        data.targetId is string &&
+        data.targetId.size() >= 1 &&
+        data.targetId.size() <= 128 &&
+        data.driveFileId is string &&
+        data.driveFileId.size() >= 1 &&
+        data.driveFileId.size() <= 200 &&
+        data.fileName is string &&
+        data.fileName.size() >= 1 &&
+        data.fileName.size() <= 255 &&
+        data.driveUrl is string &&
+        data.driveUrl.size() >= 10 &&
+        data.driveUrl.size() <= 500 &&
+        data.driveUrl.matches('^https://.*') &&
+        (!('mimeType' in data) || (data.mimeType is string && data.mimeType.size() <= 150)) &&
+        data.ownerUid is string &&
+        data.ownerUid.size() >= 1 &&
+        data.ownerUid.size() <= 128 &&
+        data.ownerUid == request.auth.uid &&
+        data.createdAt is timestamp &&
+        data.updatedAt is timestamp;
+    }
+
+    // Boot connection check
+    match /test/{docId} {
+      allow get: if docId == 'connection';
+      allow list, create, update, delete: if false;
+    }
+
+    // Trusted admin records (read-only by own UID)
+    match /admins/{uid} {
+      allow get: if isSignedIn() && isValidId(uid) && request.auth.uid == uid;
+      allow list, create, update, delete: if false;
+    }
+
+    // Published portfolio Google Drive document links
+    // Public read access for portfolio visitors (zero PII stored); writes restricted to verified owner/admin.
+    match /portfolioDocuments/{docKey} {
+      allow get, list: if true;
+
+      allow create: if isAdmin() &&
+        isValidId(docKey) &&
+        isValidPortfolioDocument(incoming()) &&
+        incoming().docKey == docKey &&
+        incoming().createdAt == request.time &&
+        incoming().updatedAt == request.time;
+
+      allow update: if isAdmin() &&
+        isValidId(docKey) &&
+        isValidPortfolioDocument(incoming()) &&
+        incoming().docKey == existing().docKey &&
+        incoming().category == existing().category &&
+        incoming().targetId == existing().targetId &&
+        incoming().ownerUid == existing().ownerUid &&
+        incoming().createdAt == existing().createdAt &&
+        incoming().updatedAt == request.time &&
+        incoming().diff(existing()).affectedKeys().hasOnly([
+          'driveFileId',
+          'fileName',
+          'driveUrl',
+          'mimeType',
+          'updatedAt'
+        ]);
+
+      allow delete: if isAdmin() && isValidId(docKey);
+    }
+  }
+}

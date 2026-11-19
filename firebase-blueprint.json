@@ -1,0 +1,115 @@
+{
+  "entities": {
+    "PortfolioDocument": {
+      "title": "PortfolioDocument",
+      "description": "Maps a portfolio document slot (resume, internship certificate, project report, certification, research paper, or education credential) to a live Google Drive file picked via Google Picker.",
+      "type": "object",
+      "properties": {
+        "docKey": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$",
+          "description": "Canonical document slot identifier"
+        },
+        "category": {
+          "type": "string",
+          "enum": [
+            "resume",
+            "internship",
+            "project",
+            "certification",
+            "research",
+            "education"
+          ],
+          "description": "Portfolio section category"
+        },
+        "targetId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128,
+          "description": "Item ID or slug within the portfolio section"
+        },
+        "driveFileId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200,
+          "description": "Google Drive file ID returned by Google Picker"
+        },
+        "fileName": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 255,
+          "description": "Display filename of the selected Google Drive document"
+        },
+        "driveUrl": {
+          "type": "string",
+          "minLength": 10,
+          "maxLength": 500,
+          "pattern": "^https://.*",
+          "description": "Canonical HTTPS URL to open the Google Drive document"
+        },
+        "mimeType": {
+          "type": "string",
+          "maxLength": 150,
+          "description": "MIME type of the Google Drive document"
+        },
+        "ownerUid": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128,
+          "description": "Firebase Auth UID of the portfolio owner who attached the document"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server creation timestamp"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server last-updated timestamp"
+        }
+      },
+      "required": [
+        "docKey",
+        "category",
+        "targetId",
+        "driveFileId",
+        "fileName",
+        "driveUrl",
+        "ownerUid",
+        "createdAt",
+        "updatedAt"
+      ]
+    },
+    "AdminUser": {
+      "title": "AdminUser",
+      "description": "Trusted portfolio administrator UID record.",
+      "type": "object",
+      "properties": {
+        "uid": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "role": {
+          "type": "string",
+          "enum": ["owner"]
+        }
+      },
+      "required": ["uid", "role"]
+    }
+  },
+  "firestore": {
+    "/portfolioDocuments/{docKey}": {
+      "schema": { "$ref": "#/entities/PortfolioDocument" },
+      "description": "Publicly readable portfolio document bindings managed exclusively by the verified portfolio owner."
+    },
+    "/admins/{uid}": {
+      "schema": { "$ref": "#/entities/AdminUser" },
+      "description": "Trusted administrator lookup table for RBAC verification."
+    }
+  }
+}

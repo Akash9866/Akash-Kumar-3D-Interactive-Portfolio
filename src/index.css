@@ -1,0 +1,82 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-primary: #18181b;
+  --color-secondary: #f4f4f5;
+  --color-muted: #e4e4e7;
+  --color-oldsilver: #848482;
+
+  --color-deep-black: #060A14;
+  --color-midnight-navy: #0F1A33;
+  --color-royal-blue: #182D66;
+  --color-electric-blue: #2563EB;
+  --color-vivid-blue: #4D9BFF;
+  --color-ice-blue: #8BD4FF;
+  --color-soft-white: #E6F0FF;
+  --color-muted-grey: #A7B8D4;
+
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-display: 'Space Grotesk', 'Plus Jakarta Sans', system-ui, sans-serif;
+}
+
+:root {
+  --sider-w: 220px;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  font-family: var(--font-sans);
+  background: linear-gradient(to right, #ffffff, #e5e7eb);
+  color: #18181b;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, .font-display {
+  font-family: var(--font-display);
+}
+
+/* Clean horizontal pill scrollers on mobile */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Custom subtle scrollbar matching amankumar.ai */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f4f4f5;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #d4d4d8;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #71717a;
+}
+
+@keyframes blinkCursor {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.animate-cursor-blink {
+  animation: blinkCursor 1s step-end infinite;
+}
