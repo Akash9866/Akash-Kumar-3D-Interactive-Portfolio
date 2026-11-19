@@ -1,6 +1,6 @@
 import React from 'react';
 import { ProjectItem } from '../types';
-import { X, Download, ArrowRight } from 'lucide-react';
+import { X, Download, ArrowRight, ExternalLink } from 'lucide-react';
 import { ProjectCoverBanner } from './ProjectCard';
 
 interface CaseStudyModalProps {
@@ -106,6 +106,18 @@ export const CaseStudyModal: React.FC<CaseStudyModalProps> = ({
                 <span>Open Case Study Page</span>
                 <ArrowRight className="w-3.5 h-3.5" />
               </button>
+            )}
+
+            {project.prototypeUrl && (
+              <a
+                href={project.prototypeUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="flex items-center justify-center gap-1.5 px-3.5 py-2.5 sm:py-2 min-h-[38px] sm:min-h-0 text-xs font-semibold text-white bg-blue-600 hover:bg-blue-700 rounded-md transition-colors"
+              >
+                <ExternalLink className="w-3.5 h-3.5" />
+                <span>Launch Prototype</span>
+              </a>
             )}
 
             {project.hasFullDocument && project.documentPath && (

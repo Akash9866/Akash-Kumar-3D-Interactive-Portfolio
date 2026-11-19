@@ -4,7 +4,8 @@ import { projectsData } from '../data/projects';
 import { useDocuments } from '../context/DocumentsContext';
 import { ProjectCoverBanner } from '../components/ProjectCard';
 import { PerformanceMetricsChart } from '../components/PerformanceMetricsChart';
-import { Download, ArrowLeft } from 'lucide-react';
+import { PrototypeViewer } from '../components/PrototypeViewer';
+import { Download, ArrowLeft, ExternalLink, Play } from 'lucide-react';
 
 interface ProjectDetailPageProps {
   slug: string;
@@ -97,6 +98,41 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
             </div>
           )}
 
+          {/* Interactive Live Prototype Section */}
+          {project.prototypeUrl && (
+            <div className="space-y-3 pt-3">
+              <div className="flex flex-wrap items-center justify-between gap-2">
+                <div>
+                  <h4 className="text-base sm:text-lg font-semibold text-zinc-900 flex items-center gap-2">
+                    <span>Interactive Prototype Simulation</span>
+                    <span className="px-2 py-0.5 rounded-full text-[10px] font-mono font-semibold uppercase bg-emerald-100 text-emerald-800 border border-emerald-300">
+                      Live App
+                    </span>
+                  </h4>
+                  <p className="text-xs text-zinc-500 mt-0.5">
+                    Interact directly with the prototype below, or switch between desktop and mobile viewport.
+                  </p>
+                </div>
+                <a
+                  href={project.prototypeUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-blue-600 hover:bg-blue-700 text-white text-xs font-medium transition-colors shadow-xs"
+                >
+                  <Play className="w-3.5 h-3.5 fill-current" />
+                  <span>Launch External Window</span>
+                </a>
+              </div>
+
+              <PrototypeViewer
+                prototypeUrl={project.prototypeUrl}
+                prototypeTitle={project.prototypeTitle || project.title}
+                prototypeType={project.prototypeType}
+                defaultView="desktop"
+              />
+            </div>
+          )}
+
           {/* Reusable Performance & Analytics Chart */}
           <div className="space-y-3 pt-1">
             {project.metricsChart && (
@@ -154,6 +190,18 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
 
         {/* Bottom Action Buttons */}
         <div className="flex flex-wrap items-center gap-3 pt-3">
+          {project.prototypeUrl && (
+            <a
+              href={project.prototypeUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors border border-blue-600 shadow-xs min-h-[42px] px-4 py-2 text-white bg-blue-600 hover:bg-blue-700"
+            >
+              <ExternalLink className="w-4 h-4" />
+              <span>Launch Live Prototype App</span>
+            </a>
+          )}
+
           {(() => {
             const reportUrl = getDocumentUrl(
               'project',

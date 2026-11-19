@@ -117,6 +117,10 @@ export interface ProjectItem {
   supportingAssetsNote: string;
   toConfirmNote: string;
   metricsChart?: PerformanceChartConfig;
+  prototypeUrl?: string | null;
+  prototypeEmbedUrl?: string | null;
+  prototypeType?: 'web_app' | 'figma' | 'demo' | null;
+  prototypeTitle?: string | null;
   verificationStatus: VerificationStatus;
   displayStatus: DisplayStatus;
 }

@@ -413,9 +413,17 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
                 </button>
               </div>
 
-              <span className="text-xs sm:text-[11px] font-medium text-zinc-500">
-                {project.hasFullDocument ? 'PDF attached' : project.date}
-              </span>
+              <div className="flex items-center gap-1.5">
+                {project.prototypeUrl && (
+                  <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-medium bg-emerald-100 text-emerald-800 border border-emerald-200">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                    <span>Live Prototype</span>
+                  </span>
+                )}
+                <span className="text-xs sm:text-[11px] font-medium text-zinc-500">
+                  {project.hasFullDocument ? 'PDF attached' : project.date}
+                </span>
+              </div>
             </div>
 
             <div className="text-xs sm:text-[11px] text-zinc-600 truncate">
