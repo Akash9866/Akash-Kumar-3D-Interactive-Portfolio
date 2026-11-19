@@ -2,7 +2,7 @@
 
 > A spatial architectural exhibition and personal portfolio built for MBA internship opportunities, corporate recruiters, business strategy, performance marketing, and digital innovation roles.
 
-[![Live on Cloudflare Pages](https://img.shields.io/badge/Live-Cloudflare%20Pages-F38020?style=for-the-badge&logo=cloudflare&logoColor=white)](https://akash-kumar-portfolio.pages.dev)
+[![Live on Cloudflare Pages](https://img.shields.io/badge/Live-Cloudflare%20Pages-F38020?style=for-the-badge&logo=cloudflare&logoColor=white)](https://akashkumar.pages.dev)
 [![Built with React](https://img.shields.io/badge/React%2019-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://react.dev)
 [![Three.js](https://img.shields.io/badge/Three.js-black?style=for-the-badge&logo=three.js&logoColor=white)](https://threejs.org)
 [![Vite](https://img.shields.io/badge/Vite%208-646CFF?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev)
@@ -12,7 +12,7 @@
 
 ## 🌐 Live Website
 
-- **Production URL**: [https://akash-kumar-portfolio.pages.dev](https://akash-kumar-portfolio.pages.dev)
+- **Production URL**: [https://akashkumar.pages.dev](https://akashkumar.pages.dev)
 - **GitHub Repository**: [https://github.com/Akash9866/Akash-Kumar-3D-Interactive-Portfolio](https://github.com/Akash9866/Akash-Kumar-3D-Interactive-Portfolio)
 
 ---
@@ -63,7 +63,7 @@ To deploy updates to Cloudflare Pages directly:
 npm run deploy
 ```
 
-This compiles the static distribution with Vite into `dist/` and uploads it to the `akash-kumar-portfolio` project on Cloudflare Pages.
+This compiles the static distribution with Vite into `dist/` and uploads it to the `akashkumar` project on Cloudflare Pages.
 
 ---
 
