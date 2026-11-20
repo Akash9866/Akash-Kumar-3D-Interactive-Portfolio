@@ -121,6 +121,7 @@ export interface ProjectItem {
   prototypeEmbedUrl?: string | null;
   prototypeType?: 'web_app' | 'figma' | 'demo' | null;
   prototypeTitle?: string | null;
+  prototypeDefaultView?: 'desktop' | 'mobile';
   verificationStatus: VerificationStatus;
   displayStatus: DisplayStatus;
 }

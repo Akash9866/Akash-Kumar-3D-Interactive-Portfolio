@@ -128,7 +128,7 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
                 prototypeUrl={project.prototypeUrl}
                 prototypeTitle={project.prototypeTitle || project.title}
                 prototypeType={project.prototypeType}
-                defaultView="desktop"
+                defaultView={project.prototypeDefaultView || 'desktop'}
               />
             </div>
           )}
