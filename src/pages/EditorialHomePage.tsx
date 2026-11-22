@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { RoutePath } from '../router';
 import { profileData } from '../data/profile';
 import { projectsData } from '../data/projects';
@@ -10,10 +10,7 @@ import {
   Download,
   GraduationCap,
   Mail,
-  Copy,
-  Check,
   ExternalLink,
-  Sparkles,
 } from 'lucide-react';
 
 interface EditorialHomePageProps {
@@ -25,16 +22,7 @@ export const EditorialHomePage: React.FC<EditorialHomePageProps> = ({
   onNavigate,
   onOpenResume,
 }) => {
-  const [emailCopied, setEmailCopied] = useState(false);
   const featuredProject = projectsData[0];
-
-  const handleCopyEmail = () => {
-    if (contactData.email && navigator.clipboard?.writeText) {
-      navigator.clipboard.writeText(contactData.email).catch(() => {});
-      setEmailCopied(true);
-      setTimeout(() => setEmailCopied(false), 2000);
-    }
-  };
 
   const directoryRows: {
     title: string;
@@ -238,24 +226,13 @@ export const EditorialHomePage: React.FC<EditorialHomePageProps> = ({
             <ArrowRight className="w-3.5 h-3.5 shrink-0" />
           </button>
 
-          <button
-            type="button"
-            onClick={handleCopyEmail}
-            className="inline-flex items-center gap-1.5 px-3.5 py-2 min-h-[40px] text-xs font-medium text-zinc-700 bg-white/80 border border-zinc-300 hover:text-black hover:bg-white rounded-md transition-colors cursor-pointer"
-            title="Click to copy email address"
+          <a
+            href={`mailto:${contactData.email}`}
+            className="inline-flex items-center gap-1.5 px-3.5 py-2 min-h-[40px] text-xs font-semibold text-zinc-900 bg-white border border-zinc-300 hover:bg-gray-100 rounded-md transition-colors"
           >
-            {emailCopied ? (
-              <>
-                <Check className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
-                <span className="text-emerald-700 font-semibold">Email Copied!</span>
-              </>
-            ) : (
-              <>
-                <Copy className="w-3.5 h-3.5 shrink-0" />
-                <span>2002.akash.05@gmail.com</span>
-              </>
-            )}
-          </button>
+            <Mail className="w-3.5 h-3.5 shrink-0" />
+            <span>Email</span>
+          </a>
 
           {contactData.linkedin && (
             <a
@@ -338,80 +315,45 @@ export const EditorialHomePage: React.FC<EditorialHomePageProps> = ({
             <span className="truncate">Resume & Profile</span>
           </button>
 
-          <button
-            type="button"
-            onClick={handleCopyEmail}
-            className="px-3.5 py-2.5 min-h-[42px] rounded-md border border-gray-300 bg-white/80 hover:bg-gray-100 text-zinc-900 transition-colors font-medium inline-flex items-center justify-center gap-1.5 cursor-pointer"
+          <a
+            href={`mailto:${contactData.email}`}
+            className="px-3.5 py-2.5 min-h-[42px] rounded-md border border-gray-300 bg-white/80 hover:bg-gray-100 text-zinc-900 transition-colors font-medium inline-flex items-center justify-center gap-1.5"
           >
-            {emailCopied ? (
-              <>
-                <Check className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
-                <span className="text-emerald-700 font-semibold">Email Copied!</span>
-              </>
-            ) : (
-              <>
-                <Copy className="w-3.5 h-3.5 shrink-0" />
-                <span>Copy Email</span>
-              </>
-            )}
-          </button>
+            <Mail className="w-3.5 h-3.5 shrink-0" />
+            <span>Email</span>
+          </a>
         </div>
       </section>
 
-      {/* Connect on LinkedIn Card matching amankumar.ai social card */}
-      <div className="my-4">
-        {contactData.linkedin ? (
-          <a
-            href={contactData.linkedin}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="cursor-pointer block"
-          >
-            <div className="flex flex-row items-center gap-3 sm:gap-4 p-3.5 sm:p-4 rounded-xl border border-gray-200 bg-gradient-to-br from-gray-50 to-white shadow-sm hover:shadow-md active:shadow-inner transition-all duration-300 group w-full">
-              <div className="flex-shrink-0 p-2.5 sm:p-2 rounded-lg bg-zinc-900 text-white">
-                <Linkedin className="w-4 h-4" />
+      {/* LinkedIn Profile Card */}
+      <div className="pt-2">
+        <a
+          href={contactData.linkedin}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="group block p-4 sm:p-5 rounded-xl bg-neutral-200/80 border border-zinc-300/80 hover:border-zinc-700 transition-all hover:shadow-xs"
+        >
+          <div className="flex items-center justify-between gap-4">
+            <div className="flex items-center gap-3.5 min-w-0">
+              <div className="w-10 h-10 rounded-lg bg-[#0A66C2] text-white flex items-center justify-center shrink-0 shadow-xs">
+                <Linkedin className="w-5 h-5 fill-current" />
               </div>
-              <div className="flex-1 min-w-0">
-                <p className="text-sm font-medium text-gray-800 leading-tight">
-                  Connect with me on LinkedIn
+              <div className="min-w-0">
+                <h3 className="text-sm sm:text-[15px] font-semibold text-zinc-900 group-hover:text-blue-700 transition-colors flex items-center gap-1.5">
+                  <span>Akash Kumar on LinkedIn</span>
+                  <ExternalLink className="w-3.5 h-3.5 text-zinc-400 group-hover:text-blue-600 transition-colors" />
+                </h3>
+                <p className="text-xs text-zinc-600 mt-0.5 leading-relaxed">
+                  Open to MBA Summer Internships, Digital & Performance Marketing, and Business Strategy opportunities.
                 </p>
-                <p className="text-xs text-zinc-500 mt-1 line-clamp-2 leading-snug">
-                  {contactData.availability}
-                </p>
-              </div>
-              <div className="flex-shrink-0">
-                <span className="inline-flex items-center px-3 py-1.5 sm:py-1 bg-black text-white rounded-full text-xs font-medium group-hover:scale-105 group-active:scale-95 transition-transform">
-                  Connect
-                </span>
               </div>
             </div>
-          </a>
-        ) : (
-          <button
-            type="button"
-            onClick={() => onNavigate('/contact')}
-            className="cursor-pointer block w-full text-left"
-          >
-            <div className="flex flex-row items-center gap-3 sm:gap-4 p-3.5 sm:p-4 rounded-xl border border-gray-200 bg-gradient-to-br from-gray-50 to-white shadow-sm hover:shadow-md active:shadow-inner transition-all duration-300 group w-full">
-              <div className="flex-shrink-0 p-2.5 sm:p-2 rounded-lg bg-zinc-900 text-white">
-                <Linkedin className="w-4 h-4" />
-              </div>
-              <div className="flex-1 min-w-0">
-                <p className="text-sm font-medium text-gray-800 leading-tight">
-                  Connect with me on LinkedIn
-                </p>
-                <p className="text-xs text-zinc-500 mt-1 line-clamp-2 leading-snug">
-                  {contactData.availability}
-                </p>
-              </div>
-              <div className="flex-shrink-0">
-                <span className="inline-flex items-center px-3 py-1.5 sm:py-1 bg-black text-white rounded-full text-xs font-medium group-hover:scale-105 group-active:scale-95 transition-transform">
-                  Connect
-                </span>
-              </div>
-            </div>
-          </button>
-        )}
+            <span className="hidden sm:inline-flex items-center gap-1 text-xs font-semibold text-zinc-700 group-hover:text-zinc-900 shrink-0">
+              <span>View Profile</span>
+              <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" />
+            </span>
+          </div>
+        </a>
       </div>
 
       {/* Featured Highlight Card matching amankumar.ai bottom "Check this out" card */}
