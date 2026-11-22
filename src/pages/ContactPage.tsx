@@ -259,7 +259,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate }) => {
                 <span>Send a direct message</span>
               </h3>
               <p className="text-[13px] sm:text-xs text-zinc-600 leading-relaxed">
-                For MBA internship opportunities, digital and performance marketing roles, business strategy projects, or academic collaborations.
+                For digital marketing initiatives, business strategy & consulting projects, or professional opportunities.
               </p>
             </div>
 

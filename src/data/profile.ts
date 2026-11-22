@@ -65,9 +65,9 @@ export const profileData: ProfileData = {
       detail: 'Nestlé Corporate Valuation · Empirical Statistics',
     },
     {
-      metric: 'Recruitment Focus',
-      label: 'Summer Internships',
-      detail: 'Digital Marketing, Strategy & Consulting',
+      metric: 'Strategic Focus',
+      label: 'Core Disciplines',
+      detail: 'Digital Marketing, Business Strategy & Consulting',
     },
   ],
   socialLinks: {

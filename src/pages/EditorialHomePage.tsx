@@ -331,27 +331,29 @@ export const EditorialHomePage: React.FC<EditorialHomePageProps> = ({
           href={contactData.linkedin}
           target="_blank"
           rel="noopener noreferrer"
-          className="group block p-4 sm:p-5 rounded-xl bg-neutral-200/80 border border-zinc-300/80 hover:border-zinc-700 transition-all hover:shadow-xs"
+          className="group block p-4 sm:p-4.5 rounded-xl bg-white/70 hover:bg-white border border-zinc-300 hover:border-zinc-800 transition-all duration-200 shadow-xs"
         >
-          <div className="flex items-center justify-between gap-4">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4">
             <div className="flex items-center gap-3.5 min-w-0">
-              <div className="w-10 h-10 rounded-lg bg-[#0A66C2] text-white flex items-center justify-center shrink-0 shadow-xs">
+              <div className="w-10 h-10 rounded-lg bg-zinc-900 text-white flex items-center justify-center shrink-0 group-hover:bg-[#0A66C2] transition-colors shadow-xs">
                 <Linkedin className="w-5 h-5 fill-current" />
               </div>
               <div className="min-w-0">
-                <h3 className="text-sm sm:text-[15px] font-semibold text-zinc-900 group-hover:text-blue-700 transition-colors flex items-center gap-1.5">
-                  <span>Akash Kumar on LinkedIn</span>
-                  <ExternalLink className="w-3.5 h-3.5 text-zinc-400 group-hover:text-blue-600 transition-colors" />
-                </h3>
-                <p className="text-xs text-zinc-600 mt-0.5 leading-relaxed">
-                  Open to MBA Summer Internships, Digital & Performance Marketing, and Business Strategy opportunities.
+                <div className="flex items-center gap-1.5">
+                  <h3 className="text-sm sm:text-[15px] font-semibold text-zinc-900 group-hover:text-black transition-colors">
+                    LinkedIn — Akash Kumar
+                  </h3>
+                  <ExternalLink className="w-3.5 h-3.5 text-zinc-400 group-hover:text-zinc-700 transition-colors" />
+                </div>
+                <p className="text-xs sm:text-[13px] text-zinc-600 mt-0.5 leading-relaxed">
+                  Professional credentials, verified certifications, and business strategy updates.
                 </p>
               </div>
             </div>
-            <span className="hidden sm:inline-flex items-center gap-1 text-xs font-semibold text-zinc-700 group-hover:text-zinc-900 shrink-0">
-              <span>View Profile</span>
+            <div className="flex items-center gap-1 text-xs font-semibold text-zinc-700 group-hover:text-black shrink-0 self-end sm:self-auto">
+              <span>Connect</span>
               <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" />
-            </span>
+            </div>
           </div>
         </a>
       </div>

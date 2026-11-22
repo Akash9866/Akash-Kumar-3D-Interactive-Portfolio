@@ -108,14 +108,14 @@ export const InternshipsPage: React.FC<InternshipsPageProps> = ({ onNavigate }) 
         ))}
       </div>
 
-      {/* Bottom Recruiter CTA */}
+      {/* Bottom Call to Action */}
       <div className="p-4 sm:p-6 bg-white/80 border border-zinc-300 rounded-xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div className="space-y-1">
           <h3 className="text-base font-semibold text-zinc-900">
-            Recruiting for MBA Summer Internships?
+            Interested in Collaborative Opportunities?
           </h3>
           <p className="text-[13.5px] sm:text-xs text-zinc-600 leading-relaxed">
-            I am currently pursuing my PGDM in Business Design at WeSchool, Mumbai, and am open to internship opportunities in Digital Marketing, Performance Marketing, and Business Strategy.
+            I bring hands-on experience across performance marketing, SEO visibility, business research, and strategic problem-solving to organizational challenges.
           </p>
         </div>
         <button
