@@ -249,10 +249,6 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
       <ResumeModal
         isOpen={resumeModalOpen}
         onClose={() => setResumeModalOpen(false)}
-        onManageDocuments={() => {
-          setResumeModalOpen(false);
-          onNavigate('/documents');
-        }}
       />
     </div>
   );

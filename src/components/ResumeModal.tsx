@@ -2,7 +2,7 @@ import React from 'react';
 import { profileData } from '../data/profile';
 import { resolveDocumentUrl } from '../data/documents';
 import { useDocuments } from '../context/DocumentsContext';
-import { X, FileText, Download, ExternalLink, FolderOpen } from 'lucide-react';
+import { X, FileText, Download, ExternalLink } from 'lucide-react';
 
 interface ResumeModalProps {
   isOpen: boolean;
@@ -13,7 +13,6 @@ interface ResumeModalProps {
 export const ResumeModal: React.FC<ResumeModalProps> = ({
   isOpen,
   onClose,
-  onManageDocuments,
 }) => {
   const { getDocumentRecord, getDocumentUrl, getDownloadUrl } = useDocuments();
 
@@ -155,19 +154,7 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({
           </div>
         )}
 
-        <div className="pt-4 border-t border-zinc-200 flex flex-wrap items-center justify-between gap-3">
-          {onManageDocuments ? (
-            <button
-              type="button"
-              onClick={onManageDocuments}
-              className="inline-flex items-center gap-1.5 text-xs font-medium text-zinc-700 hover:text-black underline underline-offset-2 cursor-pointer py-1"
-            >
-              <FolderOpen className="w-3.5 h-3.5" />
-              <span>Manage via Google Drive Picker</span>
-            </button>
-          ) : (
-            <span />
-          )}
+        <div className="pt-4 border-t border-zinc-200 flex items-center justify-end">
           <button
             onClick={onClose}
             className="px-4 py-2 sm:py-1.5 min-h-[38px] sm:min-h-0 text-xs font-medium text-zinc-700 hover:text-zinc-900 bg-zinc-100 hover:bg-zinc-200 rounded-md transition-colors cursor-pointer"

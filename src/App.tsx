@@ -151,10 +151,6 @@ export default function App() {
             <ResumeModal
               isOpen={resumeModalOpen}
               onClose={() => setResumeModalOpen(false)}
-              onManageDocuments={() => {
-                setResumeModalOpen(false);
-                navigate('/documents');
-              }}
             />
           </Suspense>
         )}

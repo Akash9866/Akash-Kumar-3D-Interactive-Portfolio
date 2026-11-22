@@ -396,10 +396,6 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate }) => {
       <ResumeModal
         isOpen={resumeModalOpen}
         onClose={() => setResumeModalOpen(false)}
-        onManageDocuments={() => {
-          setResumeModalOpen(false);
-          onNavigate('/documents');
-        }}
       />
     </div>
   );

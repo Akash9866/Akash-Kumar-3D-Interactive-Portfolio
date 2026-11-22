@@ -37,13 +37,6 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
             >
               Reach out →
             </button>
-            <span className="text-gray-300">|</span>
-            <button
-              onClick={() => onNavigate('/documents')}
-              className="text-gray-600 hover:text-black hover:underline transition-colors duration-300 ease-in-out cursor-pointer py-0.5"
-            >
-              Drive Docs
-            </button>
           </div>
 
           <div className="space-x-1 sm:justify-self-center whitespace-nowrap order-3 sm:order-none w-full sm:w-auto text-center">
