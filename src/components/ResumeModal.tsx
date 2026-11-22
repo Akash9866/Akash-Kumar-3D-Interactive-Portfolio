@@ -1,7 +1,6 @@
 import React from 'react';
 import { profileData } from '../data/profile';
-import { resolveDocumentUrl } from '../data/documents';
-import { useDocuments } from '../context/DocumentsContext';
+import { resolveDocumentUrl, getDocumentUrl, getDownloadUrl } from '../data/documents';
 import { X, FileText, Download, ExternalLink } from 'lucide-react';
 
 interface ResumeModalProps {
@@ -14,32 +13,16 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({
   isOpen,
   onClose,
 }) => {
-  const { getDocumentRecord, getDocumentUrl, getDownloadUrl } = useDocuments();
-
   if (!isOpen) return null;
 
-  const liveRecord = getDocumentRecord('resume', 'resume');
   const resolvedResumeUrl = getDocumentUrl('resume', 'resume', profileData.resumeUrl);
   const resolvedDownloadUrl = getDownloadUrl('resume', 'resume', profileData.resumeUrl);
   const portfolioDossierUrl = resolveDocumentUrl(
     '/assets/aistudio/Akash_Kumar_Master_Portfolio_Content_Document_00d53f37.pdf'
   );
 
-  const resumeFileName = liveRecord?.fileName || 'Akash_Kumar_Resume.pdf';
-  let resumeUpdatedText = 'Curriculum Vitae';
-  try {
-    if (liveRecord?.updatedAt?.toDate) {
-      resumeUpdatedText = `Updated ${liveRecord.updatedAt
-        .toDate()
-        .toLocaleDateString(undefined, {
-          year: 'numeric',
-          month: 'short',
-          day: 'numeric',
-        })}`;
-    }
-  } catch {
-    resumeUpdatedText = 'Curriculum Vitae';
-  }
+  const resumeFileName = 'Akash_Kumar_Resume.pdf';
+  const resumeUpdatedText = 'Curriculum Vitae';
 
   return (
     <div

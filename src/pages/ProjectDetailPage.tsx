@@ -1,11 +1,16 @@
 import React from 'react';
 import { RoutePath } from '../router';
 import { projectsData } from '../data/projects';
-import { useDocuments } from '../context/DocumentsContext';
+import { getDocumentUrl } from '../data/documents';
 import { ProjectCoverBanner } from '../components/ProjectCard';
-import { PerformanceMetricsChart } from '../components/PerformanceMetricsChart';
 import { PrototypeViewer } from '../components/PrototypeViewer';
 import { Download, ArrowLeft, ExternalLink, Play } from 'lucide-react';
+
+const PerformanceMetricsChart = React.lazy(() =>
+  import('../components/PerformanceMetricsChart').then((m) => ({
+    default: m.PerformanceMetricsChart,
+  }))
+);
 
 interface ProjectDetailPageProps {
   slug: string;
@@ -16,7 +21,6 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
   slug,
   onNavigate,
 }) => {
-  const { getDocumentUrl } = useDocuments();
   const project =
     projectsData.find((p) => p.slug === slug || p.id === slug) ||
     projectsData[0];
@@ -128,15 +132,17 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
           {/* Reusable Performance & Analytics Chart */}
           {project.metricsChart && (
             <div className="space-y-3 pt-1">
-              <PerformanceMetricsChart
-                title={project.metricsChart.title}
-                subtitle={project.metricsChart.subtitle}
-                dataStatus={project.metricsChart.dataStatus}
-                dataStatusNote={project.metricsChart.dataStatusNote}
-                primarySeries={project.metricsChart.primarySeries}
-                secondarySeries={project.metricsChart.secondarySeries}
-                data={project.metricsChart.data}
-              />
+              <React.Suspense fallback={null}>
+                <PerformanceMetricsChart
+                  title={project.metricsChart.title}
+                  subtitle={project.metricsChart.subtitle}
+                  dataStatus={project.metricsChart.dataStatus}
+                  dataStatusNote={project.metricsChart.dataStatusNote}
+                  primarySeries={project.metricsChart.primarySeries}
+                  secondarySeries={project.metricsChart.secondarySeries}
+                  data={project.metricsChart.data}
+                />
+              </React.Suspense>
             </div>
           )}
         </div>

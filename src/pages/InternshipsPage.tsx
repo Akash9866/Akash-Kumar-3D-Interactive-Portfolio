@@ -1,7 +1,7 @@
 import React from 'react';
 import { RoutePath } from '../router';
 import { internshipsData } from '../data/internships';
-import { useDocuments } from '../context/DocumentsContext';
+import { getDocumentUrl } from '../data/documents';
 import { ArrowRight, ExternalLink } from 'lucide-react';
 
 interface InternshipsPageProps {
@@ -9,7 +9,6 @@ interface InternshipsPageProps {
 }
 
 export const InternshipsPage: React.FC<InternshipsPageProps> = ({ onNavigate }) => {
-  const { getDocumentUrl } = useDocuments();
   return (
     <div className="mx-auto space-y-6 md:space-y-8">
       {/* Page Header */}

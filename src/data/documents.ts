@@ -69,3 +69,34 @@ export function resolveDocumentUrl(
   const separator = trimmed.includes('?') ? '&' : '?';
   return `${trimmed}${separator}v=${encodeURIComponent(version)}`;
 }
+
+/**
+ * Direct synchronous document resolver without pulling in Firebase or React Context.
+ */
+export function getDocumentUrl(
+  category: 'resume' | 'internship' | 'project' | 'certification' | 'research' | 'education' | string,
+  targetId: string,
+  itemFallbackUrl?: string | null
+): string | null {
+  if (category === 'resume') {
+    return resolveDocumentUrl(documentsRegistry.resume.url || itemFallbackUrl);
+  }
+  const categoryMap: Record<string, Record<string, string | null>> = {
+    internship: documentsRegistry.internships,
+    project: documentsRegistry.projects,
+    certification: documentsRegistry.certifications,
+    research: documentsRegistry.research,
+    education: documentsRegistry.education,
+  };
+  const table = categoryMap[category];
+  const configured = table ? table[targetId] : null;
+  return resolveDocumentUrl(configured || itemFallbackUrl);
+}
+
+export function getDownloadUrl(
+  category: 'resume' | 'internship' | 'project' | 'certification' | 'research' | 'education' | string,
+  targetId: string,
+  itemFallbackUrl?: string | null
+): string | null {
+  return getDocumentUrl(category, targetId, itemFallbackUrl);
+}

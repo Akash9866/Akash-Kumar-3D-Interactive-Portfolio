@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { RoutePath } from '../router';
 import { researchData } from '../data/research';
-import { useDocuments } from '../context/DocumentsContext';
+import { getDocumentUrl } from '../data/documents';
 import { ResearchItem } from '../types';
 import { Search, ArrowLeft, BookOpen, ExternalLink } from 'lucide-react';
 
@@ -14,7 +14,6 @@ export const ResearchPage: React.FC<ResearchPageProps> = ({
   slug,
   onNavigate,
 }) => {
-  const { getDocumentUrl } = useDocuments();
   const [selectedTopic, setSelectedTopic] = useState<string>('All');
   const [searchQuery, setSearchQuery] = useState<string>('');
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { RoutePath } from '../router';
 import { certificationsData } from '../data/education';
-import { useDocuments } from '../context/DocumentsContext';
+import { getDocumentUrl } from '../data/documents';
 import { BadgeCheck, ExternalLink } from 'lucide-react';
 
 interface CertificationsPageProps {
@@ -11,7 +11,6 @@ interface CertificationsPageProps {
 export const CertificationsPage: React.FC<CertificationsPageProps> = ({
   onNavigate,
 }) => {
-  const { getDocumentUrl } = useDocuments();
   return (
     <div className="mx-auto space-y-6 md:space-y-8">
       {/* Header */}
