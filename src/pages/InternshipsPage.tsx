@@ -31,10 +31,7 @@ export const InternshipsPage: React.FC<InternshipsPageProps> = ({ onNavigate }) 
           >
             <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-2 border-b border-zinc-300 pb-4">
               <div>
-                <span className="text-xs font-mono text-zinc-600">
-                  {item.duration}
-                </span>
-                <h2 className="text-lg sm:text-2xl font-bold text-zinc-900 mt-0.5 leading-snug">
+                <h2 className="text-lg sm:text-2xl font-bold text-zinc-900 leading-snug">
                   {item.company}
                 </h2>
                 <p className="text-sm text-zinc-800 font-medium mt-0.5">
