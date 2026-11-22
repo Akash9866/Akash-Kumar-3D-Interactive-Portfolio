@@ -31,6 +31,11 @@ export interface ProfileData {
   avatarUrl: string | null;
   resumeUrl: string | null;
   resumeAvailable: boolean;
+  recruiterHighlights?: {
+    metric: string;
+    label: string;
+    detail: string;
+  }[];
   socialLinks: {
     linkedin?: string;
     email?: string;

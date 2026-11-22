@@ -80,7 +80,7 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({ onNavigate }) => {
           Projects
         </h1>
         <p className="text-[14.5px] sm:text-base text-zinc-600 leading-relaxed max-w-2xl">
-          Academic, Business Design & Startup Projects — Financial Analysis, Urban Innovation, Fintech Research, Operations & VetCureKart
+          Structured case studies spanning corporate financial evaluation on Bloomberg Terminal, civic technology, behavioural fintech with live interactive prototypes, operations benchmarking, and venture entrepreneurship.
         </p>
       </div>
 

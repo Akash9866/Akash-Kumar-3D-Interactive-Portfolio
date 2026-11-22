@@ -1,10 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { RoutePath } from '../router';
 import { profileData } from '../data/profile';
 import { projectsData } from '../data/projects';
 import { contactData } from '../data/contact';
 import { ProjectCoverBanner } from '../components/ProjectCard';
-import { ArrowRight, Linkedin, Download, GraduationCap } from 'lucide-react';
+import {
+  ArrowRight,
+  Linkedin,
+  Download,
+  GraduationCap,
+  Mail,
+  Copy,
+  Check,
+  ExternalLink,
+  Sparkles,
+} from 'lucide-react';
 
 interface EditorialHomePageProps {
   onNavigate: (path: RoutePath) => void;
@@ -15,45 +25,68 @@ export const EditorialHomePage: React.FC<EditorialHomePageProps> = ({
   onNavigate,
   onOpenResume,
 }) => {
+  const [emailCopied, setEmailCopied] = useState(false);
   const featuredProject = projectsData[0];
+
+  const handleCopyEmail = () => {
+    if (contactData.email && navigator.clipboard?.writeText) {
+      navigator.clipboard.writeText(contactData.email).catch(() => {});
+      setEmailCopied(true);
+      setTimeout(() => setEmailCopied(false), 2000);
+    }
+  };
 
   const directoryRows: {
     title: string;
+    badge?: string;
     description: string;
     path: RoutePath;
   }[] = [
     {
       title: 'Nestlé India Analysis',
+      badge: 'Bloomberg Terminal · Equity Analysis',
       description:
-        'Group academic financial & business evaluation using Bloomberg Terminal at WeSchool.',
+        'Corporate valuation and financial ratio evaluation of Nestlé India Limited conducted via Bloomberg Terminal at WeSchool.',
       path: '/projects/nestle-india-financial-business-analysis',
     },
     {
       title: 'Mumbai Cleanliness',
+      badge: 'Live Interactive App Prototype',
       description:
-        'Social innovation & urban waste management research (“How may we make Mumbai the cleanest city in India?”).',
+        'Civic innovation & waste management strategy (“How may we make Mumbai the cleanest city in India?”) with live embedded prototype.',
       path: '/projects/mumbai-cleanliness-waste-management',
     },
     {
       title: 'Artha — Savings App',
+      badge: 'Live Simulator · ~200 Surveyed',
       description:
-        'Fintech concept & behavioural savings research backed by ~200 survey responses and interviews.',
+        'Behavioural savings fintech concept grounded in primary customer research and interactive simulator.',
       path: '/projects/artha-financial-behaviour-savings-app',
     },
     {
-      title: 'VetCureKart (Venture)',
+      title: 'DP’s Cafe Operations',
+      badge: 'Field Benchmarks · Process Design',
       description:
-        'Animal-medicines accessibility venture (Genesis Startup Programme & IIM Kashipur finalist) inside Projects.',
+        'Structured turnaround observation benchmarks (4–5 min idli-vada, 7–8 min dosa) and peak-hour workflow optimization.',
+      path: '/projects/dps-cafe-operations-observation',
+    },
+    {
+      title: 'VetCureKart (Venture)',
+      badge: 'Genesis Startup Finalist',
+      description:
+        'Agribusiness accessibility venture and IIM Kashipur competition finalist addressing veterinary medicine distribution.',
       path: '/projects/vetcurekart-animal-healthcare-venture',
     },
     {
       title: 'All Projects',
+      badge: '5 Flagship Studies',
       description:
         'Academic, business design & startup projects including Nestlé India, Mumbai cleanliness, Artha, DP’s Cafe & VetCureKart.',
       path: '/projects',
     },
     {
       title: 'Pensieve (Research)',
+      badge: 'ANOVA Statistics · 2 Papers',
       description:
         'Moringa Leaves Extract & Okra research (ANOVA) and Vertical Farming Conference Proceedings.',
       path: '/research',
@@ -66,8 +99,9 @@ export const EditorialHomePage: React.FC<EditorialHomePageProps> = ({
     },
     {
       title: 'Internships',
+      badge: '3 Marketing Roles',
       description:
-        'Eco Fast Agri Solutions, GPC Agrochemicals, and One India Organic digital marketing roles.',
+        'Eco Fast Agri Solutions, GPC Agrochemicals, and One India Organic digital and performance marketing roles.',
       path: '/internships',
     },
     {
@@ -161,21 +195,111 @@ export const EditorialHomePage: React.FC<EditorialHomePageProps> = ({
             .
           </p>
         </div>
+
+        {/* Recruiter & Executive Highlights Grid */}
+        {profileData.recruiterHighlights && (
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-2.5 sm:gap-3 pt-2">
+            {profileData.recruiterHighlights.map((item, idx) => (
+              <div
+                key={idx}
+                className="p-3 sm:p-3.5 rounded-xl bg-neutral-200/80 border border-zinc-300/80 hover:border-zinc-700 transition-colors flex flex-col justify-between"
+              >
+                <div>
+                  <span className="text-[11px] uppercase tracking-wider font-semibold text-zinc-500 block truncate">
+                    {item.label}
+                  </span>
+                  <span className="text-sm sm:text-[15px] font-bold text-zinc-900 mt-0.5 block leading-snug">
+                    {item.metric}
+                  </span>
+                </div>
+                <p className="text-xs text-zinc-600 mt-1.5 leading-snug">
+                  {item.detail}
+                </p>
+              </div>
+            ))}
+          </div>
+        )}
+
+        {/* 1-Click Fast Actions for Recruiters & Hiring Managers */}
+        <div className="flex flex-wrap items-center gap-2.5 pt-1">
+          <button
+            onClick={onOpenResume}
+            className="inline-flex items-center gap-1.5 px-3.5 py-2 min-h-[40px] text-xs font-semibold text-white bg-zinc-900 hover:bg-zinc-800 rounded-md transition-colors cursor-pointer"
+          >
+            <Download className="w-3.5 h-3.5 shrink-0" />
+            <span>Resume & Profile</span>
+          </button>
+
+          <button
+            onClick={() => onNavigate('/projects')}
+            className="inline-flex items-center gap-1.5 px-3.5 py-2 min-h-[40px] text-xs font-semibold text-zinc-900 bg-white border border-zinc-300 hover:bg-gray-100 rounded-md transition-colors cursor-pointer"
+          >
+            <span>Explore Case Studies</span>
+            <ArrowRight className="w-3.5 h-3.5 shrink-0" />
+          </button>
+
+          <button
+            type="button"
+            onClick={handleCopyEmail}
+            className="inline-flex items-center gap-1.5 px-3.5 py-2 min-h-[40px] text-xs font-medium text-zinc-700 bg-white/80 border border-zinc-300 hover:text-black hover:bg-white rounded-md transition-colors cursor-pointer"
+            title="Click to copy email address"
+          >
+            {emailCopied ? (
+              <>
+                <Check className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                <span className="text-emerald-700 font-semibold">Email Copied!</span>
+              </>
+            ) : (
+              <>
+                <Copy className="w-3.5 h-3.5 shrink-0" />
+                <span>2002.akash.05@gmail.com</span>
+              </>
+            )}
+          </button>
+
+          {contactData.linkedin && (
+            <a
+              href={contactData.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 px-3 py-2 min-h-[40px] text-xs font-medium text-zinc-700 bg-white/80 border border-zinc-300 hover:text-black hover:bg-white rounded-md transition-colors"
+            >
+              <Linkedin className="w-3.5 h-3.5 shrink-0" />
+              <span>LinkedIn</span>
+              <ExternalLink className="w-3 h-3 text-zinc-400 shrink-0" />
+            </a>
+          )}
+        </div>
       </div>
 
       {/* Directory List matching amankumar.ai home list */}
-      <section>
+      <section className="space-y-2">
+        <div className="flex items-center justify-between pb-1">
+          <h2 className="text-xs font-semibold uppercase tracking-wider text-zinc-500">
+            Selected Work & Credentials
+          </h2>
+          <span className="text-xs text-zinc-400">
+            {directoryRows.length} Items
+          </span>
+        </div>
         <ul className="divide-y divide-zinc-300/70">
           {directoryRows.map((row) => (
             <li key={row.title}>
               <button
                 onClick={() => onNavigate(row.path)}
-                className="w-full text-left flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-4 py-3.5 sm:py-3 -mx-2 px-2 rounded text-[15px] sm:text-sm hover:bg-gray-200/70 active:bg-gray-200 transition-colors cursor-pointer"
+                className="w-full text-left flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-4 py-3.5 sm:py-3 -mx-2 px-2 rounded text-[15px] sm:text-sm hover:bg-gray-200/70 active:bg-gray-200 transition-colors cursor-pointer group"
               >
-                <span className="font-medium text-zinc-900 sm:w-48 sm:flex-shrink-0">
-                  {row.title}
-                </span>
-                <span className="text-[13.5px] sm:text-sm text-gray-600 leading-relaxed">
+                <div className="sm:w-56 sm:flex-shrink-0">
+                  <span className="font-semibold text-zinc-900 group-hover:underline block leading-snug">
+                    {row.title}
+                  </span>
+                  {row.badge && (
+                    <span className="inline-block mt-0.5 text-[10.5px] font-medium text-zinc-700 bg-zinc-200/90 border border-zinc-300/70 px-1.5 py-0.5 rounded">
+                      {row.badge}
+                    </span>
+                  )}
+                </div>
+                <span className="text-[13.5px] sm:text-sm text-gray-600 leading-relaxed group-hover:text-zinc-900 transition-colors">
                   {row.description}
                 </span>
               </button>
@@ -212,6 +336,24 @@ export const EditorialHomePage: React.FC<EditorialHomePageProps> = ({
           >
             <Download className="w-3.5 h-3.5 shrink-0" />
             <span className="truncate">Resume & Profile</span>
+          </button>
+
+          <button
+            type="button"
+            onClick={handleCopyEmail}
+            className="px-3.5 py-2.5 min-h-[42px] rounded-md border border-gray-300 bg-white/80 hover:bg-gray-100 text-zinc-900 transition-colors font-medium inline-flex items-center justify-center gap-1.5 cursor-pointer"
+          >
+            {emailCopied ? (
+              <>
+                <Check className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                <span className="text-emerald-700 font-semibold">Email Copied!</span>
+              </>
+            ) : (
+              <>
+                <Copy className="w-3.5 h-3.5 shrink-0" />
+                <span>Copy Email</span>
+              </>
+            )}
           </button>
         </div>
       </section>

@@ -11,29 +11,29 @@ export const profileData: ProfileData = {
   batch: '2026–2028',
   previousQualification: 'B.Sc. (Hons.) Agriculture',
   undergraduateInstitution: 'Quantum University, School of Agricultural Studies',
-  headline: 'Digital & Performance Marketing | Business Strategy | Innovation',
+  headline: 'Digital & Performance Marketing · Business Design & Strategy',
   heroStatement:
-    'I’m a postgraduate management student pursuing my PGDM in Business Design at WeSchool, Mumbai, with an academic foundation in agricultural sciences and practical exposure to digital marketing, performance marketing, business research, entrepreneurship, and innovation.',
+    'Postgraduate management student at WeSchool, Mumbai, combining the analytical discipline of agricultural sciences & experimental research with human-centred business design, performance marketing, and corporate strategy.',
   homepageIntro:
-    'I am a PGDM Business Design student at WeSchool, Mumbai, with an academic background in agriculture and hands-on exposure to digital marketing, performance marketing, business innovation, and entrepreneurship. Through my internships, academic projects, research, and startup initiatives, I have explored marketing campaigns, business opportunities, product concepts, and structured problem-solving approaches. My current professional interests lie in digital and performance marketing, business strategy, marketing analytics, and consulting-oriented problem-solving.',
+    'I bridge the empirical discipline of scientific research with customer-centric business design and performance marketing. At WeSchool, Mumbai, my work spans digital campaign execution, business model innovation, and financial strategy—underpinned by hands-on exposure to Meta advertising, Bloomberg Terminal equity research, and live product prototyping.',
   focusAreas: [
     'Digital Marketing',
     'Performance Marketing',
     'Business Strategy',
     'Business Consulting',
     'Marketing Analytics',
-    'Innovation',
+    'Business Design & Innovation',
     'Entrepreneurship',
   ],
   bio: [
-    'My academic journey began in agricultural sciences, where I completed a B.Sc. (Hons.) in Agriculture from Quantum University (July 2021 – July 2025, CGPA: 7.84/10). During my undergraduate education, I participated in experimental research, agribusiness initiatives, entrepreneurship programmes, university leadership, and competitive sports.',
-    'My exposure to agriculture and agribusiness gave me a grounded understanding of real-world industry problems, research-based decision-making, and opportunities for innovation. Building on that foundation, I chose to pursue postgraduate management education through the PGDM Business Design programme at WeSchool, Mumbai.',
-    'Through this transition, I have developed a strong interest in examining businesses from multiple perspectives—including marketing, strategy, consumer behaviour, business models, and innovation. My current focus areas include digital and performance marketing, business strategy, marketing analytics, and consulting.',
+    'My foundation began in agricultural sciences, where I earned a B.Sc. (Hons.) in Agriculture from Quantum University (July 2021 – July 2025, CGPA: 7.84/10). Grounded in the scientific method, I led experimental plant research applying ANOVA statistical models, managed club operations as President of the Agriculture Club, and initiated an animal healthcare venture (VetCureKart) that reached the Genesis Startup Programme and IIM Kashipur finals.',
+    'This background instilled a discipline for hypothesis-driven problem-solving, root-cause diagnostics, and structured execution in fast-changing environments. Transitioning to postgraduate management education through the PGDM Business Design programme at WeSchool, Mumbai (current CGPA: 8.0/10), I direct this analytical foundation toward business strategy, growth marketing, and product design.',
+    'Across internships and academic projects, I have managed Meta ad campaigns achieving ~50% follower and traffic growth, evaluated operational turnaround bottlenecks at DP’s Cafe, and conducted financial equity valuations using Bloomberg Terminal for Nestlé India Limited. My focus is delivering measurable, high-impact growth for forward-looking organizations.',
   ],
   nowSummary: {
     date: '2026–2028 Batch',
     content:
-      'I am currently pursuing my PGDM in Business Design at S. P. Mandali’s Prin. L. N. Welingkar Institute of Management Development & Research (WeSchool), Mumbai (current CGPA: 8/10). Right now, I am focused on digital and performance marketing, financial and corporate analysis (including Bloomberg Terminal research), urban and product innovation projects, and marketing analytics.',
+      'I am currently pursuing my PGDM in Business Design at S. P. Mandali’s Prin. L. N. Welingkar Institute of Management Development & Research (WeSchool), Mumbai (current CGPA: 8/10). Right now, I am focused on digital and performance marketing, corporate valuation (including Bloomberg Terminal research), urban and product innovation projects, and marketing analytics.',
   },
   offScreen:
     'During my undergraduate years at Quantum University, I served as President of the Agriculture Department Club—where I coordinated 15–20 micro and macro student events across a four-month semester with a 10-member team—and was a core member of the University Sports Department and Chess Vice-Captain. I have also volunteered with Team Everest and Adore India on educational initiatives for underprivileged children.',
@@ -48,6 +48,28 @@ export const profileData: ProfileData = {
   avatarUrl: '/assets/profile/avatar-md.jpg',
   resumeUrl: null, // Reserved until official verified CV PDF is supplied
   resumeAvailable: false,
+  recruiterHighlights: [
+    {
+      metric: 'PGDM Business Design',
+      label: 'WeSchool, Mumbai',
+      detail: 'Batch 2026–2028 · Current CGPA: 8.0/10',
+    },
+    {
+      metric: 'Performance & Growth',
+      label: 'Meta Ads & Organic SEO',
+      detail: '~50% Follower & Traffic Growth · INR ~7 CPL',
+    },
+    {
+      metric: 'Strategic Rigor',
+      label: 'Bloomberg & ANOVA',
+      detail: 'Nestlé Corporate Valuation · Empirical Statistics',
+    },
+    {
+      metric: 'Recruitment Focus',
+      label: 'Summer Internships',
+      detail: 'Digital Marketing, Strategy & Consulting',
+    },
+  ],
   socialLinks: {
     linkedin: 'https://www.linkedin.com/in/akash-kumar-a4070523b',
     email: '2002.akash.05@gmail.com',
