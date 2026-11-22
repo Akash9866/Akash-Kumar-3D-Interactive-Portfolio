@@ -1,15 +1,13 @@
 import React from 'react';
 import { RoutePath } from '../router';
 import { educationData } from '../data/education';
-import { useDocuments } from '../context/DocumentsContext';
-import { GraduationCap, ExternalLink } from 'lucide-react';
+import { GraduationCap } from 'lucide-react';
 
 interface EducationPageProps {
   onNavigate: (path: RoutePath) => void;
 }
 
 export const EducationPage: React.FC<EducationPageProps> = ({ onNavigate }) => {
-  const { getDocumentUrl } = useDocuments();
   return (
     <div className="mx-auto space-y-6 md:space-y-8">
       {/* Header aligned consistently with all pages */}
@@ -70,25 +68,6 @@ export const EducationPage: React.FC<EducationPageProps> = ({ onNavigate }) => {
                   </ul>
 
                   <div className="pt-2 flex flex-wrap gap-x-4 gap-y-2 text-[13px] sm:text-xs">
-                    {(() => {
-                      const docUrl = getDocumentUrl(
-                        'education',
-                        edu.id,
-                        edu.certificatePath
-                      );
-                      if (!docUrl) return null;
-                      return (
-                        <a
-                          href={docUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center gap-1 font-medium text-zinc-900 hover:text-black underline underline-offset-2 py-0.5"
-                        >
-                          <span>View Transcript / Certificate</span>
-                          <ExternalLink className="w-3 h-3" />
-                        </a>
-                      );
-                    })()}
                     <button
                       onClick={() => onNavigate('/projects')}
                       className="font-medium text-zinc-800 hover:text-black underline underline-offset-2 cursor-pointer py-0.5"
