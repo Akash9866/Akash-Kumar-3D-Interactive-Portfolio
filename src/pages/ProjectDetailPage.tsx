@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { RoutePath } from '../router';
 import { projectsData } from '../data/projects';
 import { useDocuments } from '../context/DocumentsContext';
@@ -20,14 +20,6 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
   const project =
     projectsData.find((p) => p.slug === slug || p.id === slug) ||
     projectsData[0];
-
-  const [showMarketingTemplate, setShowMarketingTemplate] = useState(
-    !project.metricsChart
-  );
-
-  useEffect(() => {
-    setShowMarketingTemplate(!project.metricsChart);
-  }, [project.id, project.metricsChart]);
 
   return (
     <div className="mx-auto space-y-4 py-2">
@@ -134,40 +126,8 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
           )}
 
           {/* Reusable Performance & Analytics Chart */}
-          <div className="space-y-3 pt-1">
-            {project.metricsChart && (
-              <div className="flex flex-wrap items-center justify-between gap-2">
-                <span className="text-xs font-medium text-zinc-600">
-                  Visualization View
-                </span>
-                <div className="inline-flex items-center p-1 bg-zinc-200/80 rounded-lg">
-                  <button
-                    type="button"
-                    onClick={() => setShowMarketingTemplate(false)}
-                    className={`px-3 py-1.5 sm:px-2.5 sm:py-1 text-xs font-medium rounded-md transition-colors cursor-pointer ${
-                      !showMarketingTemplate
-                        ? 'bg-white text-zinc-900 shadow-xs'
-                        : 'text-zinc-600 hover:text-zinc-900'
-                    }`}
-                  >
-                    Project Benchmarks
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => setShowMarketingTemplate(true)}
-                    className={`px-3 py-1.5 sm:px-2.5 sm:py-1 text-xs font-medium rounded-md transition-colors cursor-pointer ${
-                      showMarketingTemplate
-                        ? 'bg-white text-zinc-900 shadow-xs'
-                        : 'text-zinc-600 hover:text-zinc-900'
-                    }`}
-                  >
-                    CTR & ROI Model
-                  </button>
-                </div>
-              </div>
-            )}
-
-            {project.metricsChart && !showMarketingTemplate ? (
+          {project.metricsChart && (
+            <div className="space-y-3 pt-1">
               <PerformanceMetricsChart
                 title={project.metricsChart.title}
                 subtitle={project.metricsChart.subtitle}
@@ -177,10 +137,8 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
                 secondarySeries={project.metricsChart.secondarySeries}
                 data={project.metricsChart.data}
               />
-            ) : (
-              <PerformanceMetricsChart />
-            )}
-          </div>
+            </div>
+          )}
         </div>
 
         {/* Tags */}
