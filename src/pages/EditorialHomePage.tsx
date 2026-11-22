@@ -346,7 +346,7 @@ export const EditorialHomePage: React.FC<EditorialHomePageProps> = ({
                   <ExternalLink className="w-3.5 h-3.5 text-zinc-400 group-hover:text-zinc-700 transition-colors" />
                 </div>
                 <p className="text-xs sm:text-[13px] text-zinc-600 mt-0.5 leading-relaxed">
-                  Professional credentials, verified certifications, and business strategy updates.
+                  Connect with me to discuss digital marketing, business design, and strategic growth.
                 </p>
               </div>
             </div>
