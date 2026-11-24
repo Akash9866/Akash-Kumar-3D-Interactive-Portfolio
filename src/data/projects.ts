@@ -20,7 +20,7 @@ export const projectsData: ProjectItem[] = [
     ],
     summary:
       'In this group academic project at WeSchool, my team and I conducted a financial and business analysis of Nestlé India Limited. We used the Bloomberg Terminal as a financial research tool to access company data and evaluate Nestlé India’s financial performance and broader competitive position. Our work examined company operations, financial statement interpretation, key financial ratios and performance indicators, revenue and profitability trends, and strategic industry observations.',
-    date: 'WeSchool PGDM (2026–2028)',
+    date: '',
     coverImage: null,
     visualTheme: 'blue',
     documentPath: null,
@@ -58,7 +58,7 @@ export const projectsData: ProjectItem[] = [
     ],
     summary:
       'In this academic innovation project, I explored practical solutions to improve urban cleanliness and waste management in Mumbai, guided by the central problem statement: "How may we make Mumbai the cleanest city in India?" We examined waste segregation, collection, disposal, and recycling challenges across the city. Our research combined primary field observations, photographic documentation, and stakeholder perspectives—including input from a BMC representative—and progressed toward a proposed civic solution and prototype.',
-    date: 'WeSchool PGDM (2026–2028)',
+    date: '',
     coverImage: null,
     visualTheme: 'emerald',
     prototypeUrl: 'https://swachh-mumbai.pages.dev',
@@ -98,7 +98,7 @@ export const projectsData: ProjectItem[] = [
     ],
     summary:
       'Artha is a personal finance application concept designed to help individuals understand their spending behaviour and build consistent saving habits. To ground the concept in real user behaviour, we conducted primary research comprising approximately 200 survey responses via Google Forms and five in-person interviews. Based on those insights, we explored core features including expense tracking, personalized savings plans, savings timelines, financial goals, and habit-building gamification tools.',
-    date: 'WeSchool PGDM (2026–2028)',
+    date: '',
     coverImage: null,
     visualTheme: 'indigo',
     prototypeUrl: 'https://artha-your-money-your-plan.ai.studio',
@@ -137,7 +137,7 @@ export const projectsData: ProjectItem[] = [
     ],
     summary:
       'In this operations-focused academic exercise, I conducted structured field observations at DP’s Cafe across three separate visits. I examined service workflows and order preparation times, recording turnaround benchmarks of approximately 4–5 minutes for idli-vada and 7–8 minutes for dosa. The case study documents my observation objective, field methodology, service-time records, operational insights, and process improvement recommendations.',
-    date: 'WeSchool PGDM (2026–2028)',
+    date: '',
     coverImage: null,
     visualTheme: 'amber',
     documentPath: null,
@@ -197,7 +197,7 @@ export const projectsData: ProjectItem[] = [
     ],
     summary:
       'VetCureKart is an animal-medicines accessibility venture I co-developed during my undergraduate studies at Quantum University to address challenges in accessing medicines for animals. Through this venture, I participated in university entrepreneurship and startup programmes, including the Quantum University Genesis Startup Programme—where we received an INR 50,000 university startup grant (May 2023)—and reached the finalist stage in a startup competition at IIM Kashipur.',
-    date: 'May 2023 (Genesis Startup Programme)',
+    date: '',
     coverImage: null,
     visualTheme: 'rose',
     documentPath: null,

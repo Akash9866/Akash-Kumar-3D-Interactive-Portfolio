@@ -45,7 +45,7 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
         </h2>
 
         <p className="text-xs text-zinc-500">
-          By Akash Kumar • {project.date} • {project.category}
+          By Akash Kumar{project.date ? ` • ${project.date}` : ''} • {project.category}
         </p>
 
         {/* Unboxed metadata row */}

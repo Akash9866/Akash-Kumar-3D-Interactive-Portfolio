@@ -420,9 +420,15 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
                     <span>Live Prototype</span>
                   </span>
                 )}
-                <span className="text-xs sm:text-[11px] font-medium text-zinc-500">
-                  {project.hasFullDocument ? 'PDF attached' : project.date}
-                </span>
+                {project.hasFullDocument ? (
+                  <span className="text-xs sm:text-[11px] font-medium text-zinc-500">
+                    PDF attached
+                  </span>
+                ) : project.date ? (
+                  <span className="text-xs sm:text-[11px] font-medium text-zinc-500">
+                    {project.date}
+                  </span>
+                ) : null}
               </div>
             </div>
 

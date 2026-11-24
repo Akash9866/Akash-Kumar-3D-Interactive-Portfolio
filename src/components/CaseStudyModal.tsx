@@ -43,8 +43,12 @@ export const CaseStudyModal: React.FC<CaseStudyModalProps> = ({
               <span>{project.projectType}</span>
             </>
           )}
-          <span aria-hidden="true">·</span>
-          <span>{project.date}</span>
+          {project.date && (
+            <>
+              <span aria-hidden="true">·</span>
+              <span>{project.date}</span>
+            </>
+          )}
         </div>
 
         {/* Title */}
