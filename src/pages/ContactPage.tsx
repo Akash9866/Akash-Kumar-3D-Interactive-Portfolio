@@ -24,19 +24,18 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate }) => {
 
   const [senderName, setSenderName] = useState('');
   const [senderOrg, setSenderOrg] = useState('');
-  const [inquiryType, setInquiryType] = useState('MBA Summer Internship');
   const [messageText, setMessageText] = useState('');
   const [formSentSuccess, setFormSentSuccess] = useState(false);
   const [emailCopied, setEmailCopied] = useState(false);
 
   const buildComposedLinks = () => {
     const subject = encodeURIComponent(
-      `[${inquiryType}] Inbound Inquiry from ${senderName || 'Contact'} (${
+      `Inbound Inquiry from ${senderName || 'Contact'} (${
         senderOrg || 'Organization'
       })`
     );
     const body = encodeURIComponent(
-      `Hi Akash,\n\nName: ${senderName}\nOrganization: ${senderOrg}\nInquiry Type: ${inquiryType}\n\nMessage:\n${messageText}\n\nBest regards,\n${senderName}`
+      `Hi Akash,\n\nName: ${senderName}\nOrganization: ${senderOrg}\n\nMessage:\n${messageText}\n\nBest regards,\n${senderName}`
     );
     const mailtoUrl = `mailto:${contactData.email}?subject=${subject}&body=${body}`;
     const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(
@@ -290,34 +289,6 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate }) => {
                     className="w-full px-3.5 py-2.5 sm:px-3 sm:py-2 bg-white border border-zinc-300 rounded-md text-base sm:text-xs text-zinc-900 focus:outline-none focus:border-zinc-700"
                   />
                 </div>
-              </div>
-
-              <div className="space-y-1.5">
-                <label
-                  htmlFor="inquiry"
-                  className="text-xs font-medium text-zinc-700 block"
-                >
-                  Discussion Topic
-                </label>
-                <select
-                  id="inquiry"
-                  value={inquiryType}
-                  onChange={(e) => setInquiryType(e.target.value)}
-                  className="w-full px-3.5 py-2.5 sm:px-3 sm:py-2 bg-white border border-zinc-300 rounded-md text-base sm:text-xs text-zinc-900 focus:outline-none focus:border-zinc-700"
-                >
-                  <option value="MBA Summer Internship">
-                    MBA Summer Internship Opportunity
-                  </option>
-                  <option value="Digital & Performance Marketing Role">
-                    Digital & Performance Marketing Role
-                  </option>
-                  <option value="Business Strategy & Consulting">
-                    Business Strategy & Consulting Project
-                  </option>
-                  <option value="Academic & Research Collaboration">
-                    Academic & Research Collaboration
-                  </option>
-                </select>
               </div>
 
               <div className="space-y-1.5">
