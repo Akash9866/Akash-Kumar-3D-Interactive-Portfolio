@@ -20,13 +20,11 @@ import { LeadershipPage } from './pages/LeadershipPage';
 import { CertificationsPage } from './pages/CertificationsPage';
 import { ToolsPage } from './pages/ToolsPage';
 import { ContactPage } from './pages/ContactPage';
+import { ProjectDetailPage } from './pages/ProjectDetailPage';
 
 import { ResumeModal } from './components/ResumeModal';
 
 // Lazy-load truly heavy standalone subviews to keep initial bundle lean
-const ProjectDetailPage = lazy(() =>
-  import('./pages/ProjectDetailPage').then((m) => ({ default: m.ProjectDetailPage }))
-);
 const DocumentsPage = lazy(() =>
   import('./pages/DocumentsPage').then((m) => ({ default: m.DocumentsPage }))
 );
@@ -112,12 +110,12 @@ export default function App() {
             {currentPath === '/contact' && (
               <ContactPage onNavigate={navigate} />
             )}
+            {projectSlug && (
+              <ProjectDetailPage slug={projectSlug} onNavigate={navigate} />
+            )}
 
             {/* Standalone heavy views loaded on demand */}
             <Suspense fallback={<RouteLoadingSkeleton />}>
-              {projectSlug && (
-                <ProjectDetailPage slug={projectSlug} onNavigate={navigate} />
-              )}
               {currentPath === '/documents' && (
                 <DocumentsPage onNavigate={navigate} />
               )}

@@ -314,7 +314,9 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
       className="group relative w-full h-full cursor-pointer text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-800 rounded-xl"
     >
       <div
-        className="relative rounded-xl border shadow-sm bg-neutral-200/90 border-transparent text-gray-800 hover:border-zinc-800 hover:shadow-xl w-full h-full will-change-transform"
+        className={`relative rounded-xl border shadow-sm bg-neutral-200/90 border-transparent text-gray-800 hover:border-zinc-800 hover:shadow-xl w-full h-full ${
+          !canParallax ? 'hover:-translate-y-0.5 transition-[transform,border-color,box-shadow] duration-200' : 'will-change-transform'
+        }`}
         style={
           canParallax
             ? {
@@ -326,7 +328,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
                   ? 'transform 120ms cubic-bezier(0.16, 1, 0.3, 1), border-color 200ms ease, box-shadow 200ms ease'
                   : 'transform 380ms cubic-bezier(0.16, 1, 0.3, 1), border-color 200ms ease, box-shadow 200ms ease',
               }
-            : { transition: 'border-color 200ms ease, box-shadow 200ms ease' }
+            : undefined
         }
       >
         {/* Subtle Specular Sheen Overlay for 3D Tilt Feedback */}

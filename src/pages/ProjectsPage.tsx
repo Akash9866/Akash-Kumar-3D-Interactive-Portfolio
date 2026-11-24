@@ -1,5 +1,4 @@
-import React, { useState, useMemo, useRef, useEffect } from 'react';
-import { motion, useScroll, useTransform, useReducedMotion } from 'motion/react';
+import React, { useState, useMemo } from 'react';
 import { RoutePath } from '../router';
 import { projectsData } from '../data/projects';
 import { ProjectItem } from '../types';
@@ -22,36 +21,6 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({ onNavigate }) => {
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [activeModalProject, setActiveModalProject] = useState<ProjectItem | null>(null);
   const [fullStudyOpen, setFullStudyOpen] = useState<boolean>(false);
-  const [isDesktopGrid, setIsDesktopGrid] = useState<boolean>(false);
-
-  const gridRef = useRef<HTMLDivElement | null>(null);
-  const shouldReduceMotion = useReducedMotion();
-
-  useEffect(() => {
-    const mq = window.matchMedia('(min-width: 640px)');
-    setIsDesktopGrid(mq.matches);
-    const onChange = (e: MediaQueryListEvent) => setIsDesktopGrid(e.matches);
-    mq.addEventListener('change', onChange);
-    return () => mq.removeEventListener('change', onChange);
-  }, []);
-
-  const { scrollYProgress } = useScroll({
-    target: gridRef,
-    offset: ['start start', 'end start'],
-  });
-
-  // Subtle opposing vertical scroll parallax on multi-column viewports only
-  const disableParallax = Boolean(shouldReduceMotion) || !isDesktopGrid;
-  const leftColumnY = useTransform(
-    scrollYProgress,
-    [0, 1],
-    disableParallax ? [0, 0] : [0, -12]
-  );
-  const rightColumnY = useTransform(
-    scrollYProgress,
-    [0, 1],
-    disableParallax ? [0, 0] : [0, 10]
-  );
 
   const categories = [
     'All',
@@ -125,42 +94,20 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({ onNavigate }) => {
         </div>
       </div>
 
-      {/* 2-Column Project Cards Grid with subtle scroll-linked column parallax + interactive 3D card tilt */}
+      {/* 2-Column Project Cards Grid */}
       <div
-        ref={gridRef}
         className="min-w-full grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6 pt-1 pb-4"
       >
-        {filteredProjects.map((project, idx) => {
-          const isRightColumn = idx % 2 === 1;
-          return (
-            <motion.div
-              key={project.id}
-              style={{
-                y: isRightColumn ? rightColumnY : leftColumnY,
-              }}
-              initial={
-                shouldReduceMotion
-                  ? false
-                  : { opacity: 0, y: 14 }
-              }
-              animate={{ opacity: 1, y: 0 }}
-              transition={{
-                duration: 0.35,
-                delay: idx * 0.05,
-                ease: [0.16, 1, 0.3, 1],
-              }}
-              className="h-full"
-            >
-              <ProjectCard
-                project={project}
-                enableParallax
-                onOpenDetails={(p) => setActiveModalProject(p)}
-                onOpenPage={(p) => onNavigate(`/projects/${p.slug}`)}
-                onOpenFullStudy={() => setFullStudyOpen(true)}
-              />
-            </motion.div>
-          );
-        })}
+        {filteredProjects.map((project) => (
+          <div key={project.id} className="h-full">
+            <ProjectCard
+              project={project}
+              onOpenDetails={(p) => setActiveModalProject(p)}
+              onOpenPage={(p) => onNavigate(`/projects/${p.slug}`)}
+              onOpenFullStudy={() => setFullStudyOpen(true)}
+            />
+          </div>
+        ))}
       </div>
 
       {filteredProjects.length === 0 && (
