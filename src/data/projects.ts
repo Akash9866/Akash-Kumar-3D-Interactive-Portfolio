@@ -25,6 +25,7 @@ export const projectsData: ProjectItem[] = [
     visualTheme: 'blue',
     documentPath: null,
     hasFullDocument: false,
+    hasFullStudy: true,
     featured: true,
     areasToDocument: [
       'Company overview and business operations of Nestlé India Limited',

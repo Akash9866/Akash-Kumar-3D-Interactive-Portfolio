@@ -7,6 +7,12 @@ import { ProjectCard } from '../components/ProjectCard';
 import { CaseStudyModal } from '../components/CaseStudyModal';
 import { Search } from 'lucide-react';
 
+const NestleFullStudyModal = React.lazy(() =>
+  import('../components/NestleFullStudyModal').then((m) => ({
+    default: m.NestleFullStudyModal,
+  }))
+);
+
 interface ProjectsPageProps {
   onNavigate: (path: RoutePath) => void;
 }
@@ -15,6 +21,7 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({ onNavigate }) => {
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [activeModalProject, setActiveModalProject] = useState<ProjectItem | null>(null);
+  const [fullStudyOpen, setFullStudyOpen] = useState<boolean>(false);
   const [isDesktopGrid, setIsDesktopGrid] = useState<boolean>(false);
 
   const gridRef = useRef<HTMLDivElement | null>(null);
@@ -149,6 +156,7 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({ onNavigate }) => {
                 enableParallax
                 onOpenDetails={(p) => setActiveModalProject(p)}
                 onOpenPage={(p) => onNavigate(`/projects/${p.slug}`)}
+                onOpenFullStudy={() => setFullStudyOpen(true)}
               />
             </motion.div>
           );
@@ -177,7 +185,18 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({ onNavigate }) => {
         project={activeModalProject}
         onClose={() => setActiveModalProject(null)}
         onOpenFullPage={(p) => onNavigate(`/projects/${p.slug}`)}
+        onOpenFullStudy={() => setFullStudyOpen(true)}
       />
+
+      {/* Full Detailed Study Modal */}
+      {fullStudyOpen && (
+        <React.Suspense fallback={null}>
+          <NestleFullStudyModal
+            isOpen={fullStudyOpen}
+            onClose={() => setFullStudyOpen(false)}
+          />
+        </React.Suspense>
+      )}
     </div>
   );
 };

@@ -117,6 +117,7 @@ export interface ProjectItem {
   visualTheme: 'blue' | 'emerald' | 'amber' | 'indigo' | 'slate' | 'rose';
   documentPath?: string | null;
   hasFullDocument: boolean;
+  hasFullStudy?: boolean;
   featured: boolean;
   areasToDocument: string[];
   supportingAssetsNote: string;

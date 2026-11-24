@@ -1,18 +1,20 @@
 import React from 'react';
 import { ProjectItem } from '../types';
-import { X, Download, ArrowRight, ExternalLink } from 'lucide-react';
+import { X, Download, ArrowRight, ExternalLink, FileText } from 'lucide-react';
 import { ProjectCoverBanner } from './ProjectCard';
 
 interface CaseStudyModalProps {
   project: ProjectItem | null;
   onClose: () => void;
   onOpenFullPage?: (project: ProjectItem) => void;
+  onOpenFullStudy?: (project: ProjectItem) => void;
 }
 
 export const CaseStudyModal: React.FC<CaseStudyModalProps> = ({
   project,
   onClose,
   onOpenFullPage,
+  onOpenFullStudy,
 }) => {
   if (!project) return null;
 
@@ -99,6 +101,19 @@ export const CaseStudyModal: React.FC<CaseStudyModalProps> = ({
           </div>
 
           <div className="flex flex-wrap items-center gap-2.5 w-full sm:w-auto sm:justify-end">
+            {project.hasFullStudy && onOpenFullStudy && (
+              <button
+                onClick={() => {
+                  onOpenFullStudy(project);
+                  onClose();
+                }}
+                className="flex-1 sm:flex-none flex items-center justify-center gap-1.5 px-4 py-2.5 sm:py-2 min-h-[38px] sm:min-h-0 text-xs font-semibold text-white bg-blue-700 hover:bg-blue-800 rounded-md transition-colors cursor-pointer"
+              >
+                <FileText className="w-3.5 h-3.5" />
+                <span>Full Detailed Study</span>
+              </button>
+            )}
+
             {onOpenFullPage && (
               <button
                 onClick={() => {

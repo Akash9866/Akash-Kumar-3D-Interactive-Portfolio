@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { ProjectItem } from '../types';
-import { ArrowUpRight, BarChart3, TrendingUp, Layers, Compass } from 'lucide-react';
+import { ArrowUpRight, BarChart3, TrendingUp, Layers, Compass, FileText } from 'lucide-react';
 
 interface ProjectCoverBannerProps {
   project: ProjectItem;
@@ -227,6 +227,7 @@ interface ProjectCardProps {
   project: ProjectItem;
   onOpenDetails: (project: ProjectItem) => void;
   onOpenPage?: (project: ProjectItem) => void;
+  onOpenFullStudy?: (project: ProjectItem) => void;
   enableParallax?: boolean;
 }
 
@@ -234,6 +235,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
   project,
   onOpenDetails,
   onOpenPage,
+  onOpenFullStudy,
   enableParallax = false,
 }) => {
   const cardRef = useRef<HTMLDivElement | null>(null);
@@ -411,6 +413,19 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
                 >
                   Summary
                 </button>
+                {project.hasFullStudy && onOpenFullStudy && (
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      onOpenFullStudy(project);
+                    }}
+                    className="inline-flex items-center justify-center gap-1 whitespace-nowrap font-medium transition-colors border border-blue-700 bg-blue-700 hover:bg-blue-800 rounded-md px-3 sm:px-2.5 text-xs text-white h-9 sm:h-7 cursor-pointer"
+                  >
+                    <FileText className="w-3 h-3" />
+                    <span>Full Detailed Study</span>
+                  </button>
+                )}
               </div>
 
               <div className="flex items-center gap-1.5">

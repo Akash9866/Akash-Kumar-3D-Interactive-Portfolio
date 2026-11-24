@@ -1,14 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { RoutePath } from '../router';
 import { projectsData } from '../data/projects';
 import { getDocumentUrl } from '../data/documents';
 import { ProjectCoverBanner } from '../components/ProjectCard';
 import { PrototypeViewer } from '../components/PrototypeViewer';
-import { Download, ArrowLeft, ExternalLink, Play } from 'lucide-react';
+import { Download, ArrowLeft, ExternalLink, Play, FileText } from 'lucide-react';
 
 const PerformanceMetricsChart = React.lazy(() =>
   import('../components/PerformanceMetricsChart').then((m) => ({
     default: m.PerformanceMetricsChart,
+  }))
+);
+
+const NestleFullStudyModal = React.lazy(() =>
+  import('../components/NestleFullStudyModal').then((m) => ({
+    default: m.NestleFullStudyModal,
   }))
 );
 
@@ -21,6 +27,7 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
   slug,
   onNavigate,
 }) => {
+  const [fullStudyOpen, setFullStudyOpen] = useState(false);
   const project =
     projectsData.find((p) => p.slug === slug || p.id === slug) ||
     projectsData[0];
@@ -66,6 +73,20 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
             </span>
           )}
         </div>
+
+        {/* Prominent Full Detailed Study CTA when available */}
+        {project.hasFullStudy && (
+          <div className="pt-2">
+            <button
+              type="button"
+              onClick={() => setFullStudyOpen(true)}
+              className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-semibold transition-colors border border-blue-700 shadow-xs min-h-[42px] px-4 py-2 text-white bg-blue-700 hover:bg-blue-800 cursor-pointer"
+            >
+              <FileText className="w-4 h-4" />
+              <span>Full Detailed Study</span>
+            </button>
+          </div>
+        )}
 
         {/* Hero Visual Banner */}
         <div className="py-2">
@@ -154,6 +175,17 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
 
         {/* Bottom Action Buttons */}
         <div className="flex flex-wrap items-center gap-3 pt-3">
+          {project.hasFullStudy && (
+            <button
+              type="button"
+              onClick={() => setFullStudyOpen(true)}
+              className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-semibold transition-colors border border-blue-700 shadow-xs min-h-[42px] px-4 py-2 text-white bg-blue-700 hover:bg-blue-800 cursor-pointer"
+            >
+              <FileText className="w-4 h-4" />
+              <span>Full Detailed Study</span>
+            </button>
+          )}
+
           {project.prototypeUrl && (
             <a
               href={project.prototypeUrl}
@@ -194,6 +226,15 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
           </button>
         </div>
       </div>
+
+      {fullStudyOpen && (
+        <React.Suspense fallback={null}>
+          <NestleFullStudyModal
+            isOpen={fullStudyOpen}
+            onClose={() => setFullStudyOpen(false)}
+          />
+        </React.Suspense>
+      )}
     </div>
   );
 };
