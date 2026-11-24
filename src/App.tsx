@@ -11,42 +11,24 @@ import { Footer } from './components/Footer';
 import { AmbientParticles } from './components/AmbientParticles';
 import { EditorialHomePage } from './pages/EditorialHomePage';
 
-// Code-splitting routes: dynamically import subpages to minimize initial page payload
-const AboutPage = lazy(() =>
-  import('./pages/AboutPage').then((m) => ({ default: m.AboutPage }))
-);
-const InternshipsPage = lazy(() =>
-  import('./pages/InternshipsPage').then((m) => ({ default: m.InternshipsPage }))
-);
-const ProjectsPage = lazy(() =>
-  import('./pages/ProjectsPage').then((m) => ({ default: m.ProjectsPage }))
-);
+import { AboutPage } from './pages/AboutPage';
+import { InternshipsPage } from './pages/InternshipsPage';
+import { ProjectsPage } from './pages/ProjectsPage';
+import { ResearchPage } from './pages/ResearchPage';
+import { EducationPage } from './pages/EducationPage';
+import { LeadershipPage } from './pages/LeadershipPage';
+import { CertificationsPage } from './pages/CertificationsPage';
+import { ToolsPage } from './pages/ToolsPage';
+import { ContactPage } from './pages/ContactPage';
+
+import { ResumeModal } from './components/ResumeModal';
+
+// Lazy-load truly heavy standalone subviews to keep initial bundle lean
 const ProjectDetailPage = lazy(() =>
   import('./pages/ProjectDetailPage').then((m) => ({ default: m.ProjectDetailPage }))
 );
-const ResearchPage = lazy(() =>
-  import('./pages/ResearchPage').then((m) => ({ default: m.ResearchPage }))
-);
-const EducationPage = lazy(() =>
-  import('./pages/EducationPage').then((m) => ({ default: m.EducationPage }))
-);
-const LeadershipPage = lazy(() =>
-  import('./pages/LeadershipPage').then((m) => ({ default: m.LeadershipPage }))
-);
-const CertificationsPage = lazy(() =>
-  import('./pages/CertificationsPage').then((m) => ({ default: m.CertificationsPage }))
-);
-const ToolsPage = lazy(() =>
-  import('./pages/ToolsPage').then((m) => ({ default: m.ToolsPage }))
-);
 const DocumentsPage = lazy(() =>
   import('./pages/DocumentsPage').then((m) => ({ default: m.DocumentsPage }))
-);
-const ContactPage = lazy(() =>
-  import('./pages/ContactPage').then((m) => ({ default: m.ContactPage }))
-);
-const ResumeModal = lazy(() =>
-  import('./components/ResumeModal').then((m) => ({ default: m.ResumeModal }))
 );
 
 /**
@@ -100,44 +82,44 @@ export default function App() {
           <AmbientParticles />
 
           <main className="grow px-4 pt-5 pb-8 sm:p-6 lg:px-12 md:py-24 w-full max-w-4xl mx-auto relative z-10">
-            {/* Immediate synchronous render for Homepage */}
+            {/* Immediate 0ms synchronous render for all core pages */}
             {currentPath === '/' && (
               <EditorialHomePage
                 onNavigate={navigate}
                 onOpenResume={() => setResumeModalOpen(true)}
               />
             )}
+            {currentPath === '/projects' && (
+              <ProjectsPage onNavigate={navigate} />
+            )}
+            {currentPath === '/internships' && (
+              <InternshipsPage onNavigate={navigate} />
+            )}
+            {currentPath === '/about' && <AboutPage onNavigate={navigate} />}
+            {currentPath === '/education' && (
+              <EducationPage onNavigate={navigate} />
+            )}
+            {currentPath === '/leadership' && (
+              <LeadershipPage onNavigate={navigate} />
+            )}
+            {currentPath === '/certifications' && (
+              <CertificationsPage onNavigate={navigate} />
+            )}
+            {currentPath.startsWith('/research') && (
+              <ResearchPage slug={researchSlug} onNavigate={navigate} />
+            )}
+            {currentPath === '/tools' && <ToolsPage onNavigate={navigate} />}
+            {currentPath === '/contact' && (
+              <ContactPage onNavigate={navigate} />
+            )}
 
-            {/* Code-split asynchronous routes wrapped with Suspense */}
+            {/* Standalone heavy views loaded on demand */}
             <Suspense fallback={<RouteLoadingSkeleton />}>
-              {currentPath === '/projects' && (
-                <ProjectsPage onNavigate={navigate} />
-              )}
               {projectSlug && (
                 <ProjectDetailPage slug={projectSlug} onNavigate={navigate} />
               )}
-              {currentPath === '/internships' && (
-                <InternshipsPage onNavigate={navigate} />
-              )}
-              {currentPath === '/education' && (
-                <EducationPage onNavigate={navigate} />
-              )}
-              {currentPath === '/leadership' && (
-                <LeadershipPage onNavigate={navigate} />
-              )}
-              {currentPath === '/certifications' && (
-                <CertificationsPage onNavigate={navigate} />
-              )}
-              {currentPath.startsWith('/research') && (
-                <ResearchPage slug={researchSlug} onNavigate={navigate} />
-              )}
-              {currentPath === '/about' && <AboutPage onNavigate={navigate} />}
-              {currentPath === '/tools' && <ToolsPage onNavigate={navigate} />}
               {currentPath === '/documents' && (
                 <DocumentsPage onNavigate={navigate} />
-              )}
-              {currentPath === '/contact' && (
-                <ContactPage onNavigate={navigate} />
               )}
             </Suspense>
           </main>
@@ -145,14 +127,12 @@ export default function App() {
           <Footer onNavigate={navigate} />
         </div>
 
-        {/* Asynchronously loaded Resume Modal */}
+        {/* Resume Modal */}
         {resumeModalOpen && (
-          <Suspense fallback={null}>
-            <ResumeModal
-              isOpen={resumeModalOpen}
-              onClose={() => setResumeModalOpen(false)}
-            />
-          </Suspense>
+          <ResumeModal
+            isOpen={resumeModalOpen}
+            onClose={() => setResumeModalOpen(false)}
+          />
         )}
       </div>
   );
