@@ -73,7 +73,7 @@ export const profileData: ProfileData = {
   socialLinks: {
     linkedin: 'https://www.linkedin.com/in/akash-kumar-a4070523b',
     email: '2002.akash.05@gmail.com',
-    whatsapp: '',
+    whatsapp: 'https://wa.me/qr/OTPU77XZ3UXWM1',
   },
   keyCompetencies: [
     {

@@ -3,7 +3,7 @@ import { ContactData } from '../types';
 export const contactData: ContactData = {
   email: '2002.akash.05@gmail.com',
   phoneDisplay: '+91 6201648104',
-  phoneWhatsapp: '+916201648104',
+  phoneWhatsapp: 'https://wa.me/qr/OTPU77XZ3UXWM1',
   linkedin: 'https://www.linkedin.com/in/akash-kumar-a4070523b',
   location: 'Mumbai, Maharashtra, India (WeSchool)',
   availability:
