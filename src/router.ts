@@ -64,9 +64,55 @@ export function useRouter() {
     if (window.location.pathname !== target) {
       window.history.pushState({}, '', target);
       setCurrentPath(target);
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      window.scrollTo(0, 0);
     }
   }, []);
 
   return { currentPath, navigate };
+}
+
+/**
+ * Anticipatory Route Prefetcher:
+ * Loads JS chunks on link hover or during idle moments so subpage transitions are 0ms instant.
+ */
+export const prefetchRoute = (path: string) => {
+  switch (path) {
+    case '/internships':
+      import('./pages/InternshipsPage');
+      break;
+    case '/projects':
+      import('./pages/ProjectsPage');
+      break;
+    case '/about':
+      import('./pages/AboutPage');
+      break;
+    case '/education':
+      import('./pages/EducationPage');
+      break;
+    case '/leadership':
+      import('./pages/LeadershipPage');
+      break;
+    case '/certifications':
+      import('./pages/CertificationsPage');
+      break;
+    case '/tools':
+      import('./pages/ToolsPage');
+      break;
+    case '/contact':
+      import('./pages/ContactPage');
+      break;
+    case '/research':
+      import('./pages/ResearchPage');
+      break;
+  }
+};
+
+// Warm up key routes during browser idle time after initial page render
+if (typeof window !== 'undefined') {
+  const scheduleIdle = window.requestIdleCallback || ((cb: () => void) => setTimeout(cb, 1200));
+  scheduleIdle(() => {
+    prefetchRoute('/internships');
+    prefetchRoute('/projects');
+    prefetchRoute('/about');
+  });
 }

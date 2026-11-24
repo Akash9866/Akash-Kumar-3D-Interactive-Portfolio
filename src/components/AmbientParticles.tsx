@@ -45,8 +45,8 @@ export const AmbientParticles: React.FC = () => {
     };
     document.addEventListener('visibilitychange', handleVisibilityChange);
 
-    // Optimized particle count: 14 for mobile, 28 for desktop (drastically reduces O(N^2) checks)
-    const nodeCount = isMobile ? 14 : 28;
+    // Optimized particle count: 8 for mobile, 18 for desktop (drastically reduces CPU & memory)
+    const nodeCount = isMobile ? 8 : 18;
     const nodes = Array.from({ length: nodeCount }).map(() => ({
       x: Math.random() * width,
       y: Math.random() * height,
@@ -125,11 +125,7 @@ export const AmbientParticles: React.FC = () => {
   return (
     <div
       aria-hidden="true"
-      className="pointer-events-none fixed inset-0 z-0 overflow-hidden"
-      style={{
-        maskImage: 'radial-gradient(ellipse at 50% 36%, black 18%, transparent 72%)',
-        WebkitMaskImage: 'radial-gradient(ellipse at 50% 36%, black 18%, transparent 72%)',
-      }}
+      className="pointer-events-none fixed inset-0 z-0 overflow-hidden opacity-50 will-change-transform"
     >
       <canvas ref={canvasRef} className="h-full w-full" />
     </div>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { RoutePath } from '../router';
+import { RoutePath, prefetchRoute } from '../router';
 import { profileData } from '../data/profile';
 import { contactData } from '../data/contact';
 import { ResponsiveAvatar } from './ResponsiveAvatar';
@@ -253,6 +253,8 @@ export const Navigation: React.FC<NavigationProps> = ({
               <button
                 key={item.path}
                 onClick={() => handleNavClick(item.path)}
+                onMouseEnter={() => prefetchRoute(item.path)}
+                onTouchStart={() => prefetchRoute(item.path)}
                 title={!showLabels ? item.label : undefined}
                 className={`w-full flex items-center cursor-pointer rounded-md text-[15px] md:text-sm border py-2.5 md:py-2 px-3 gap-2.5 transition-colors ${
                   !showLabels ? 'justify-center px-0' : 'justify-start'
@@ -355,6 +357,8 @@ export const Navigation: React.FC<NavigationProps> = ({
 
             <button
               onClick={() => handleNavClick('/contact')}
+              onMouseEnter={() => prefetchRoute('/contact')}
+              onTouchStart={() => prefetchRoute('/contact')}
               title="Direct Contact"
               className={`w-full flex items-center cursor-pointer rounded-md text-[15px] md:text-sm text-zinc-700 py-2 md:py-1.5 hover:text-black hover:underline transition-colors duration-200 text-left ${
                 collapsed && !mobileOpen ? 'justify-center px-0' : 'px-3'

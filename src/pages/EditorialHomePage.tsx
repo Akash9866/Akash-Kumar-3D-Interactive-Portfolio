@@ -1,5 +1,5 @@
 import React from 'react';
-import { RoutePath } from '../router';
+import { RoutePath, prefetchRoute } from '../router';
 import { profileData } from '../data/profile';
 import { projectsData } from '../data/projects';
 import { contactData } from '../data/contact';
@@ -229,6 +229,8 @@ export const EditorialHomePage: React.FC<EditorialHomePageProps> = ({
 
           <button
             onClick={() => onNavigate('/projects')}
+            onMouseEnter={() => prefetchRoute('/projects')}
+            onTouchStart={() => prefetchRoute('/projects')}
             className="inline-flex items-center gap-1.5 px-3.5 py-2 min-h-[40px] text-xs font-semibold text-zinc-900 bg-white border border-zinc-300 hover:bg-gray-100 rounded-md transition-colors cursor-pointer"
           >
             <span>Explore Case Studies</span>
@@ -273,6 +275,8 @@ export const EditorialHomePage: React.FC<EditorialHomePageProps> = ({
             <li key={row.title}>
               <button
                 onClick={() => onNavigate(row.path)}
+                onMouseEnter={() => prefetchRoute(row.path)}
+                onTouchStart={() => prefetchRoute(row.path)}
                 className="w-full text-left flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-4 py-3.5 sm:py-3 -mx-2 px-2 rounded text-[15px] sm:text-sm hover:bg-gray-200/70 active:bg-gray-200 transition-colors cursor-pointer group"
               >
                 <div className="sm:w-56 sm:flex-shrink-0">

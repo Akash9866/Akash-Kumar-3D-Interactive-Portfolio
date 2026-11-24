@@ -16,8 +16,20 @@ export default defineConfig(() => {
       },
     },
     build: {
+      target: 'es2022',
+      minify: 'esbuild',
+      cssMinify: true,
       chunkSizeWarningLimit: 900,
       cssCodeSplit: true,
+      modulePreload: {
+        polyfill: false,
+        resolveDependencies(filename, deps, { hostType }) {
+          // Do not preload heavy lazy-loaded bundles (recharts, firebase) on initial page load
+          return deps.filter(
+            (dep) => !dep.includes('vendor-charts') && !dep.includes('vendor-firebase')
+          );
+        },
+      },
       rollupOptions: {
         output: {
           manualChunks(id) {
