@@ -12,13 +12,13 @@ const StudyTable: React.FC<{
   numericFromCol?: number;
 }> = ({ headers, rows, numericFromCol = 1 }) => (
   <div className="overflow-x-auto rounded-lg border border-zinc-200 my-4 bg-white">
-    <table className="w-full text-left border-collapse text-[13px] sm:text-sm">
+    <table className="w-full text-left border-collapse text-xs sm:text-sm">
       <thead>
         <tr className="bg-zinc-900 text-white">
           {headers.map((h, i) => (
             <th
               key={i}
-              className={`px-3.5 py-2.5 font-semibold tracking-wide whitespace-nowrap ${
+              className={`px-2.5 py-2 sm:px-3.5 sm:py-2.5 font-semibold tracking-wide whitespace-nowrap ${
                 i >= numericFromCol ? 'text-right' : 'text-left'
               }`}
             >
@@ -36,7 +36,7 @@ const StudyTable: React.FC<{
             {row.map((cell, cIdx) => (
               <td
                 key={cIdx}
-                className={`px-3.5 py-2.5 text-zinc-700 align-top ${
+                className={`px-2.5 py-2 sm:px-3.5 sm:py-2.5 text-zinc-700 align-top ${
                   cIdx === 0 ? 'font-medium text-zinc-900' : ''
                 } ${cIdx >= numericFromCol ? 'text-right tabular-nums whitespace-nowrap' : ''}`}
               >
@@ -77,18 +77,18 @@ export const NestleFullStudyModal: React.FC<NestleFullStudyModalProps> = ({
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 bg-black/60 backdrop-blur-[2px] animate-fade-in"
+      className="fixed inset-0 z-50 flex items-center justify-center p-0 sm:p-4 bg-black/60 backdrop-blur-[2px] animate-fade-in"
       onClick={onClose}
       role="dialog"
       aria-modal="true"
       aria-labelledby="nestle-study-title"
     >
       <div
-        className="relative w-full max-w-4xl bg-white border border-zinc-300 rounded-xl shadow-2xl text-zinc-900 max-h-[92vh] flex flex-col overflow-hidden"
+        className="relative w-full max-w-4xl bg-white sm:border sm:border-zinc-300 rounded-none sm:rounded-xl shadow-2xl text-zinc-900 h-[100dvh] sm:h-auto sm:max-h-[92vh] flex flex-col overflow-hidden"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Sticky Top Document Bar */}
-        <div className="sticky top-0 z-10 flex items-center justify-between gap-3 px-4 sm:px-7 py-3.5 bg-zinc-50 border-b border-zinc-200 shrink-0">
+        <div className="sticky top-0 z-10 flex items-center justify-between gap-2 sm:gap-3 px-4 sm:px-7 py-3 sm:py-3.5 bg-zinc-50 border-b border-zinc-200 shrink-0">
           <div className="flex items-center gap-2 min-w-0">
             <div className="w-8 h-8 rounded-md bg-blue-950 text-blue-300 flex items-center justify-center shrink-0">
               <FileText className="w-4 h-4" />
@@ -103,19 +103,21 @@ export const NestleFullStudyModal: React.FC<NestleFullStudyModalProps> = ({
             </div>
           </div>
 
-          <div className="flex items-center gap-2 shrink-0">
+          <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
             <button
               type="button"
               onClick={() => window.print()}
-              className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md border border-zinc-300 bg-white hover:bg-zinc-100 text-xs font-medium text-zinc-800 transition-colors cursor-pointer"
+              className="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 min-h-[36px] sm:min-h-0 rounded-md border border-zinc-300 bg-white hover:bg-zinc-100 text-xs font-medium text-zinc-800 transition-colors cursor-pointer"
+              aria-label="Print or Save PDF"
             >
               <Printer className="w-3.5 h-3.5" />
-              <span>Print / Save PDF</span>
+              <span className="sm:hidden">PDF</span>
+              <span className="hidden sm:inline">Print / Save PDF</span>
             </button>
             <button
               type="button"
               onClick={onClose}
-              className="p-1.5 text-zinc-500 hover:text-zinc-900 rounded-lg hover:bg-zinc-200/70 transition-colors cursor-pointer"
+              className="flex items-center justify-center w-9 h-9 text-zinc-600 hover:text-zinc-900 rounded-lg hover:bg-zinc-200/70 transition-colors cursor-pointer"
               aria-label="Close full detailed study"
             >
               <X className="w-5 h-5" />

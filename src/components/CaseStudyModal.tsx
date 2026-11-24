@@ -24,7 +24,7 @@ export const CaseStudyModal: React.FC<CaseStudyModalProps> = ({
       onClick={onClose}
     >
       <div
-        className="relative w-full max-w-2xl bg-white border border-zinc-300 rounded-xl shadow-2xl p-4 sm:p-8 text-zinc-900 max-h-[90vh] overflow-y-auto"
+        className="relative w-full max-w-2xl bg-white border border-zinc-300 rounded-xl shadow-2xl p-4 sm:p-8 text-zinc-900 max-h-[92dvh] overflow-y-auto"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Close Button */}

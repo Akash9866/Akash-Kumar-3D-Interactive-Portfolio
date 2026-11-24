@@ -194,7 +194,7 @@ export const Navigation: React.FC<NavigationProps> = ({
       {/* Left Sidebar (id="sider") */}
       <aside
         id="sider"
-        className={`fixed left-0 top-0 z-40 h-screen overflow-y-auto overflow-x-hidden bg-[#f4f4f5] border-r border-zinc-200/80 py-6 md:py-10 space-y-4 px-3.5 transition-all duration-300 ${
+        className={`fixed left-0 top-0 z-40 h-[100dvh] overflow-y-auto overflow-x-hidden bg-[#f4f4f5] border-r border-zinc-200/80 py-6 pb-10 md:py-10 space-y-4 px-3.5 transition-all duration-300 ${
           collapsed && !mobileOpen ? 'md:w-[68px]' : 'w-[252px] md:w-[236px]'
         } ${
           mobileOpen

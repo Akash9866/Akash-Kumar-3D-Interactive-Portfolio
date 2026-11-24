@@ -382,7 +382,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
               <ArrowUpRight className="w-4 h-4 sm:w-3.5 sm:h-3.5 text-zinc-500 group-hover:text-zinc-900 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform shrink-0 mt-0.5" />
             </h2>
 
-            <h3 className="text-zinc-700 text-[13px] sm:text-xs line-clamp-1 font-medium">
+            <h3 className="text-zinc-700 text-[13px] sm:text-xs line-clamp-2 sm:line-clamp-1 font-medium">
               {project.tagline}
             </h3>
 
@@ -394,7 +394,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
           {/* Bottom Actions & Metadata */}
           <div className="space-y-2.5 pt-1">
             <div className="flex flex-wrap items-center justify-between gap-2">
-              <div className="flex items-center gap-2 sm:gap-1.5">
+              <div className="flex flex-wrap items-center gap-2 sm:gap-1.5">
                 <button
                   type="button"
                   onClick={(e) => {
