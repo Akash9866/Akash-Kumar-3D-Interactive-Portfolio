@@ -2,6 +2,47 @@ import { InternshipItem } from '../types';
 
 export const internshipsData: InternshipItem[] = [
   {
+    id: 'int-pcf-agri-tech',
+    company: 'PCF Agri Tech',
+    role: 'Marketing Research Intern',
+    department: 'Market Research & Agritech Strategy',
+    duration: '',
+    location: 'India',
+    summary:
+      'Conducted domestic and international market research for agricultural products and agri-inputs, combining Google Forms-based research, customer surveys, and field research to identify product-demand patterns and market opportunities.',
+    responsibilities: [
+      'Conducted domestic and international market research for agricultural products and agri-inputs.',
+      'Designed and administered Google Forms surveys and on-ground field questionnaires to map customer demand patterns.',
+      'Analysed competitor positioning, pricing dynamics, and target customer segments across regional and global markets.',
+      'Developed interactive Power BI dashboards and visual reports to translate raw survey datasets into strategic market insights.',
+      'Synthesized quantitative findings to support data-driven go-to-market (GTM) recommendations and product opportunity evaluations.',
+    ],
+    reportedOutcomes: [
+      'Identified key product-demand trends across domestic and international agricultural input segments.',
+      'Created decision-ready Power BI reporting models providing clear visibility into customer segments and competitor benchmarks.',
+      'Delivered actionable go-to-market positioning insights to guide product expansion.',
+    ],
+    toConfirmNote: '',
+    toolsUsed: [
+      'Power BI',
+      'Google Forms',
+      'Competitor Benchmarking',
+      'Customer Segmentation',
+      'Field Research & Surveys',
+    ],
+    skillsExposure: [
+      'Domestic & International Market Research',
+      'Power BI dashboarding',
+      'Competitor positioning analysis',
+      'Customer segmentation',
+      'Survey design & field research',
+      'Go-to-market (GTM) recommendations',
+    ],
+    documentPath: null,
+    verificationStatus: 'verified',
+    displayStatus: 'active',
+  },
+  {
     id: 'int-eco-fast-agri',
     company: 'Eco Fast Agri Solutions',
     role: 'Digital Marketing Intern / Executive',

@@ -92,7 +92,7 @@ const DocumentsView: React.FC<DocumentsPageProps> = ({ onNavigate }) => {
           category: 'internship',
           targetId: item.id,
           title: item.company,
-          subtitle: `${item.role} · ${item.duration}`,
+          subtitle: item.duration ? `${item.role} · ${item.duration}` : item.role,
         })),
       },
       {

@@ -28,7 +28,7 @@ export const profileData: ProfileData = {
   bio: [
     'My foundation began in agricultural sciences, where I earned a B.Sc. (Hons.) in Agriculture from Quantum University (July 2021 – July 2025, CGPA: 7.84/10). Grounded in the scientific method, I led experimental plant research applying ANOVA statistical models, managed club operations as President of the Agriculture Club, and initiated an animal healthcare venture (VetCureKart) that reached the Genesis Startup Programme and IIM Kashipur finals.',
     'This background instilled a discipline for hypothesis-driven problem-solving, root-cause diagnostics, and structured execution in fast-changing environments. Transitioning to postgraduate management education through the PGDM Business Design programme at WeSchool, Mumbai (current CGPA: 8.0/10), I direct this analytical foundation toward business strategy, growth marketing, and product design.',
-    'Across internships and academic projects, I have managed Meta ad campaigns achieving ~50% follower and traffic growth, evaluated operational turnaround bottlenecks at DP’s Cafe, and conducted financial equity valuations using Bloomberg Terminal for Nestlé India Limited. My focus is delivering measurable, high-impact growth for forward-looking organizations.',
+    'Across internships and academic projects, I have managed Meta ad campaigns achieving ~50% follower and traffic growth, conducted domestic and international agritech market research with Power BI dashboards at PCF Agri Tech, evaluated operational turnaround bottlenecks at DP’s Cafe, and conducted financial equity valuations using Bloomberg Terminal for Nestlé India Limited. My focus is delivering measurable, high-impact growth for forward-looking organizations.',
   ],
   nowSummary: {
     date: '2026–2028 Batch',
@@ -182,6 +182,14 @@ export const profileData: ProfileData = {
     },
   ],
   toolsStack: [
+    {
+      name: 'Power BI',
+      category: 'Market Analytics & Business Intelligence',
+      description:
+        'I developed interactive Power BI dashboards and analytical reports during my internship at PCF Agri Tech to synthesize domestic and international survey data into actionable market intelligence and demand patterns.',
+      badge: 'Internship Exposure',
+      accentColor: '#F59E0B',
+    },
     {
       name: 'Bloomberg Terminal',
       category: 'Financial Research & Analysis',

@@ -87,9 +87,9 @@ export const EditorialHomePage: React.FC<EditorialHomePageProps> = ({
     },
     {
       title: 'Internships',
-      badge: '3 Marketing Roles',
+      badge: '4 Professional Roles',
       description:
-        'Eco Fast Agri Solutions, GPC Agrochemicals, and One India Organic digital and performance marketing roles.',
+        'PCF Agri Tech, Eco Fast Agri Solutions, GPC Agrochemicals, and One India Organic marketing and market research roles.',
       path: '/internships',
     },
     {
@@ -107,7 +107,7 @@ export const EditorialHomePage: React.FC<EditorialHomePageProps> = ({
     {
       title: 'Tools & Stack',
       description:
-        'Bloomberg Terminal, Meta Ads Manager, SEO visibility tools, Google Forms, Reddit & Quora outreach, and ANOVA.',
+        'Bloomberg Terminal, Power BI, Meta Ads Manager, SEO visibility tools, Google Forms, and ANOVA.',
       path: '/tools',
     },
   ];
@@ -133,9 +133,16 @@ export const EditorialHomePage: React.FC<EditorialHomePageProps> = ({
 
         <div className="text-[15px] sm:text-base text-zinc-800 leading-[1.65] space-y-3.5 md:space-y-4 max-w-2xl">
           <p>
-            My experience spans digital campaign support, lead generation,
+            My experience spans market research, digital campaign support, lead generation,
             audience research, SEO-related activities, marketing performance
             analysis, startup initiatives, and academic business projects across{' '}
+            <button
+              onClick={() => onNavigate('/internships')}
+              className="underline underline-offset-2 hover:bg-gray-200 hover:text-gray-900 rounded px-0.5 transition-colors cursor-pointer font-medium"
+            >
+              PCF Agri Tech
+            </button>
+            ,{' '}
             <button
               onClick={() => onNavigate('/internships')}
               className="underline underline-offset-2 hover:bg-gray-200 hover:text-gray-900 rounded px-0.5 transition-colors cursor-pointer font-medium"

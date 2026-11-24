@@ -75,7 +75,7 @@ export function getRouteMetadata(path: RoutePath): PageMetadata {
     return {
       title: 'Internships & Marketing Experience — Akash Kumar',
       description:
-        'Digital and performance marketing internships at Eco Fast Agri Solutions, GPC Agrochemicals, and One India Organic covering Meta Ads, SEO, and outreach.',
+        'Market research and performance marketing internships at PCF Agri Tech, Eco Fast Agri Solutions, GPC Agrochemicals, and One India Organic.',
     };
   }
 
