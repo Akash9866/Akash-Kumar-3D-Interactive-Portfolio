@@ -12,6 +12,7 @@ import {
   Copy,
   Check,
   ExternalLink,
+  Download,
 } from 'lucide-react';
 
 interface ContactPageProps {
@@ -165,38 +166,12 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate }) => {
                   </p>
                 </div>
               </div>
-              <div className="flex items-center gap-2 sm:gap-1.5 flex-shrink-0 pl-12 sm:pl-0">
-                <button
-                  type="button"
-                  onClick={handleCopyEmail}
-                  title="Copy email address"
-                  aria-label="Copy email address"
-                  className="inline-flex items-center justify-center min-h-[36px] min-w-[36px] sm:min-h-0 sm:min-w-0 p-2 sm:p-1.5 rounded-full border border-zinc-300 bg-white text-zinc-700 hover:bg-zinc-100 transition-colors cursor-pointer"
-                >
-                  {emailCopied ? (
-                    <Check className="w-3.5 h-3.5 text-emerald-600" />
-                  ) : (
-                    <Copy className="w-3.5 h-3.5" />
-                  )}
-                </button>
-                <a
-                  href={`https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(
-                    contactData.email
-                  )}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  title="Compose in Gmail"
-                  className="inline-flex items-center justify-center min-h-[36px] sm:min-h-0 gap-1 px-3 sm:px-2.5 py-1.5 sm:py-1 border border-zinc-300 bg-white hover:bg-zinc-100 text-zinc-800 rounded-full text-xs font-medium transition-colors"
-                >
-                  <span>Gmail</span>
-                </a>
+              <div className="flex items-center gap-2 flex-shrink-0 pl-12 sm:pl-0">
                 <a
                   href={`mailto:${contactData.email}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
                   onClick={handleCopyEmail}
-                  title="Open default mail app"
-                  className="inline-flex items-center justify-center min-h-[36px] sm:min-h-0 px-3.5 sm:px-3 py-1.5 sm:py-1 bg-black text-white hover:bg-zinc-800 rounded-full text-xs font-medium transition-colors"
+                  title="Send email (also copies to clipboard)"
+                  className="inline-flex items-center justify-center min-h-[36px] sm:min-h-0 px-4 py-1.5 sm:py-1 bg-black text-white hover:bg-zinc-800 rounded-full text-xs font-medium transition-colors"
                 >
                   Email
                 </a>
@@ -226,30 +201,43 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate }) => {
             </div>
           )}
 
-          {/* Resume & Portfolio Document Card */}
-          <a
-            href="/assets/documents/Akash_Kumar_Resume.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="sm:col-span-2 flex flex-row items-center gap-3 sm:gap-4 p-4 rounded-xl border border-gray-200 bg-gradient-to-br from-gray-50 to-white shadow-sm hover:shadow-md transition-all duration-200 group w-full cursor-pointer"
+          {/* Resume Document Card with View & Download */}
+          <div
+            className="sm:col-span-2 flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4 p-4 rounded-xl border border-gray-200 bg-gradient-to-br from-gray-50 to-white shadow-sm hover:shadow-md transition-all duration-200 w-full"
           >
-            <div className="flex-shrink-0 p-2.5 sm:p-2 rounded-lg bg-zinc-900 text-white">
-              <FileText className="w-4 h-4" />
+            <div className="flex items-center gap-3 min-w-0">
+              <div className="flex-shrink-0 p-2.5 sm:p-2 rounded-lg bg-zinc-900 text-white">
+                <FileText className="w-4 h-4" />
+              </div>
+              <div className="flex-1 min-w-0">
+                <p className="text-sm font-medium text-gray-800 leading-tight">
+                  Resume (PDF)
+                </p>
+                <p className="text-xs sm:text-[11px] text-zinc-500 truncate mt-0.5">
+                  Verified one-page professional resume
+                </p>
+              </div>
             </div>
-            <div className="flex-1 min-w-0">
-              <p className="text-sm font-medium text-gray-800 leading-tight">
-                Curriculum Vitae / Resume (PDF)
-              </p>
-              <p className="text-xs sm:text-[11px] text-zinc-500 truncate mt-0.5">
-                Click to view and download verified resume PDF
-              </p>
+            <div className="flex items-center gap-2 flex-shrink-0 pl-11 sm:pl-0">
+              <a
+                href="/assets/documents/Akash_Kumar_Resume.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-1.5 px-3.5 py-1.5 sm:py-1 bg-white border border-zinc-300 text-zinc-800 hover:bg-zinc-100 rounded-full text-xs font-medium transition-colors"
+              >
+                <ExternalLink className="w-3.5 h-3.5" />
+                <span>View PDF</span>
+              </a>
+              <a
+                href="/assets/documents/Akash_Kumar_Resume.pdf"
+                download="Akash_Kumar_Resume.pdf"
+                className="inline-flex items-center justify-center gap-1.5 px-3.5 py-1.5 sm:py-1 bg-black text-white hover:bg-zinc-800 rounded-full text-xs font-medium transition-colors"
+              >
+                <Download className="w-3.5 h-3.5" />
+                <span>Download</span>
+              </a>
             </div>
-            <div className="flex-shrink-0">
-              <span className="inline-flex items-center px-3 py-1.5 sm:py-1 bg-black text-white rounded-full text-xs font-medium group-hover:scale-105 transition-transform">
-                View PDF
-              </span>
-            </div>
-          </a>
+          </div>
         </div>
 
         {/* Direct Message Composer */}

@@ -22,7 +22,7 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({
   );
 
   const resumeFileName = 'Akash_Kumar_Resume.pdf';
-  const resumeUpdatedText = 'Curriculum Vitae';
+  const resumeUpdatedText = 'Verified One-Page Resume';
 
   return (
     <div
