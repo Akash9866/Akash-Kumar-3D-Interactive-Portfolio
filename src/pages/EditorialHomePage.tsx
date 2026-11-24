@@ -89,7 +89,7 @@ export const EditorialHomePage: React.FC<EditorialHomePageProps> = ({
       title: 'Internships',
       badge: '4 Professional Roles',
       description:
-        'PCF Agri Tech, Eco Fast Agri Solutions, GPC Agrochemicals, and One India Organic marketing and market research roles.',
+        'GPC Agrochemicals, PCF Agri Tech, Eco Fast Agri Solutions, and One India Organic marketing and market research roles.',
       path: '/internships',
     },
     {
@@ -133,9 +133,16 @@ export const EditorialHomePage: React.FC<EditorialHomePageProps> = ({
 
         <div className="text-[15px] sm:text-base text-zinc-800 leading-[1.65] space-y-3.5 md:space-y-4 max-w-2xl">
           <p>
-            My experience spans market research, digital campaign support, lead generation,
+            My experience spans digital and performance marketing, AI-driven marketing automations, market research, lead generation,
             audience research, SEO-related activities, marketing performance
             analysis, startup initiatives, and academic business projects across{' '}
+            <button
+              onClick={() => onNavigate('/internships')}
+              className="underline underline-offset-2 hover:bg-gray-200 hover:text-gray-900 rounded px-0.5 transition-colors cursor-pointer font-medium"
+            >
+              GPC Agrochemicals
+            </button>
+            ,{' '}
             <button
               onClick={() => onNavigate('/internships')}
               className="underline underline-offset-2 hover:bg-gray-200 hover:text-gray-900 rounded px-0.5 transition-colors cursor-pointer font-medium"
@@ -148,13 +155,6 @@ export const EditorialHomePage: React.FC<EditorialHomePageProps> = ({
               className="underline underline-offset-2 hover:bg-gray-200 hover:text-gray-900 rounded px-0.5 transition-colors cursor-pointer font-medium"
             >
               Eco Fast Agri Solutions
-            </button>
-            ,{' '}
-            <button
-              onClick={() => onNavigate('/internships')}
-              className="underline underline-offset-2 hover:bg-gray-200 hover:text-gray-900 rounded px-0.5 transition-colors cursor-pointer font-medium"
-            >
-              GPC Agrochemicals
             </button>
             , and{' '}
             <button

@@ -90,9 +90,10 @@ export const profileData: ProfileData = {
     {
       title: 'Performance Marketing',
       description:
-        'I am interested in paid campaigns, lead generation, campaign measurement, cost efficiency, audience targeting, and performance optimization.',
+        'I am interested in paid campaigns, lead generation, marketing automations, campaign measurement, cost efficiency, audience targeting, and performance optimization.',
       skills: [
         'Meta Advertising',
+        'AI & Marketing Automation',
         'Lead Generation',
         'Audience & Competitor Research',
         'Campaign Performance Analysis',
@@ -199,10 +200,10 @@ export const profileData: ProfileData = {
       accentColor: '#2563EB',
     },
     {
-      name: 'Meta Ads Manager',
-      category: 'Performance Marketing',
+      name: 'Meta Ads Manager & Marketing Automations',
+      category: 'Performance Marketing & Automation',
       description:
-        'I supported paid social campaigns, audience targeting, lead generation initiatives, and campaign performance evaluation during my internship at GPC Agrochemicals.',
+        'I executed paid social campaigns, AI-assisted creative workflows, marketing automations, audience targeting, and lead-generation optimization during my internship at GPC Agrochemicals.',
       badge: 'Internship Exposure',
       accentColor: '#4D9BFF',
     },
