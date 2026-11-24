@@ -46,8 +46,8 @@ export const profileData: ProfileData = {
     'Marketing Analytics & Innovation',
   ],
   avatarUrl: '/assets/profile/avatar-md.jpg',
-  resumeUrl: null, // Reserved until official verified CV PDF is supplied
-  resumeAvailable: false,
+  resumeUrl: '/assets/documents/Akash_Kumar_Resume.pdf',
+  resumeAvailable: true,
   recruiterHighlights: [
     {
       metric: 'PGDM Business Design',

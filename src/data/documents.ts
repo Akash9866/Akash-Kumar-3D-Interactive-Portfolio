@@ -18,8 +18,8 @@ export interface DocumentEntry {
 
 export const documentsRegistry = {
   resume: {
-    url: null as string | null,
-    lastUpdated: '',
+    url: '/assets/documents/Akash_Kumar_Resume.pdf' as string | null,
+    lastUpdated: 'November 2026',
   },
   internships: {
     'int-eco-fast-agri': null as string | null,
@@ -34,8 +34,10 @@ export const documentsRegistry = {
     'vetcurekart-animal-healthcare-venture': null as string | null,
   } as Record<string, string | null>,
   certifications: {
+    'cert-mckinsey-forward': null as string | null,
     'cert-google-dm-ecommerce': null as string | null,
-    'cert-google-dm-analytics': null as string | null,
+    'cert-google-analytics': null as string | null,
+    'cert-hubspot-inbound': null as string | null,
     'cert-google-digipivot': null as string | null,
     'cert-isab-noida': null as string | null,
     'cert-beekeeping': null as string | null,

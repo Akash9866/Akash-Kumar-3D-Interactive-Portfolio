@@ -217,13 +217,15 @@ export const EditorialHomePage: React.FC<EditorialHomePageProps> = ({
 
         {/* 1-Click Fast Actions for Recruiters & Hiring Managers */}
         <div className="flex flex-wrap items-center gap-2.5 pt-1">
-          <button
-            onClick={onOpenResume}
+          <a
+            href="/assets/documents/Akash_Kumar_Resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex items-center gap-1.5 px-3.5 py-2 min-h-[40px] text-xs font-semibold text-white bg-zinc-900 hover:bg-zinc-800 rounded-md transition-colors cursor-pointer"
           >
             <Download className="w-3.5 h-3.5 shrink-0" />
-            <span>Resume & Profile</span>
-          </button>
+            <span>Resume (PDF)</span>
+          </a>
 
           <button
             onClick={() => onNavigate('/projects')}
@@ -314,13 +316,15 @@ export const EditorialHomePage: React.FC<EditorialHomePageProps> = ({
             Get in Touch
           </button>
 
-          <button
-            onClick={onOpenResume}
+          <a
+            href="/assets/documents/Akash_Kumar_Resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
             className="px-3.5 py-2.5 min-h-[42px] rounded-md border border-gray-300 bg-white/80 hover:bg-gray-100 text-zinc-900 transition-colors font-medium inline-flex items-center justify-center gap-1.5 cursor-pointer"
           >
             <Download className="w-3.5 h-3.5 shrink-0" />
-            <span className="truncate">Resume & Profile</span>
-          </button>
+            <span className="truncate">Resume (PDF)</span>
+          </a>
 
           <a
             href={`mailto:${contactData.email}`}

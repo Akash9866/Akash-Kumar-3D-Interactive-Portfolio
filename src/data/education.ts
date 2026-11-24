@@ -84,6 +84,13 @@ export const leadershipData: LeadershipItem[] = [
 
 export const certificationsData: CertificationItem[] = [
   {
+    id: 'cert-mckinsey-forward',
+    title: 'McKinsey Forward Program',
+    issuer: 'McKinsey & Company',
+    statusNote:
+      'Foundational leadership, problem-solving, digital thinking, and business communication program.',
+  },
+  {
     id: 'cert-google-dm-ecommerce',
     title: 'Google Digital Marketing & E-commerce Certificate',
     issuer: 'Coursera / Google',
@@ -91,11 +98,18 @@ export const certificationsData: CertificationItem[] = [
       'Digital marketing channels, e-commerce fundamentals, customer acquisition, and analytics.',
   },
   {
-    id: 'cert-google-dm-analytics',
-    title: 'Google Digital Marketing and Analytics Certification',
+    id: 'cert-google-analytics',
+    title: 'Google Analytics Certification',
     issuer: 'Google',
     statusNote:
-      'Campaign performance measurement, audience insights, and digital analytics workflows.',
+      'Campaign performance measurement, attribution modeling, audience insights, and web analytics workflows.',
+  },
+  {
+    id: 'cert-hubspot-inbound',
+    title: 'HubSpot Inbound Marketing',
+    issuer: 'HubSpot Academy',
+    statusNote:
+      'Inbound marketing methodology, content strategy, customer journey mapping, and lead nurturing.',
   },
   {
     id: 'cert-google-digipivot',

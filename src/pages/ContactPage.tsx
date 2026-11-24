@@ -227,8 +227,10 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate }) => {
           )}
 
           {/* Resume & Portfolio Document Card */}
-          <div
-            onClick={() => setResumeModalOpen(true)}
+          <a
+            href="/assets/documents/Akash_Kumar_Resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
             className="sm:col-span-2 flex flex-row items-center gap-3 sm:gap-4 p-4 rounded-xl border border-gray-200 bg-gradient-to-br from-gray-50 to-white shadow-sm hover:shadow-md transition-all duration-200 group w-full cursor-pointer"
           >
             <div className="flex-shrink-0 p-2.5 sm:p-2 rounded-lg bg-zinc-900 text-white">
@@ -236,18 +238,18 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate }) => {
             </div>
             <div className="flex-1 min-w-0">
               <p className="text-sm font-medium text-gray-800 leading-tight">
-                Resume & Portfolio Profile
+                Curriculum Vitae / Resume (PDF)
               </p>
               <p className="text-xs sm:text-[11px] text-zinc-500 truncate mt-0.5">
-                Academic overview & portfolio PDF document
+                Click to view and download verified resume PDF
               </p>
             </div>
             <div className="flex-shrink-0">
               <span className="inline-flex items-center px-3 py-1.5 sm:py-1 bg-black text-white rounded-full text-xs font-medium group-hover:scale-105 transition-transform">
-                Open
+                View PDF
               </span>
             </div>
-          </div>
+          </a>
         </div>
 
         {/* Direct Message Composer */}

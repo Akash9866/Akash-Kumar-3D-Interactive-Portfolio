@@ -368,12 +368,14 @@ export const Navigation: React.FC<NavigationProps> = ({
               </div>
             </button>
 
-            <button
+            <a
+              href="/assets/documents/Akash_Kumar_Resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
               onClick={() => {
                 setMobileOpen(false);
-                onOpenResume();
               }}
-              title="Resume & Content Dossier"
+              title="Akash Kumar — Verified Resume (PDF)"
               className={`w-full flex items-center cursor-pointer rounded-md text-[15px] md:text-sm text-zinc-700 py-2 md:py-1.5 hover:text-black hover:underline transition-colors duration-200 text-left ${
                 collapsed && !mobileOpen ? 'justify-center px-0' : 'px-3'
               }`}
@@ -384,7 +386,7 @@ export const Navigation: React.FC<NavigationProps> = ({
                 </span>
                 {(!collapsed || mobileOpen) && <span>Resume</span>}
               </div>
-            </button>
+            </a>
           </div>
         </div>
       </aside>

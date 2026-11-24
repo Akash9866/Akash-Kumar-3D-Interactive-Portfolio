@@ -236,12 +236,14 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
             >
               Get in touch
             </button>
-            <button
-              onClick={() => setResumeModalOpen(true)}
+            <a
+              href="/assets/documents/Akash_Kumar_Resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors border border-zinc-300 bg-white hover:bg-gray-100 text-zinc-900 min-h-[42px] px-4 py-2 cursor-pointer"
             >
-              Resume & Content Document
-            </button>
+              Resume (PDF)
+            </a>
           </div>
         </section>
       </div>
