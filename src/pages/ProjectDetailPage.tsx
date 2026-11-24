@@ -93,6 +93,25 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
           <ProjectCoverBanner project={project} size="hero" />
         </div>
 
+        {/* Key Outcomes & Snapshot Metrics */}
+        {project.keyOutcomes && project.keyOutcomes.length > 0 && (
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-3 pt-1">
+            {project.keyOutcomes.map((item, idx) => (
+              <div
+                key={idx}
+                className="rounded-lg border border-zinc-200 bg-white/80 px-3.5 py-2.5 shadow-2xs"
+              >
+                <p className="text-[11px] font-mono uppercase tracking-wider text-zinc-500">
+                  {item.label}
+                </p>
+                <p className="text-sm sm:text-base font-bold text-zinc-900 mt-0.5">
+                  {item.value}
+                </p>
+              </div>
+            ))}
+          </div>
+        )}
+
         {/* Prose Case Study Content */}
         <div className="space-y-6 py-3 sm:py-4 text-zinc-800 text-[15px] sm:text-base leading-[1.65]">
           <div className="space-y-2">

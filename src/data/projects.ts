@@ -26,6 +26,12 @@ export const projectsData: ProjectItem[] = [
     documentPath: null,
     hasFullDocument: false,
     hasFullStudy: true,
+    keyOutcomes: [
+      { label: 'FY26 Revenue', value: '₹230.71bn' },
+      { label: 'ROE (Bloomberg)', value: '76.3%' },
+      { label: 'Operating Cash Flow', value: '₹50.48bn' },
+      { label: 'P/E Multiple', value: '66.97×' },
+    ],
     featured: true,
     areasToDocument: [
       'Company overview and business operations of Nestlé India Limited',
@@ -67,6 +73,12 @@ export const projectsData: ProjectItem[] = [
     prototypeTitle: 'Swachh Mumbai Civic App Prototype',
     documentPath: null,
     hasFullDocument: false,
+    keyOutcomes: [
+      { label: 'Focus', value: 'Waste & Recycling' },
+      { label: 'Stakeholder', value: 'BMC Input' },
+      { label: 'Method', value: 'Field Observation' },
+      { label: 'Output', value: 'Live Civic App' },
+    ],
     featured: true,
     areasToDocument: [
       'Central problem statement: "How may we make Mumbai the cleanest city in India?"',
@@ -108,6 +120,12 @@ export const projectsData: ProjectItem[] = [
     prototypeDefaultView: 'mobile',
     documentPath: null,
     hasFullDocument: false,
+    keyOutcomes: [
+      { label: 'Survey Sample', value: '~200 Responses' },
+      { label: 'Interviews', value: '5 In-Person' },
+      { label: 'Focus', value: 'Habit Savings' },
+      { label: 'Output', value: 'Live App Prototype' },
+    ],
     featured: true,
     areasToDocument: [
       'Primary user research methodology: ~200 survey responses via Google Forms and 5 in-person interviews',
@@ -143,6 +161,12 @@ export const projectsData: ProjectItem[] = [
     visualTheme: 'amber',
     documentPath: null,
     hasFullDocument: false,
+    keyOutcomes: [
+      { label: 'Field Visits', value: '3 Visits' },
+      { label: 'Idli-Vada', value: '4–5 min' },
+      { label: 'Dosa', value: '7–8 min' },
+      { label: 'Scope', value: 'Workflow Analysis' },
+    ],
     featured: false,
     areasToDocument: [
       'Objective of the three-visit operations observation study at DP’s Cafe',
@@ -203,6 +227,12 @@ export const projectsData: ProjectItem[] = [
     visualTheme: 'rose',
     documentPath: null,
     hasFullDocument: false,
+    keyOutcomes: [
+      { label: 'Startup Grant', value: '₹50,000' },
+      { label: 'Incubation', value: 'Genesis Programme' },
+      { label: 'Competition', value: 'IIM Kashipur Finalist' },
+      { label: 'Domain', value: 'Animal Healthcare' },
+    ],
     featured: true,
     areasToDocument: [
       'Problem exploration: barriers to timely veterinary and animal-medicine accessibility',

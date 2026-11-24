@@ -65,6 +65,14 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({ onNavigate }) => {
         <div className="-mx-4 px-4 sm:mx-0 sm:px-0 flex items-center gap-2 overflow-x-auto no-scrollbar pb-1 sm:flex-wrap sm:overflow-visible sm:pb-0">
           {categories.map((cat) => {
             const isActive = selectedCategory === cat;
+            const count =
+              cat === 'All'
+                ? projectsData.length
+                : projectsData.filter(
+                    (p) =>
+                      p.category.toLowerCase().includes(cat.toLowerCase()) ||
+                      p.tags.some((t) => t.toLowerCase() === cat.toLowerCase())
+                  ).length;
             return (
               <button
                 key={cat}
@@ -75,7 +83,10 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({ onNavigate }) => {
                     : 'border-zinc-300 text-zinc-700 hover:border-zinc-500 hover:text-zinc-900 bg-white/40'
                 }`}
               >
-                {cat}
+                {cat}{' '}
+                <span className={isActive ? 'text-zinc-300' : 'text-zinc-400'}>
+                  ({count})
+                </span>
               </button>
             );
           })}

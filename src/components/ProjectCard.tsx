@@ -97,7 +97,7 @@ export const ProjectCoverBanner: React.FC<ProjectCoverBannerProps> = ({
       className={`relative w-full overflow-hidden rounded-md bg-gradient-to-br ${
         palette.bg
       } p-4 flex flex-col justify-between select-none ${
-        size === 'hero' ? 'h-52 sm:h-64 md:h-80 p-6 sm:p-8' : 'h-36 sm:h-36 md:h-44'
+        size === 'hero' ? 'min-h-[208px] sm:min-h-[256px] md:min-h-[300px] p-6 sm:p-8' : 'min-h-[156px] sm:min-h-[164px] md:min-h-[180px]'
       }`}
       style={{ transformStyle: 'preserve-3d' }}
     >
@@ -200,9 +200,9 @@ export const ProjectCoverBanner: React.FC<ProjectCoverBannerProps> = ({
         </span>
       </div>
 
-      {/* Bottom Title Preview inside Banner (Foreground Plane) */}
+      {/* Bottom Title Preview & Key Metrics inside Banner (Foreground Plane) */}
       <div
-        className="relative z-10 space-y-1 max-w-[88%] will-change-transform"
+        className="relative z-10 space-y-1.5 max-w-[95%] will-change-transform"
         style={{
           transform: `translate3d(${(px * 6).toFixed(2)}px, ${(py * 5).toFixed(2)}px, 24px)`,
           transition: layerTransition,
@@ -218,6 +218,19 @@ export const ProjectCoverBanner: React.FC<ProjectCoverBannerProps> = ({
         >
           {project.title}
         </p>
+        {size === 'card' && project.keyOutcomes && project.keyOutcomes.length > 0 && (
+          <div className="flex flex-wrap gap-1.5 pt-0.5">
+            {project.keyOutcomes.slice(0, 3).map((item, idx) => (
+              <span
+                key={idx}
+                className="inline-flex items-center gap-1 rounded bg-white/10 border border-white/15 px-1.5 py-0.5 text-[10px] text-white/90 backdrop-blur-[2px]"
+              >
+                <span className="text-white/60">{item.label}:</span>
+                <span className="font-semibold text-white">{item.value}</span>
+              </span>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );

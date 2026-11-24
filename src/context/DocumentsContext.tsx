@@ -20,7 +20,12 @@ import {
   logout,
   OperationType,
 } from '../lib/firebase';
-import { documentsRegistry, resolveDocumentUrl } from '../data/documents';
+import {
+  documentsRegistry,
+  getDocumentUrl as getStaticDocumentUrl,
+  getDownloadUrl as getStaticDownloadUrl,
+  resolveDocumentUrl,
+} from '../data/documents';
 
 export type DocumentCategory =
   | 'resume'
@@ -323,14 +328,15 @@ export function useDocuments(): DocumentsContextValue {
       accessToken: null,
       needsAuth: true,
       isSigningIn: false,
-      signInWithGoogle: async () => {},
+      isOwner: false,
+      signIn: async () => null,
       signOutUser: async () => {},
       documentsByKey: {},
       getDocumentRecord: () => null,
       getDocumentUrl: (category, targetId, itemFallbackUrl) =>
-        resolveDocumentUrl(category, targetId, itemFallbackUrl),
+        getStaticDocumentUrl(category, targetId, itemFallbackUrl),
       getDownloadUrl: (category, targetId, itemFallbackUrl) =>
-        resolveDocumentUrl(category, targetId, itemFallbackUrl),
+        getStaticDownloadUrl(category, targetId, itemFallbackUrl),
       saveDocumentBinding: async () => {},
       removeDocumentBinding: async () => {},
     };
