@@ -58,7 +58,7 @@ export const educationData: EducationItem[] = [
     id: 'edu-class-10',
     institution: 'Ishan International Public School',
     degree: 'Class 10th — Secondary',
-    specialization: 'General Secondary Education',
+    specialization: '',
     duration: '2018',
     status: 'Completed · Score: 82.40%',
     highlights: [
