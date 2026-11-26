@@ -65,29 +65,36 @@ export const DpsCafeDetailedStudyModal: React.FC<DpsCafeDetailedStudyModalProps>
 }) => {
   useEffect(() => {
     if (!isOpen) return;
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    document.body.classList.add('study-modal-open');
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') onClose();
     };
     window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
+    return () => {
+      document.body.style.overflow = prevOverflow;
+      document.body.classList.remove('study-modal-open');
+      window.removeEventListener('keydown', handleKeyDown);
+    };
   }, [isOpen, onClose]);
 
   if (!isOpen) return null;
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-0 sm:p-4 bg-black/60 backdrop-blur-[2px] animate-fade-in"
+      className="study-print-backdrop fixed inset-0 z-50 flex items-center justify-center p-0 sm:p-4 bg-black/60 backdrop-blur-[2px] animate-fade-in"
       onClick={onClose}
       role="dialog"
       aria-modal="true"
       aria-labelledby="dps-cafe-study-title"
     >
       <div
-        className="relative w-full max-w-4xl bg-white sm:border sm:border-zinc-300 rounded-none sm:rounded-xl shadow-2xl text-zinc-900 h-[100dvh] sm:h-auto sm:max-h-[92vh] flex flex-col overflow-hidden"
+        className="study-print-dialog relative w-full max-w-4xl bg-white sm:border sm:border-zinc-300 rounded-none sm:rounded-xl shadow-2xl text-zinc-900 h-[100dvh] sm:h-auto sm:max-h-[92vh] flex flex-col overflow-hidden"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Sticky Top Document Bar */}
-        <div className="sticky top-0 z-10 flex items-center justify-between gap-2 sm:gap-3 px-4 sm:px-7 py-3 sm:py-3.5 bg-zinc-50 border-b border-zinc-200 shrink-0">
+        <div className="print:hidden sticky top-0 z-10 flex items-center justify-between gap-2 sm:gap-3 px-4 sm:px-7 py-3 sm:py-3.5 bg-zinc-50 border-b border-zinc-200 shrink-0">
           <div className="flex items-center gap-2 min-w-0">
             <div className="w-8 h-8 rounded-md bg-amber-950 text-amber-300 flex items-center justify-center shrink-0">
               <FileText className="w-4 h-4" />
@@ -125,7 +132,7 @@ export const DpsCafeDetailedStudyModal: React.FC<DpsCafeDetailedStudyModalProps>
         </div>
 
         {/* Scrollable Document Body */}
-        <div className="overflow-y-auto px-4 sm:px-8 md:px-10 py-6 sm:py-8 space-y-8 text-[14.5px] sm:text-[15px] leading-[1.7] text-zinc-800">
+        <div className="study-print-scroll overflow-y-auto px-4 sm:px-8 md:px-10 py-6 sm:py-8 space-y-8 text-[14.5px] sm:text-[15px] leading-[1.7] text-zinc-800">
           {/* Document Header */}
           <header className="space-y-3 border-b border-zinc-200 pb-6">
             <p className="text-xs font-mono uppercase tracking-widest text-blue-700 font-semibold">

@@ -151,7 +151,8 @@ function upsertMetaTag(
 
 export function applyDocumentMetadata(path: RoutePath): void {
   const { title, description } = getRouteMetadata(path);
-  const resolvedUrl = `${window.location.origin}${window.location.pathname}`;
+  const canonicalPath = path === '/' ? '/' : path.replace(/\/+$/, '');
+  const resolvedUrl = `${window.location.origin}${canonicalPath}`;
 
   document.title = title;
 

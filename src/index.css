@@ -80,3 +80,36 @@ h1, h2, .font-display {
 .animate-cursor-blink {
   animation: blinkCursor 1s step-end infinite;
 }
+
+@media print {
+  body.study-modal-open .portfolio-shell,
+  body.study-modal-open aside,
+  body.study-modal-open .mobile-nav-bar {
+    display: none !important;
+  }
+
+  .study-print-backdrop {
+    position: static !important;
+    inset: auto !important;
+    padding: 0 !important;
+    background: #ffffff !important;
+    display: block !important;
+  }
+
+  .study-print-dialog {
+    position: static !important;
+    height: auto !important;
+    max-height: none !important;
+    max-width: 100% !important;
+    overflow: visible !important;
+    border: none !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+  }
+
+  .study-print-scroll {
+    overflow: visible !important;
+    height: auto !important;
+    max-height: none !important;
+  }
+}

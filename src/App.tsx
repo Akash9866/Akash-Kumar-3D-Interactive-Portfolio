@@ -69,7 +69,7 @@ export default function App() {
 
         {/* Main Content Area offset by Sidebar width */}
         <div
-          className={`flex max-w-screen flex-1 flex-col justify-between transition-[margin] duration-200 pt-14 md:pt-0 ${
+          className={`portfolio-shell flex max-w-screen flex-1 flex-col justify-between transition-[margin] duration-200 pt-14 md:pt-0 ${
             sidebarCollapsed ? 'md:ml-[68px]' : 'md:ml-[236px]'
           }`}
         >

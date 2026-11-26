@@ -43,8 +43,18 @@ const RoleTypewriter: React.FC = React.memo(() => {
   const [roleIndex, setRoleIndex] = useState(0);
   const [displayedRole, setDisplayedRole] = useState(ROLES[0]);
   const [isDeleting, setIsDeleting] = useState(false);
+  const [isPaused, setIsPaused] = useState(() =>
+    typeof document !== 'undefined' ? document.hidden : false
+  );
 
   useEffect(() => {
+    const onVisibility = () => setIsPaused(document.hidden);
+    document.addEventListener('visibilitychange', onVisibility);
+    return () => document.removeEventListener('visibilitychange', onVisibility);
+  }, []);
+
+  useEffect(() => {
+    if (isPaused) return;
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (prefersReducedMotion) return;
 
@@ -53,7 +63,6 @@ const RoleTypewriter: React.FC = React.memo(() => {
     const typingSpeed = isDeleting ? 40 : 80;
 
     const timer = setTimeout(() => {
-      if (document.hidden) return;
       if (!isDeleting && displayedRole === fullText) {
         innerTimer = setTimeout(() => setIsDeleting(true), 1600);
       } else if (isDeleting && displayedRole === '') {
@@ -70,7 +79,7 @@ const RoleTypewriter: React.FC = React.memo(() => {
       clearTimeout(timer);
       if (innerTimer) clearTimeout(innerTimer);
     };
-  }, [displayedRole, isDeleting, roleIndex]);
+  }, [displayedRole, isDeleting, roleIndex, isPaused]);
 
   return (
     <span className="text-[11px] text-zinc-600 h-4 flex items-center truncate">
@@ -91,11 +100,16 @@ export const Navigation: React.FC<NavigationProps> = React.memo(({
 
   useEffect(() => {
     if (!mobileOpen) return;
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') setMobileOpen(false);
     };
     window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
+    return () => {
+      document.body.style.overflow = prevOverflow;
+      window.removeEventListener('keydown', handleKeyDown);
+    };
   }, [mobileOpen]);
 
   const navLinks: {
@@ -178,7 +192,7 @@ export const Navigation: React.FC<NavigationProps> = React.memo(({
   return (
     <>
       {/* Mobile Header Bar (< md) */}
-      <div className="md:hidden fixed top-0 left-0 right-0 z-40 h-14 bg-[#f4f4f5]/90 backdrop-blur-md border-b border-zinc-200 px-4 flex items-center justify-between">
+      <div className="mobile-nav-bar md:hidden fixed top-0 left-0 right-0 z-40 h-14 bg-[#f4f4f5]/90 backdrop-blur-md border-b border-zinc-200 px-4 flex items-center justify-between">
         <button
           onClick={() => handleNavClick('/')}
           className="flex items-center space-x-2.5 text-left cursor-pointer py-1"

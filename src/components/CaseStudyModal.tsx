@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { ProjectItem } from '../types';
 import { X, Download, ArrowRight, ExternalLink, FileText } from 'lucide-react';
 import { ProjectCoverBanner } from './ProjectCard';
@@ -16,12 +16,29 @@ export const CaseStudyModal: React.FC<CaseStudyModalProps> = ({
   onOpenFullPage,
   onOpenFullStudy,
 }) => {
+  useEffect(() => {
+    if (!project) return;
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') onClose();
+    };
+    window.addEventListener('keydown', onKeyDown);
+    return () => {
+      document.body.style.overflow = prevOverflow;
+      window.removeEventListener('keydown', onKeyDown);
+    };
+  }, [project, onClose]);
+
   if (!project) return null;
 
   return (
     <div
       className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 animate-fade-in"
       onClick={onClose}
+      role="dialog"
+      aria-modal="true"
+      aria-label={project.title}
     >
       <div
         className="relative w-full max-w-2xl bg-white border border-zinc-300 rounded-xl shadow-2xl p-4 sm:p-8 text-zinc-900 max-h-[92dvh] overflow-y-auto"
