@@ -118,6 +118,7 @@ export interface ProjectItem {
   documentPath?: string | null;
   hasFullDocument: boolean;
   hasFullStudy?: boolean;
+  fullStudyLabel?: string;
   keyOutcomes?: { label: string; value: string }[];
   featured: boolean;
   areasToDocument: string[];

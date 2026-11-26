@@ -26,6 +26,7 @@ export const projectsData: ProjectItem[] = [
     documentPath: null,
     hasFullDocument: false,
     hasFullStudy: true,
+    fullStudyLabel: 'Full Detailed Study',
     keyOutcomes: [
       { label: 'FY26 Revenue', value: '₹230.71bn' },
       { label: 'ROE (Bloomberg)', value: '76.3%' },
@@ -161,11 +162,13 @@ export const projectsData: ProjectItem[] = [
     visualTheme: 'amber',
     documentPath: null,
     hasFullDocument: false,
+    hasFullStudy: true,
+    fullStudyLabel: 'Detailed Study',
     keyOutcomes: [
-      { label: 'Field Visits', value: '3 Visits' },
-      { label: 'Idli-Vada', value: '4–5 min' },
-      { label: 'Dosa', value: '7–8 min' },
-      { label: 'Scope', value: 'Workflow Analysis' },
+      { label: 'Capacity', value: '70 Seats' },
+      { label: 'Utilisation', value: '68–80%' },
+      { label: 'Table Cycle', value: '20–25 min' },
+      { label: 'Prep Range', value: '4–5 / 7–8 min' },
     ],
     featured: false,
     areasToDocument: [

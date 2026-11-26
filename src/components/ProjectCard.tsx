@@ -438,7 +438,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
                     className="inline-flex items-center justify-center gap-1 whitespace-nowrap font-medium transition-colors border border-blue-700 bg-blue-700 hover:bg-blue-800 rounded-md px-3 sm:px-2.5 text-xs text-white h-9 sm:h-7 cursor-pointer"
                   >
                     <FileText className="w-3 h-3" />
-                    <span>Full Detailed Study</span>
+                    <span>{project.fullStudyLabel || 'Full Detailed Study'}</span>
                   </button>
                 )}
               </div>

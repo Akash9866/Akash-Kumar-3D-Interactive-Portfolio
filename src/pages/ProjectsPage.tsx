@@ -12,6 +12,12 @@ const NestleFullStudyModal = React.lazy(() =>
   }))
 );
 
+const DpsCafeDetailedStudyModal = React.lazy(() =>
+  import('../components/DpsCafeDetailedStudyModal').then((m) => ({
+    default: m.DpsCafeDetailedStudyModal,
+  }))
+);
+
 interface ProjectsPageProps {
   onNavigate: (path: RoutePath) => void;
 }
@@ -20,7 +26,7 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({ onNavigate }) => {
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [activeModalProject, setActiveModalProject] = useState<ProjectItem | null>(null);
-  const [fullStudyOpen, setFullStudyOpen] = useState<boolean>(false);
+  const [fullStudySlug, setFullStudySlug] = useState<string | null>(null);
 
   const categories = [
     'All',
@@ -115,7 +121,7 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({ onNavigate }) => {
               project={project}
               onOpenDetails={(p) => setActiveModalProject(p)}
               onOpenPage={(p) => onNavigate(`/projects/${p.slug}`)}
-              onOpenFullStudy={() => setFullStudyOpen(true)}
+              onOpenFullStudy={(p) => setFullStudySlug(p.slug)}
             />
           </div>
         ))}
@@ -143,15 +149,23 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({ onNavigate }) => {
         project={activeModalProject}
         onClose={() => setActiveModalProject(null)}
         onOpenFullPage={(p) => onNavigate(`/projects/${p.slug}`)}
-        onOpenFullStudy={() => setFullStudyOpen(true)}
+        onOpenFullStudy={(p) => setFullStudySlug(p.slug)}
       />
 
-      {/* Full Detailed Study Modal */}
-      {fullStudyOpen && (
+      {/* Full Detailed Study Modals (Lazy-loaded on demand) */}
+      {fullStudySlug === 'nestle-india-financial-business-analysis' && (
         <React.Suspense fallback={null}>
           <NestleFullStudyModal
-            isOpen={fullStudyOpen}
-            onClose={() => setFullStudyOpen(false)}
+            isOpen={true}
+            onClose={() => setFullStudySlug(null)}
+          />
+        </React.Suspense>
+      )}
+      {fullStudySlug === 'dps-cafe-operations-observation' && (
+        <React.Suspense fallback={null}>
+          <DpsCafeDetailedStudyModal
+            isOpen={true}
+            onClose={() => setFullStudySlug(null)}
           />
         </React.Suspense>
       )}

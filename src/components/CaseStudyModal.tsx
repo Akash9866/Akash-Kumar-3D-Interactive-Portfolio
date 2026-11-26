@@ -110,7 +110,7 @@ export const CaseStudyModal: React.FC<CaseStudyModalProps> = ({
                 className="flex-1 sm:flex-none flex items-center justify-center gap-1.5 px-4 py-2.5 sm:py-2 min-h-[38px] sm:min-h-0 text-xs font-semibold text-white bg-blue-700 hover:bg-blue-800 rounded-md transition-colors cursor-pointer"
               >
                 <FileText className="w-3.5 h-3.5" />
-                <span>Full Detailed Study</span>
+                <span>{project.fullStudyLabel || 'Full Detailed Study'}</span>
               </button>
             )}
 

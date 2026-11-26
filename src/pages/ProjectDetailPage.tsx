@@ -18,6 +18,12 @@ const NestleFullStudyModal = React.lazy(() =>
   }))
 );
 
+const DpsCafeDetailedStudyModal = React.lazy(() =>
+  import('../components/DpsCafeDetailedStudyModal').then((m) => ({
+    default: m.DpsCafeDetailedStudyModal,
+  }))
+);
+
 interface ProjectDetailPageProps {
   slug: string;
   onNavigate: (path: RoutePath) => void;
@@ -83,7 +89,7 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
               className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-semibold transition-colors border border-blue-700 shadow-xs min-h-[42px] px-4 py-2 text-white bg-blue-700 hover:bg-blue-800 cursor-pointer"
             >
               <FileText className="w-4 h-4" />
-              <span>Full Detailed Study</span>
+              <span>{project.fullStudyLabel || 'Full Detailed Study'}</span>
             </button>
           </div>
         )}
@@ -201,7 +207,7 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
               className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-semibold transition-colors border border-blue-700 shadow-xs min-h-[42px] px-4 py-2 text-white bg-blue-700 hover:bg-blue-800 cursor-pointer"
             >
               <FileText className="w-4 h-4" />
-              <span>Full Detailed Study</span>
+              <span>{project.fullStudyLabel || 'Full Detailed Study'}</span>
             </button>
           )}
 
@@ -248,10 +254,17 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
 
       {fullStudyOpen && (
         <React.Suspense fallback={null}>
-          <NestleFullStudyModal
-            isOpen={fullStudyOpen}
-            onClose={() => setFullStudyOpen(false)}
-          />
+          {project.slug === 'dps-cafe-operations-observation' ? (
+            <DpsCafeDetailedStudyModal
+              isOpen={fullStudyOpen}
+              onClose={() => setFullStudyOpen(false)}
+            />
+          ) : (
+            <NestleFullStudyModal
+              isOpen={fullStudyOpen}
+              onClose={() => setFullStudyOpen(false)}
+            />
+          )}
         </React.Suspense>
       )}
     </div>
