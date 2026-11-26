@@ -74,11 +74,13 @@ export const projectsData: ProjectItem[] = [
     prototypeTitle: 'Swachh Mumbai Civic App Prototype',
     documentPath: null,
     hasFullDocument: false,
+    hasFullStudy: true,
+    fullStudyLabel: 'Full Detailed Study',
     keyOutcomes: [
-      { label: 'Focus', value: 'Waste & Recycling' },
-      { label: 'Stakeholder', value: 'BMC Input' },
-      { label: 'Method', value: 'Field Observation' },
-      { label: 'Output', value: 'Live Civic App' },
+      { label: 'Interviews', value: '137 Stakeholders' },
+      { label: 'Testing', value: '36 Across 3 Rounds' },
+      { label: 'Iterations', value: '3 Prototype Builds' },
+      { label: 'Prototype', value: 'Live Web App' },
     ],
     featured: true,
     areasToDocument: [

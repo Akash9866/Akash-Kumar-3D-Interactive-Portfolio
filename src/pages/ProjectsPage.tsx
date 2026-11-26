@@ -18,6 +18,12 @@ const DpsCafeDetailedStudyModal = React.lazy(() =>
   }))
 );
 
+const SwachhMumbaiFullStudyModal = React.lazy(() =>
+  import('../components/SwachhMumbaiFullStudyModal').then((m) => ({
+    default: m.SwachhMumbaiFullStudyModal,
+  }))
+);
+
 interface ProjectsPageProps {
   onNavigate: (path: RoutePath) => void;
 }
@@ -164,6 +170,14 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({ onNavigate }) => {
       {fullStudySlug === 'dps-cafe-operations-observation' && (
         <React.Suspense fallback={null}>
           <DpsCafeDetailedStudyModal
+            isOpen={true}
+            onClose={() => setFullStudySlug(null)}
+          />
+        </React.Suspense>
+      )}
+      {fullStudySlug === 'mumbai-cleanliness-waste-management' && (
+        <React.Suspense fallback={null}>
+          <SwachhMumbaiFullStudyModal
             isOpen={true}
             onClose={() => setFullStudySlug(null)}
           />
