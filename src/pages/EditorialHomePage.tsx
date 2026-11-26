@@ -216,12 +216,12 @@ export const EditorialHomePage: React.FC<EditorialHomePageProps> = ({
         )}
 
         {/* 1-Click Fast Actions for Recruiters & Hiring Managers */}
-        <div className="flex flex-wrap items-center gap-2.5 pt-1">
+        <div className="grid grid-cols-2 sm:flex sm:flex-wrap items-center gap-2.5 pt-1">
           <a
             href="/assets/documents/Akash_Kumar_Resume.pdf"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 px-3.5 py-2 min-h-[40px] text-xs font-semibold text-white bg-zinc-900 hover:bg-zinc-800 rounded-md transition-colors cursor-pointer"
+            className="inline-flex items-center justify-center gap-1.5 px-3.5 py-2 min-h-[42px] sm:min-h-[40px] text-xs font-semibold text-white bg-zinc-900 hover:bg-zinc-800 rounded-md transition-colors cursor-pointer"
           >
             <Download className="w-3.5 h-3.5 shrink-0" />
             <span>Resume (PDF)</span>
@@ -231,15 +231,15 @@ export const EditorialHomePage: React.FC<EditorialHomePageProps> = ({
             onClick={() => onNavigate('/projects')}
             onMouseEnter={() => prefetchRoute('/projects')}
             onTouchStart={() => prefetchRoute('/projects')}
-            className="inline-flex items-center gap-1.5 px-3.5 py-2 min-h-[40px] text-xs font-semibold text-zinc-900 bg-white border border-zinc-300 hover:bg-gray-100 rounded-md transition-colors cursor-pointer"
+            className="inline-flex items-center justify-center gap-1.5 px-3.5 py-2 min-h-[42px] sm:min-h-[40px] text-xs font-semibold text-zinc-900 bg-white border border-zinc-300 hover:bg-gray-100 rounded-md transition-colors cursor-pointer"
           >
-            <span>Explore Case Studies</span>
+            <span className="truncate">Case Studies</span>
             <ArrowRight className="w-3.5 h-3.5 shrink-0" />
           </button>
 
           <a
             href={`mailto:${contactData.email}`}
-            className="inline-flex items-center gap-1.5 px-3.5 py-2 min-h-[40px] text-xs font-semibold text-zinc-900 bg-white border border-zinc-300 hover:bg-gray-100 rounded-md transition-colors"
+            className="inline-flex items-center justify-center gap-1.5 px-3.5 py-2 min-h-[42px] sm:min-h-[40px] text-xs font-semibold text-zinc-900 bg-white border border-zinc-300 hover:bg-gray-100 rounded-md transition-colors"
           >
             <Mail className="w-3.5 h-3.5 shrink-0" />
             <span>Email</span>
@@ -250,7 +250,7 @@ export const EditorialHomePage: React.FC<EditorialHomePageProps> = ({
               href={contactData.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 px-3 py-2 min-h-[40px] text-xs font-medium text-zinc-700 bg-white/80 border border-zinc-300 hover:text-black hover:bg-white rounded-md transition-colors"
+              className="inline-flex items-center justify-center gap-1.5 px-3 py-2 min-h-[42px] sm:min-h-[40px] text-xs font-medium text-zinc-700 bg-white/80 border border-zinc-300 hover:text-black hover:bg-white rounded-md transition-colors"
             >
               <Linkedin className="w-3.5 h-3.5 shrink-0" />
               <span>LinkedIn</span>
@@ -308,9 +308,9 @@ export const EditorialHomePage: React.FC<EditorialHomePageProps> = ({
         <div className="grid grid-cols-2 sm:flex sm:flex-wrap gap-2.5 sm:gap-3 text-sm">
           <button
             onClick={() => onNavigate('/projects')}
-            className="col-span-2 sm:col-span-1 px-4 py-2.5 min-h-[42px] rounded-md bg-zinc-900 text-white hover:opacity-90 transition-opacity font-medium cursor-pointer text-center"
+            className="px-3.5 py-2.5 min-h-[42px] rounded-md bg-zinc-900 text-white hover:opacity-90 transition-opacity font-medium cursor-pointer text-center"
           >
-            Explore My Work
+            Explore Work
           </button>
 
           <button
@@ -388,7 +388,7 @@ export const EditorialHomePage: React.FC<EditorialHomePageProps> = ({
         >
           <div className="rounded-xl bg-neutral-200 border border-zinc-300 hover:border-zinc-600 transition-colors overflow-hidden shadow-sm hover:shadow-md">
             <div className="flex flex-col sm:flex-row">
-              <div className="relative w-full sm:w-48 sm:h-auto flex-shrink-0 p-2 sm:p-2.5 flex items-center">
+              <div className="relative w-full sm:w-60 md:w-64 sm:h-auto flex-shrink-0 p-2 sm:p-2.5 flex items-center">
                 <ProjectCoverBanner project={featuredProject} size="card" />
               </div>
               <div className="flex-1 p-3.5 sm:p-4 md:p-5 flex flex-col justify-between min-h-0 sm:min-h-[140px]">
