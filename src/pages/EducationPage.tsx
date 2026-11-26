@@ -67,20 +67,22 @@ export const EducationPage: React.FC<EducationPageProps> = ({ onNavigate }) => {
                     ))}
                   </ul>
 
-                  <div className="pt-2 flex flex-wrap gap-x-4 gap-y-2 text-[13px] sm:text-xs">
-                    <button
-                      onClick={() => onNavigate('/projects')}
-                      className="font-medium text-zinc-800 hover:text-black underline underline-offset-2 cursor-pointer py-0.5"
-                    >
-                      Related Academic Projects →
-                    </button>
-                    <button
-                      onClick={() => onNavigate('/certifications')}
-                      className="font-medium text-zinc-800 hover:text-black underline underline-offset-2 cursor-pointer py-0.5"
-                    >
-                      View Certifications →
-                    </button>
-                  </div>
+                  {edu.id !== 'edu-class-12' && edu.id !== 'edu-class-10' && (
+                    <div className="pt-2 flex flex-wrap gap-x-4 gap-y-2 text-[13px] sm:text-xs">
+                      <button
+                        onClick={() => onNavigate('/projects')}
+                        className="font-medium text-zinc-800 hover:text-black underline underline-offset-2 cursor-pointer py-0.5"
+                      >
+                        Related Academic Projects →
+                      </button>
+                      <button
+                        onClick={() => onNavigate('/certifications')}
+                        className="font-medium text-zinc-800 hover:text-black underline underline-offset-2 cursor-pointer py-0.5"
+                      >
+                        View Certifications →
+                      </button>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>

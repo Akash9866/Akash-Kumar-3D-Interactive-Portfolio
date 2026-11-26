@@ -42,7 +42,7 @@ export const educationData: EducationItem[] = [
   {
     id: 'edu-class-12',
     institution: 'Ishan International Public School',
-    degree: 'Class XII (Senior Secondary · CBSE Board)',
+    degree: 'Class 12th — Senior Secondary',
     specialization: 'Science Stream — PCB (Physics, Chemistry, Biology)',
     duration: '2020',
     status: 'Completed · Score: 84.50%',
@@ -57,7 +57,7 @@ export const educationData: EducationItem[] = [
   {
     id: 'edu-class-10',
     institution: 'Ishan International Public School',
-    degree: 'Class X (Secondary · CBSE Board)',
+    degree: 'Class 10th — Secondary',
     specialization: 'General Secondary Education',
     duration: '2018',
     status: 'Completed · Score: 82.40%',
