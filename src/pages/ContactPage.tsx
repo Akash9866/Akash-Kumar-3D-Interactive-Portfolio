@@ -9,7 +9,6 @@ import {
   FileText,
   Send,
   CheckCircle2,
-  Copy,
   Check,
   ExternalLink,
   Download,
@@ -68,7 +67,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate }) => {
 
   return (
     <div className="relative mx-auto space-y-6 md:space-y-8">
-      {/* Subtle Isometric Architectural Grid Background matching amankumar.ai/contact */}
+      {/* Subtle Isometric Architectural Grid Background */}
       <div
         aria-hidden="true"
         className="pointer-events-none fixed inset-0 z-0 overflow-hidden opacity-25"
@@ -98,7 +97,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate }) => {
           {contactData.customMessagePrompt}
         </h2>
 
-        {/* Direct Action Cards matching amankumar.ai/contact + Section 14 */}
+        {/* Direct Action Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 pt-2">
           {/* LinkedIn Card */}
           {contactData.linkedin ? (

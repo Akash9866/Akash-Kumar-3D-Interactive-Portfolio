@@ -53,7 +53,7 @@ export const Navigation: React.FC<NavigationProps> = ({
   const [displayedRole, setDisplayedRole] = useState('');
   const [isDeleting, setIsDeleting] = useState(false);
 
-  // Typewriter effect matching amankumar.ai sidebar header
+  // Typewriter effect for sidebar header
   useEffect(() => {
     const fullText = ROLES[roleIndex];
     const typingSpeed = isDeleting ? 35 : 75;

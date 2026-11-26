@@ -50,7 +50,7 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({ onNavigate }) => {
 
   return (
     <div className="mx-auto space-y-4 md:space-y-6">
-      {/* Header matching amankumar.ai/projects */}
+      {/* Page Header */}
       <div className="space-y-1.5">
         <h1 className="text-[28px] leading-[1.15] sm:text-4xl md:text-5xl font-medium tracking-tight text-zinc-900">
           Projects
@@ -60,7 +60,7 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({ onNavigate }) => {
         </p>
       </div>
 
-      {/* Filter Tabs + Search Input matching amankumar.ai/projects */}
+      {/* Filter Tabs + Search Input */}
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div className="-mx-4 px-4 sm:mx-0 sm:px-0 flex items-center gap-2 overflow-x-auto no-scrollbar pb-1 sm:flex-wrap sm:overflow-visible sm:pb-0">
           {categories.map((cat) => {

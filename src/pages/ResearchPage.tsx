@@ -140,9 +140,17 @@ export const ResearchPage: React.FC<ResearchPageProps> = ({
 
       {/* Filter Pills + Search Input Row */}
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-        <div className="flex items-center gap-2 overflow-x-auto no-scrollbar pb-1 sm:flex-wrap sm:overflow-visible sm:pb-0">
+        <div className="-mx-4 px-4 sm:mx-0 sm:px-0 flex items-center gap-2 overflow-x-auto no-scrollbar pb-1 sm:flex-wrap sm:overflow-visible sm:pb-0">
           {topics.map((topic) => {
             const active = selectedTopic === topic;
+            const count =
+              topic === 'All'
+                ? researchData.length
+                : researchData.filter(
+                    (item) =>
+                      item.topics.includes(topic) ||
+                      item.researchArea.toLowerCase().includes(topic.toLowerCase())
+                  ).length;
             return (
               <button
                 key={topic}
@@ -153,7 +161,10 @@ export const ResearchPage: React.FC<ResearchPageProps> = ({
                     : 'border-zinc-300 text-zinc-700 hover:border-zinc-500 bg-white/40'
                 }`}
               >
-                {topic}
+                {topic}{' '}
+                <span className={active ? 'text-zinc-300' : 'text-zinc-400'}>
+                  ({count})
+                </span>
               </button>
             );
           })}

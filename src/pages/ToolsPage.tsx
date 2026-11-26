@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { RoutePath } from '../router';
 import { profileData } from '../data/profile';
 import {
@@ -27,30 +27,6 @@ const getToolIcon = (name: string) => {
 };
 
 export const ToolsPage: React.FC<ToolsPageProps> = () => {
-  const [hoveredIdx, setHoveredIdx] = useState<number | null>(null);
-  const [tilt, setTilt] = useState<{ rx: number; ry: number; gx: number; gy: number }>({
-    rx: 0,
-    ry: 0,
-    gx: 50,
-    gy: 50,
-  });
-
-  const handleMouseMove = (
-    e: React.MouseEvent<HTMLDivElement>,
-    idx: number
-  ) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const x = (e.clientX - rect.left) / rect.width;
-    const y = (e.clientY - rect.top) / rect.height;
-    setHoveredIdx(idx);
-    setTilt({
-      rx: (0.5 - y) * 10,
-      ry: (x - 0.5) * 12,
-      gx: x * 100,
-      gy: y * 100,
-    });
-  };
-
   return (
     <div className="mx-auto space-y-5 md:space-y-7">
       <div className="space-y-1.5">
@@ -62,68 +38,40 @@ export const ToolsPage: React.FC<ToolsPageProps> = () => {
         </p>
       </div>
 
-      {/* 3D Perspective Cards matching amankumar.ai/tools */}
+      {/* Tools Grid with pure-CSS GPU hover transitions */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 sm:gap-4 md:gap-5 pt-1 sm:pt-2">
-        {profileData.toolsStack.map((tool, idx) => {
-          const isHovered = hoveredIdx === idx;
-          return (
-            <div
-              key={tool.name}
-              onMouseMove={(e) => handleMouseMove(e, idx)}
-              onMouseLeave={() => setHoveredIdx(null)}
-              style={{ perspective: '900px' }}
-              className="w-full"
-            >
-              <div
-                className="relative rounded-xl transition-transform duration-150 ease-out h-full"
-                style={{
-                  transform: isHovered
-                    ? `rotateX(${tilt.rx.toFixed(2)}deg) rotateY(${tilt.ry.toFixed(2)}deg) scale(1.015)`
-                    : 'none',
-                  boxShadow:
-                    'rgba(0, 0, 0, 0.04) 0px 24px 48px 0px, rgba(0, 0, 0, 0.08) 0px 8px 20px 0px',
-                }}
-              >
-                <div className="flex flex-row items-start justify-start p-4 rounded-xl gap-3.5 border border-gray-300 bg-white/80 hover:border-zinc-500 hover:bg-gray-50 transition-colors h-full">
-                  {/* Tool Icon */}
-                  <div
-                    className="w-11 h-11 sm:w-12 sm:h-12 rounded-lg flex items-center justify-center text-white shrink-0 shadow-xs"
-                    style={{ backgroundColor: tool.accentColor }}
-                  >
-                    {getToolIcon(tool.name)}
-                  </div>
-
-                  <div className="space-y-1 min-w-0">
-                    <h2 className="text-[15px] sm:text-base font-semibold text-zinc-900 leading-snug">
-                      {tool.name}
-                    </h2>
-                    <p className="text-xs font-medium text-zinc-600">
-                      <span>{tool.category}</span>
-                      <span aria-hidden="true"> · </span>
-                      <span className="text-zinc-500 font-normal">{tool.badge}</span>
-                    </p>
-                    <p className="text-[13.5px] sm:text-xs text-zinc-600 leading-relaxed pt-0.5">
-                      {tool.description}
-                    </p>
-                  </div>
+        {profileData.toolsStack.map((tool) => (
+          <div
+            key={tool.name}
+            className="w-full"
+          >
+            <div className="relative rounded-xl transition-all duration-200 ease-out h-full hover:-translate-y-0.5 hover:shadow-md shadow-xs">
+              <div className="flex flex-row items-start justify-start p-4 rounded-xl gap-3.5 border border-gray-300 bg-white/80 hover:border-zinc-500 hover:bg-gray-50 transition-colors h-full">
+                {/* Tool Icon */}
+                <div
+                  className="w-11 h-11 sm:w-12 sm:h-12 rounded-lg flex items-center justify-center text-white shrink-0 shadow-xs"
+                  style={{ backgroundColor: tool.accentColor }}
+                >
+                  {getToolIcon(tool.name)}
                 </div>
 
-                {/* Specular radial sheen overlay matching amankumar.ai/tools */}
-                <div
-                  className="pointer-events-none absolute inset-0 z-10 h-full w-full rounded-xl mix-blend-overlay transition-opacity duration-200"
-                  style={{
-                    opacity: isHovered ? 0.65 : 0.25,
-                    background: `radial-gradient(circle at ${
-                      isHovered ? tilt.gx : 50
-                    }% ${
-                      isHovered ? tilt.gy : 50
-                    }%, rgba(255, 255, 255, 0.9) 10%, rgba(255, 255, 255, 0.6) 25%, rgba(255, 255, 255, 0) 80%)`,
-                  }}
-                />
+                <div className="space-y-1 min-w-0">
+                  <h2 className="text-[15px] sm:text-base font-semibold text-zinc-900 leading-snug">
+                    {tool.name}
+                  </h2>
+                  <p className="text-xs font-medium text-zinc-600">
+                    <span>{tool.category}</span>
+                    <span aria-hidden="true"> · </span>
+                    <span className="text-zinc-500 font-normal">{tool.badge}</span>
+                  </p>
+                  <p className="text-[13.5px] sm:text-xs text-zinc-600 leading-relaxed pt-0.5">
+                    {tool.description}
+                  </p>
+                </div>
               </div>
             </div>
-          );
-        })}
+          </div>
+        ))}
       </div>
     </div>
   );

@@ -114,7 +114,7 @@ export const EditorialHomePage: React.FC<EditorialHomePageProps> = ({
 
   return (
     <div className="pb-2 mx-auto space-y-7 md:space-y-11">
-      {/* Hero & Editorial Lead matching amankumar.ai + Section 01 of Master Document */}
+      {/* Hero & Editorial Lead */}
       <div className="space-y-4 md:space-y-6">
         <div className="inline-flex items-center gap-2 px-3 py-1.5 sm:py-1 rounded-full bg-neutral-200/90 border border-zinc-300 text-xs font-medium text-zinc-800 max-w-full">
           <GraduationCap className="w-3.5 h-3.5 text-zinc-700 shrink-0" />
@@ -260,7 +260,7 @@ export const EditorialHomePage: React.FC<EditorialHomePageProps> = ({
         </div>
       </div>
 
-      {/* Directory List matching amankumar.ai home list */}
+      {/* Directory List */}
       <section className="space-y-2">
         <div className="flex items-center justify-between pb-1">
           <h2 className="text-xs font-semibold uppercase tracking-wider text-zinc-500">
@@ -298,7 +298,7 @@ export const EditorialHomePage: React.FC<EditorialHomePageProps> = ({
         </ul>
       </section>
 
-      {/* CTA Row matching amankumar.ai */}
+      {/* CTA Row */}
       <section className="space-y-3.5">
         <p className="text-[15px] sm:text-base text-zinc-800 leading-relaxed">
           If you’re recruiting for MBA internship opportunities, digital and
@@ -373,7 +373,7 @@ export const EditorialHomePage: React.FC<EditorialHomePageProps> = ({
         </a>
       </div>
 
-      {/* Featured Highlight Card matching amankumar.ai bottom "Check this out" card */}
+      {/* Featured Highlight Card */}
       <div className="mt-6 md:mt-8">
         <div
           onClick={() => onNavigate(`/projects/${featuredProject.slug}`)}
