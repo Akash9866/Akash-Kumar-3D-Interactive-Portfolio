@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { RoutePath } from '../router';
 import { profileData } from '../data/profile';
 import { projectsData } from '../data/projects';
 import { researchData } from '../data/research';
-import { ResumeModal } from '../components/ResumeModal';
 import { ResponsiveAvatar } from '../components/ResponsiveAvatar';
 
 interface AboutPageProps {
@@ -11,8 +10,6 @@ interface AboutPageProps {
 }
 
 export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
-  const [resumeModalOpen, setResumeModalOpen] = useState(false);
-
   return (
     <div className="mx-auto relative">
       <div className="relative z-10 space-y-6 md:space-y-8 text-zinc-900">
@@ -249,11 +246,6 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
           </div>
         </section>
       </div>
-
-      <ResumeModal
-        isOpen={resumeModalOpen}
-        onClose={() => setResumeModalOpen(false)}
-      />
     </div>
   );
 };

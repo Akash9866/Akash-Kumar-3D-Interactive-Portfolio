@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   ExternalLink,
   Smartphone,
@@ -27,9 +27,29 @@ export const PrototypeViewer: React.FC<PrototypeViewerProps> = ({
   const [viewMode, setViewMode] = useState<'desktop' | 'mobile'>(defaultView);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [timedOut, setTimedOut] = useState(false);
   const [key, setKey] = useState(0);
 
+  useEffect(() => {
+    if (!isLoading) return;
+    const t = setTimeout(() => {
+      setTimedOut(true);
+      setIsLoading(false);
+    }, 6000);
+    return () => clearTimeout(t);
+  }, [isLoading, key]);
+
+  useEffect(() => {
+    if (!isFullscreen) return;
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setIsFullscreen(false);
+    };
+    window.addEventListener('keydown', onKeyDown);
+    return () => window.removeEventListener('keydown', onKeyDown);
+  }, [isFullscreen]);
+
   const handleReload = () => {
+    setTimedOut(false);
     setIsLoading(true);
     setKey((prev) => prev + 1);
   };
@@ -77,7 +97,7 @@ export const PrototypeViewer: React.FC<PrototypeViewerProps> = ({
               title="Desktop Browser View"
             >
               <Monitor className="w-3.5 h-3.5" />
-              <span className="hidden xs:inline">Desktop</span>
+              <span className="hidden sm:inline">Desktop</span>
             </button>
             <button
               type="button"
@@ -90,7 +110,7 @@ export const PrototypeViewer: React.FC<PrototypeViewerProps> = ({
               title="Mobile Device View"
             >
               <Smartphone className="w-3.5 h-3.5" />
-              <span className="hidden xs:inline">Mobile</span>
+              <span className="hidden sm:inline">Mobile</span>
             </button>
           </div>
 
@@ -162,11 +182,28 @@ export const PrototypeViewer: React.FC<PrototypeViewerProps> = ({
             key={key}
             src={prototypeUrl}
             title={prototypeTitle}
+            loading="lazy"
             className="w-full h-full border-0 bg-white"
-            onLoad={() => setIsLoading(false)}
+            onLoad={() => {
+              setTimedOut(false);
+              setIsLoading(false);
+            }}
             allow="accelerometer; autoplay; camera; encrypted-media; geolocation; gyroscope; microphone; fullscreen"
             sandbox="allow-same-origin allow-scripts allow-popups allow-forms allow-presentation"
           />
+          {timedOut && (
+            <div className="absolute bottom-3 left-3 right-3 sm:left-auto sm:right-3 z-30 flex items-center justify-between gap-3 rounded-lg bg-zinc-900/95 border border-zinc-700 px-3.5 py-2 text-xs text-zinc-200 shadow-lg">
+              <span>Preview slow or blocked? Open externally.</span>
+              <a
+                href={prototypeUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-2.5 py-1 rounded bg-blue-600 hover:bg-blue-500 text-white font-medium shrink-0"
+              >
+                Launch
+              </a>
+            </div>
+          )}
         </div>
       </div>
 

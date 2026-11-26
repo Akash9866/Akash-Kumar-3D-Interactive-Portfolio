@@ -22,8 +22,6 @@ import { ToolsPage } from './pages/ToolsPage';
 import { ContactPage } from './pages/ContactPage';
 import { ProjectDetailPage } from './pages/ProjectDetailPage';
 
-import { ResumeModal } from './components/ResumeModal';
-
 // Lazy-load truly heavy standalone subviews to keep initial bundle lean
 const DocumentsPage = lazy(() =>
   import('./pages/DocumentsPage').then((m) => ({ default: m.DocumentsPage }))
@@ -46,7 +44,6 @@ const RouteLoadingSkeleton: React.FC = () => (
 export default function App() {
   const { currentPath, navigate } = useRouter();
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
-  const [resumeModalOpen, setResumeModalOpen] = useState(false);
 
   useEffect(() => {
     applyDocumentMetadata(currentPath);
@@ -68,12 +65,11 @@ export default function App() {
           onNavigate={navigate}
           collapsed={sidebarCollapsed}
           onToggleCollapse={() => setSidebarCollapsed((prev) => !prev)}
-          onOpenResume={() => setResumeModalOpen(true)}
         />
 
         {/* Main Content Area offset by Sidebar width */}
         <div
-          className={`flex max-w-screen flex-1 flex-col justify-between transition-all duration-300 pt-14 md:pt-0 ${
+          className={`flex max-w-screen flex-1 flex-col justify-between transition-[margin] duration-200 pt-14 md:pt-0 ${
             sidebarCollapsed ? 'md:ml-[68px]' : 'md:ml-[236px]'
           }`}
         >
@@ -82,10 +78,7 @@ export default function App() {
           <main className="grow px-4 pt-5 pb-8 sm:p-6 lg:px-12 md:py-24 w-full max-w-4xl mx-auto relative z-10">
             {/* Immediate 0ms synchronous render for all core pages */}
             {currentPath === '/' && (
-              <EditorialHomePage
-                onNavigate={navigate}
-                onOpenResume={() => setResumeModalOpen(true)}
-              />
+              <EditorialHomePage onNavigate={navigate} />
             )}
             {currentPath === '/projects' && (
               <ProjectsPage onNavigate={navigate} />
@@ -124,14 +117,6 @@ export default function App() {
 
           <Footer onNavigate={navigate} />
         </div>
-
-        {/* Resume Modal */}
-        {resumeModalOpen && (
-          <ResumeModal
-            isOpen={resumeModalOpen}
-            onClose={() => setResumeModalOpen(false)}
-          />
-        )}
       </div>
   );
 }

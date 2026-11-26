@@ -55,7 +55,12 @@ export const AmbientParticles: React.FC = () => {
       r: Math.random() * 1.4 + 0.6,
     }));
 
-    // Throttled frame loop (30fps desktop, 20fps mobile): saves >60% CPU/GPU and prevents scroll jank
+    let cachedScrollY = window.scrollY;
+    const handleScroll = () => {
+      cachedScrollY = window.scrollY;
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+
     let lastTime = 0;
     const targetFps = isMobile ? 20 : 30;
     const frameInterval = 1000 / targetFps;
@@ -68,7 +73,7 @@ export const AmbientParticles: React.FC = () => {
       lastTime = currentTime;
 
       ctx.clearRect(0, 0, width, height);
-      const scrollY = window.scrollY * 0.12;
+      const scrollY = cachedScrollY * 0.12;
 
       ctx.fillStyle = 'rgba(24, 24, 27, 0.18)';
       ctx.strokeStyle = 'rgba(24, 24, 27, 0.05)';
@@ -117,6 +122,7 @@ export const AmbientParticles: React.FC = () => {
       isRunning = false;
       cancelAnimationFrame(animId);
       window.removeEventListener('resize', handleResize);
+      window.removeEventListener('scroll', handleScroll);
       document.removeEventListener('visibilitychange', handleVisibilityChange);
       clearTimeout(resizeTimeout);
     };

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { RoutePath } from '../router';
 import { projectsData } from '../data/projects';
 import { getDocumentUrl } from '../data/documents';
@@ -34,6 +34,10 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
   onNavigate,
 }) => {
   const [fullStudyOpen, setFullStudyOpen] = useState(false);
+
+  useEffect(() => {
+    setFullStudyOpen(false);
+  }, [slug]);
   const project =
     projectsData.find((p) => p.slug === slug || p.id === slug) ||
     projectsData[0];

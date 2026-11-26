@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { RoutePath } from '../router';
 import { contactData } from '../data/contact';
-import { ResumeModal } from '../components/ResumeModal';
 import {
   Linkedin,
   Mail,
@@ -19,8 +18,6 @@ interface ContactPageProps {
 }
 
 export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate }) => {
-  const [resumeModalOpen, setResumeModalOpen] = useState(false);
-
   const [senderName, setSenderName] = useState('');
   const [senderOrg, setSenderOrg] = useState('');
   const [messageText, setMessageText] = useState('');
@@ -352,11 +349,6 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate }) => {
           </div>
         </div>
       </div>
-
-      <ResumeModal
-        isOpen={resumeModalOpen}
-        onClose={() => setResumeModalOpen(false)}
-      />
     </div>
   );
 };

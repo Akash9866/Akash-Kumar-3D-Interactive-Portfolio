@@ -9,7 +9,7 @@
  * so the share URL stays identical while visitors always receive your latest PDF.
  */
 
-export const DOCUMENT_CACHE_VERSION = '2026-11-13';
+export const DOCUMENT_CACHE_VERSION = '2026-11-26';
 
 export interface DocumentEntry {
   url: string | null;
@@ -22,8 +22,9 @@ export const documentsRegistry = {
     lastUpdated: 'November 2026',
   },
   internships: {
-    'int-eco-fast-agri': null as string | null,
     'int-gpc-agrochemicals': null as string | null,
+    'int-pcf-agri-tech': null as string | null,
+    'int-eco-fast-agri': null as string | null,
     'int-one-india-organic': null as string | null,
   } as Record<string, string | null>,
   projects: {

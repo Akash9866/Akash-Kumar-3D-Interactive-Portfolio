@@ -6,14 +6,21 @@ interface FooterProps {
   onNavigate: (path: RoutePath) => void;
 }
 
-export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
-  const [timeStr, setTimeStr] = useState<string>('');
+const LiveClock: React.FC = React.memo(() => {
+  const [timeStr, setTimeStr] = useState<string>(() =>
+    new Date().toLocaleTimeString([], {
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit',
+      hour12: false,
+    })
+  );
 
   useEffect(() => {
     const updateClock = () => {
-      const now = new Date();
+      if (document.hidden) return;
       setTimeStr(
-        now.toLocaleTimeString([], {
+        new Date().toLocaleTimeString([], {
           hour: '2-digit',
           minute: '2-digit',
           second: '2-digit',
@@ -21,10 +28,19 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
         })
       );
     };
-    updateClock();
     const id = setInterval(updateClock, 1000);
     return () => clearInterval(id);
   }, []);
+
+  return (
+    <div className="text-xs sm:text-sm text-zinc-800 font-mono tabular-nums text-right">
+      {timeStr}
+    </div>
+  );
+});
+
+export const Footer: React.FC<FooterProps> = React.memo(({ onNavigate }) => {
+  const year = new Date().getFullYear();
 
   return (
     <footer className="relative z-10 w-full border-t-[0.5px] border-gray-400/70 text-gray-700 text-xs sm:text-sm">
@@ -41,13 +57,11 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
 
           <div className="space-x-1 sm:justify-self-center whitespace-nowrap order-3 sm:order-none w-full sm:w-auto text-center">
             <span>Akash Kumar |</span>
-            <span>© {new Date().getFullYear()}</span>
+            <span>© {year}</span>
           </div>
 
           <div className="flex items-center gap-3 sm:justify-self-end">
-            <div className="text-xs sm:text-sm text-zinc-800 font-mono tabular-nums text-right">
-              {timeStr}
-            </div>
+            <LiveClock />
           </div>
         </div>
 
@@ -57,4 +71,4 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
       </div>
     </footer>
   );
-};
+});

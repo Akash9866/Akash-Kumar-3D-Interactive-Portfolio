@@ -15,12 +15,10 @@ import {
 
 interface EditorialHomePageProps {
   onNavigate: (path: RoutePath) => void;
-  onOpenResume: () => void;
 }
 
 export const EditorialHomePage: React.FC<EditorialHomePageProps> = ({
   onNavigate,
-  onOpenResume,
 }) => {
   const featuredProject = projectsData[0];
 

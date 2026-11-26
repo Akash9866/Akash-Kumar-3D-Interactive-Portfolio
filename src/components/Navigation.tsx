@@ -29,7 +29,6 @@ interface NavigationProps {
   onNavigate: (path: RoutePath) => void;
   collapsed: boolean;
   onToggleCollapse: () => void;
-  onOpenResume: () => void;
 }
 
 const ROLES = [
@@ -40,27 +39,23 @@ const ROLES = [
   'Innovation',
 ];
 
-export const Navigation: React.FC<NavigationProps> = ({
-  currentPath,
-  onNavigate,
-  collapsed,
-  onToggleCollapse,
-  onOpenResume,
-}) => {
-  const [mobileOpen, setMobileOpen] = useState(false);
-  const [emailCopied, setEmailCopied] = useState(false);
+const RoleTypewriter: React.FC = React.memo(() => {
   const [roleIndex, setRoleIndex] = useState(0);
-  const [displayedRole, setDisplayedRole] = useState('');
+  const [displayedRole, setDisplayedRole] = useState(ROLES[0]);
   const [isDeleting, setIsDeleting] = useState(false);
 
-  // Typewriter effect for sidebar header
   useEffect(() => {
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) return;
+
+    let innerTimer: ReturnType<typeof setTimeout> | undefined;
     const fullText = ROLES[roleIndex];
-    const typingSpeed = isDeleting ? 35 : 75;
+    const typingSpeed = isDeleting ? 40 : 80;
 
     const timer = setTimeout(() => {
+      if (document.hidden) return;
       if (!isDeleting && displayedRole === fullText) {
-        setTimeout(() => setIsDeleting(true), 1400);
+        innerTimer = setTimeout(() => setIsDeleting(true), 1600);
       } else if (isDeleting && displayedRole === '') {
         setIsDeleting(false);
         setRoleIndex((prev) => (prev + 1) % ROLES.length);
@@ -71,8 +66,37 @@ export const Navigation: React.FC<NavigationProps> = ({
       }
     }, typingSpeed);
 
-    return () => clearTimeout(timer);
+    return () => {
+      clearTimeout(timer);
+      if (innerTimer) clearTimeout(innerTimer);
+    };
   }, [displayedRole, isDeleting, roleIndex]);
+
+  return (
+    <span className="text-[11px] text-zinc-600 h-4 flex items-center truncate">
+      <span>{displayedRole}</span>
+      <span className="ml-0.5 text-zinc-800 animate-cursor-blink">|</span>
+    </span>
+  );
+});
+
+export const Navigation: React.FC<NavigationProps> = React.memo(({
+  currentPath,
+  onNavigate,
+  collapsed,
+  onToggleCollapse,
+}) => {
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [emailCopied, setEmailCopied] = useState(false);
+
+  useEffect(() => {
+    if (!mobileOpen) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setMobileOpen(false);
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [mobileOpen]);
 
   const navLinks: {
     label: string;
@@ -194,7 +218,7 @@ export const Navigation: React.FC<NavigationProps> = ({
       {/* Left Sidebar (id="sider") */}
       <aside
         id="sider"
-        className={`fixed left-0 top-0 z-40 h-[100dvh] overflow-y-auto overflow-x-hidden bg-[#f4f4f5] border-r border-zinc-200/80 py-6 pb-10 md:py-10 space-y-4 px-3.5 transition-all duration-300 ${
+        className={`fixed left-0 top-0 z-40 h-[100dvh] overflow-y-auto overflow-x-hidden bg-[#f4f4f5] border-r border-zinc-200/80 py-6 pb-10 md:py-10 space-y-4 px-3.5 transition-[width,transform] duration-200 ${
           collapsed && !mobileOpen ? 'md:w-[68px]' : 'w-[252px] md:w-[236px]'
         } ${
           mobileOpen
@@ -219,9 +243,10 @@ export const Navigation: React.FC<NavigationProps> = ({
         </button>
 
         {/* Profile Lockup */}
-        <div
+        <button
+          type="button"
           onClick={() => handleNavClick('/')}
-          className={`flex items-center sm:mb-6 px-1.5 cursor-pointer ${
+          className={`w-full flex items-center sm:mb-6 px-1.5 cursor-pointer text-left ${
             collapsed && !mobileOpen ? 'justify-center' : 'space-x-3 justify-start'
           }`}
         >
@@ -236,13 +261,10 @@ export const Navigation: React.FC<NavigationProps> = ({
               <span className="text-black font-medium md:text-base truncate font-display">
                 {profileData.shortName}
               </span>
-              <span className="text-[11px] text-zinc-600 h-4 flex items-center truncate">
-                <span>{displayedRole}</span>
-                <span className="ml-0.5 text-zinc-800 animate-cursor-blink">|</span>
-              </span>
+              <RoleTypewriter />
             </div>
           )}
-        </div>
+        </button>
 
         {/* Navigation Links */}
         <div className="space-y-1 py-2">
@@ -396,4 +418,4 @@ export const Navigation: React.FC<NavigationProps> = ({
       </aside>
     </>
   );
-};
+});
