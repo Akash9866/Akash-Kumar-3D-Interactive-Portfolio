@@ -159,6 +159,7 @@ export function applyDocumentMetadata(path: RoutePath): void {
   upsertMetaTag('property', 'og:title', title);
   upsertMetaTag('property', 'og:description', description);
   upsertMetaTag('property', 'og:url', resolvedUrl);
+  upsertMetaTag('name', 'twitter:url', resolvedUrl);
   upsertMetaTag('name', 'twitter:title', title);
   upsertMetaTag('name', 'twitter:description', description);
 
