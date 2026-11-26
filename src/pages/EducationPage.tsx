@@ -16,7 +16,7 @@ export const EducationPage: React.FC<EducationPageProps> = ({ onNavigate }) => {
           Education
         </h1>
         <p className="text-[14.5px] sm:text-base text-zinc-600 max-w-2xl leading-relaxed">
-          My formal academic credentials—spanning postgraduate business design management at WeSchool, Mumbai and undergraduate agricultural sciences at Quantum University.
+          My formal academic credentials—spanning postgraduate business design management at WeSchool, Mumbai, undergraduate agricultural sciences at Quantum University, and CBSE schooling at Ishan International Public School.
         </p>
       </div>
 

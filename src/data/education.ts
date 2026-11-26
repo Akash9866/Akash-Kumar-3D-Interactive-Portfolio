@@ -39,6 +39,35 @@ export const educationData: EducationItem[] = [
     verificationStatus: 'verified',
     displayStatus: 'active',
   },
+  {
+    id: 'edu-class-12',
+    institution: 'Ishan International Public School',
+    degree: 'Class XII (Senior Secondary · CBSE Board)',
+    specialization: 'Science Stream — PCB (Physics, Chemistry, Biology)',
+    duration: '2020',
+    status: 'Completed · Score: 84.50%',
+    highlights: [
+      'Completed Senior Secondary education under the Central Board of Secondary Education (CBSE) with Science (Physics, Chemistry, and Biology).',
+      'Built strong analytical and biological science fundamentals that directly supported undergraduate agricultural research.',
+    ],
+    certificatePath: null,
+    verificationStatus: 'verified',
+    displayStatus: 'active',
+  },
+  {
+    id: 'edu-class-10',
+    institution: 'Ishan International Public School',
+    degree: 'Class X (Secondary · CBSE Board)',
+    specialization: 'General Secondary Education',
+    duration: '2018',
+    status: 'Completed · Score: 82.40%',
+    highlights: [
+      'Completed Secondary Schooling under the Central Board of Secondary Education (CBSE) with a balanced foundation across mathematics, sciences, and languages.',
+    ],
+    certificatePath: null,
+    verificationStatus: 'verified',
+    displayStatus: 'active',
+  },
 ];
 
 export const leadershipData: LeadershipItem[] = [
