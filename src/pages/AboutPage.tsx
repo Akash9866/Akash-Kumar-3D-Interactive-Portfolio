@@ -26,7 +26,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
               {profileData.currentProgramme} · {profileData.institutionFull} ({profileData.batch} · Current CGPA: 8/10)
             </p>
             <p className="text-[13px] sm:text-xs text-zinc-500">
-              {profileData.previousQualification} · {profileData.undergraduateInstitution} (July 2021 – July 2025 · CGPA: 7.84/10)
+              {profileData.previousQualification} · {profileData.undergraduateInstitution} (2021–2025 · CGPA: 7.84/10)
             </p>
           </div>
 

@@ -28,7 +28,7 @@ export const educationData: EducationItem[] = [
     institution: 'Quantum University — School of Agricultural Studies',
     degree: 'B.Sc. (Hons.) Agriculture',
     specialization: 'Agricultural Sciences, Research & Agribusiness',
-    duration: 'July 2021 – July 2025',
+    duration: '2021–2025',
     status: 'Completed · CGPA: 7.84/10 (Final Grade: A)',
     highlights: [
       'Built an empirical scientific foundation across agricultural sciences, agribusiness management, field trials, and quantitative statistical evaluation during the four-year honours programme.',

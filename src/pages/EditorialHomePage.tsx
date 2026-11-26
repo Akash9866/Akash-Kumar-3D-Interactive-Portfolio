@@ -80,7 +80,7 @@ export const EditorialHomePage: React.FC<EditorialHomePageProps> = ({
     {
       title: 'Education',
       description:
-        'PGDM — Business Design at WeSchool (2026–2028 · CGPA: 8/10) & B.Sc. (Hons.) Agriculture at Quantum University (July 2021 – July 2025 · CGPA: 7.84/10).',
+        'PGDM — Business Design at WeSchool (2026–2028 · CGPA: 8/10) & B.Sc. (Hons.) Agriculture at Quantum University (2021–2025 · CGPA: 7.84/10).',
       path: '/education',
     },
     {

@@ -23,7 +23,7 @@ export const LeadershipPage: React.FC<LeadershipPageProps> = ({ onNavigate }) =>
           Leadership Experience
         </h1>
         <p className="text-[14.5px] sm:text-base text-zinc-600 max-w-2xl leading-relaxed">
-          My campus leadership roles, indoor sports coordination, competitive chess representation, and community educational volunteering during my undergraduate years (July 2021 – July 2025).
+          My campus leadership roles, indoor sports coordination, competitive chess representation, and community educational volunteering during my undergraduate years (2021–2025).
         </p>
       </div>
 

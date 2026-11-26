@@ -130,7 +130,7 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 p-3 bg-zinc-100/80 rounded-md border border-zinc-200">
                 <span className="text-zinc-500 shrink-0">Previous Qualification</span>
                 <span className="text-zinc-900 font-medium sm:text-right">
-                  B.Sc. (Hons.) Agriculture (Quantum University, July 2021 – July 2025 · CGPA: 7.84/10)
+                  B.Sc. (Hons.) Agriculture (Quantum University, 2021–2025 · CGPA: 7.84/10)
                 </span>
               </div>
             </div>
